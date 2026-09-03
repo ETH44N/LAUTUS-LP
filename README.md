@@ -44,15 +44,15 @@ browser). The function validates the address, drops honeypot submissions, and in
 in the browser can read it. Duplicate emails return `{ ok: true, duplicate: true }` and the page
 shows "You're already on the list."
 
-**Notification email.** After each insert the function emails `crapo2025@gmail.com` through
-Resend when a key is available: either the `RESEND_API_KEY` function secret, or a Vault secret
-named `resend_api_key`:
+**Notification email.** After each insert the function emails `crapo2025@gmail.com` from
+`lautus@mansionmastermind.fr` (a verified Resend domain). The Resend key is stored as a Vault
+secret named `resend_api_key` (a `RESEND_API_KEY` function secret also works). To rotate it:
 
 ```sql
 select vault.create_secret('re_xxxxxxxxx', 'resend_api_key');
 ```
 
-Without a key, signups are still stored and the function logs "notification skipped".
+Without a key, signups are still stored and the function logs "notification skipped". Rotating: `select vault.update_secret(id, 're_new...') from vault.secrets where name = 'resend_api_key';`
 Override the recipient/sender with the `LAUTUS_NOTIFY_EMAIL` / `LAUTUS_NOTIFY_FROM` secrets.
 
 **Viewing signups:** Supabase dashboard → Table editor → `lautus_waitlist`, or

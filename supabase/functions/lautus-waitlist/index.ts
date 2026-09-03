@@ -15,7 +15,8 @@ import { createClient, type SupabaseClient } from "npm:@supabase/supabase-js@2";
 
 const PUBLISHABLE_KEY = "sb_publishable_IPFsqDzii7NDalWUlpU-NA_nCy8ce3z";
 const NOTIFY_TO = Deno.env.get("LAUTUS_NOTIFY_EMAIL") ?? "crapo2025@gmail.com";
-const NOTIFY_FROM = Deno.env.get("LAUTUS_NOTIFY_FROM") ?? "Lautus Waitlist <onboarding@resend.dev>";
+// mansionmastermind.fr is a verified sending domain in the Resend account.
+const NOTIFY_FROM = Deno.env.get("LAUTUS_NOTIFY_FROM") ?? "Lautus Waitlist <lautus@mansionmastermind.fr>";
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
