@@ -35,19 +35,33 @@ python3 -m http.server 8790
 
 Then open http://127.0.0.1:8790.
 
-## Connect the email form
+## Signups (Supabase)
 
-The form POSTs JSON `{ "email": "...", "source": "lautus.ai coming-soon" }` to `FORM_ENDPOINT`
-at the top of `script.js`. Until you set it, the form shows an "isn't connected yet" notice.
+The form POSTs `{ email, source, referrer }` to the `lautus-waitlist` Edge Function in the
+Supabase project `vakvqlyvvaxpqabewtei`, with the project's publishable key (safe to ship in the
+browser). The function validates the address, drops honeypot submissions, and inserts into
+`public.lautus_waitlist` using the service role. The table has RLS on with no policies, so nothing
+in the browser can read it. Duplicate emails return `{ ok: true, duplicate: true }` and the page
+shows "You're already on the list."
 
-| Service | What to do |
-| --- | --- |
-| **Formspree** (free tier, zero backend) | Create a form at formspree.io, paste the `https://formspree.io/f/xxxx` URL. Works as-is. |
-| **Buttondown** | Use `https://api.buttondown.email/v1/subscribers` and add an `Authorization: Token …` header in the fetch call. |
-| **Netlify Forms** | Deploy on Netlify, add `data-netlify="true"` to the `<form>`, and swap the fetch for a plain submit. |
-| **Your own API / Supabase / Sheets** | Any endpoint that accepts a JSON POST and returns 2xx. |
+**Notification email.** After each insert the function emails `crapo2025@gmail.com` through
+Resend when a key is available: either the `RESEND_API_KEY` function secret, or a Vault secret
+named `resend_api_key`:
 
-The form also carries a honeypot field (`_gotcha`); submissions that fill it are dropped client-side.
+```sql
+select vault.create_secret('re_xxxxxxxxx', 'resend_api_key');
+```
+
+Without a key, signups are still stored and the function logs "notification skipped".
+Override the recipient/sender with the `LAUTUS_NOTIFY_EMAIL` / `LAUTUS_NOTIFY_FROM` secrets.
+
+**Viewing signups:** Supabase dashboard → Table editor → `lautus_waitlist`, or
+
+```sql
+select email, source, created_at, notified_at from public.lautus_waitlist order by created_at desc;
+```
+
+Function source lives in `supabase/functions/lautus-waitlist/index.ts`.
 
 ## Deploy
 

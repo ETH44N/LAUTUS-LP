@@ -1,9 +1,13 @@
 /* Lautus — coming soon. Signup form only, no dependencies. */
 (() => {
   // ------------------------------------------------------------------
-  // CONFIG — point this at your email-capture endpoint (see README.md)
+  // CONFIG — Supabase project + the lautus-waitlist Edge Function.
+  // The publishable key is meant to ship in the browser; the function
+  // does the writing with the service role server-side (see README.md).
   // ------------------------------------------------------------------
-  const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+  const SUPABASE_URL = 'https://vakvqlyvvaxpqabewtei.supabase.co';
+  const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_IPFsqDzii7NDalWUlpU-NA_nCy8ce3z';
+  const FORM_ENDPOINT = `${SUPABASE_URL}/functions/v1/lautus-waitlist`;
 
   const $ = (sel, root = document) => root.querySelector(sel);
 
@@ -39,21 +43,30 @@
       return;
     }
 
-    if (FORM_ENDPOINT.includes('YOUR_FORM_ID')) {
-      setState('error', "Signup isn't connected yet — set FORM_ENDPOINT in script.js.");
-      return;
-    }
-
     setState('loading', 'Sending…');
     btnLabel.textContent = 'Sending';
 
     try {
       const res = await fetch(FORM_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ email, source: 'lautus.ai coming-soon' }),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          apikey: SUPABASE_PUBLISHABLE_KEY,
+          Authorization: `Bearer ${SUPABASE_PUBLISHABLE_KEY}`,
+        },
+        body: JSON.stringify({
+          email,
+          source: 'lautus.ai coming-soon',
+          referrer: document.referrer || null,
+        }),
       });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) throw new Error(data.error || `HTTP ${res.status}`);
+      if (data.duplicate) {
+        $('.signup__done-title', form).textContent = "You're already on the list.";
+        $('.signup__done-sub', form).textContent = 'No need to sign up twice. Talk soon.';
+      }
       setState('success', 'Thanks — talk soon.');
       done.setAttribute('aria-hidden', 'false');
     } catch (err) {
