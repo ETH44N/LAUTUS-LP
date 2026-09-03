@@ -1,12 +1,12 @@
 # Lautus — coming soon
 
-The holding page for [lautus.ai](https://lautus.ai): deep navy, white, a warm cherry accent, and glass.
+The holding page for [lautus.ai](https://lautus.ai): white, soft blue blurs, navy type, cherry accents, one glass card. Everything centered.
 Plain HTML/CSS/JS — no build step, no framework, deploys anywhere that serves static files.
 
 ```
 index.html   markup + copy
 styles.css   theme, glass, layout, motion
-script.js    signup form, timecode HUD, waveform, pointer tilt
+script.js    signup form
 favicon.svg  tab icon
 og.png       social share image (1200×630)
 CNAME        custom domain for GitHub Pages
@@ -42,7 +42,7 @@ The form also carries a honeypot field (`_gotcha`); submissions that fill it are
 
 ## Customize
 
-- Copy lives in `index.html` (headline, lede, chips).
-- Colors are CSS variables at the top of `styles.css` (`--navy-*`, `--cherry*`, `--glass-*`).
+- Copy lives in `index.html` (headline, lede, footer).
+- Colors are CSS variables at the top of `styles.css` (`--navy`, `--blue`, `--cherry*`).
 - Fonts: Syne (display), Hanken Grotesk (body), Azeret Mono (labels), loaded from Google Fonts.
 - Motion respects `prefers-reduced-motion`.
