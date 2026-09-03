@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Lautus — share image</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body { width: 1200px; height: 630px; min-height: 0; overflow: hidden; }
+    .og {
+      position: relative; z-index: 1;
+      width: 1200px; height: 630px;
+      display: grid; grid-template-columns: 1.15fr 1fr; align-items: center;
+      padding: 0 60px 0 96px; gap: 20px;
+      text-align: left;
+    }
+    .og__brand { margin: 0 0 30px; font: 500 17px/1 'General Sans', sans-serif; letter-spacing: 0.16em; color: var(--navy); }
+    .og .status { margin: 0 0 22px; }
+    .og .headline { margin: 0 0 20px; font-size: 48px; }
+    .og .lede { margin: 0; font-size: 22px; max-width: 30ch; }
+    .og__lotus { height: 530px; width: auto; justify-self: center; }
+  </style>
+</head>
+<body>
+  <div class="blurs" aria-hidden="true">
+    <div class="blur blur--1"></div>
+    <div class="blur blur--2"></div>
+  </div>
+  <div class="og">
+    <div>
+      <p class="og__brand">lautus.ai</p>
+      <p class="status mono"><span class="status__dot"></span>Coming soon</p>
+      <h1 class="headline">Every talk hides<br />a dozen shorts.<br />Lautus <em class="accent">finds</em> them.</h1>
+      <p class="lede">An AI editor for long-form video. Request early access.</p>
+    </div>
+    <img class="og__lotus" src="brand/lautus-lotus.png" alt="" />
+  </div>
+</body>
+</html>

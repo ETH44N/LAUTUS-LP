@@ -22,6 +22,14 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+@font-face {
+  font-family: 'General Sans';
+  src: url('fonts/GeneralSans-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 *, *::before, *::after { box-sizing: border-box; }
 
 html { -webkit-text-size-adjust: 100%; color-scheme: light; }
@@ -97,38 +105,50 @@ body {
 .page {
   position: relative; z-index: 1;
   min-height: 100dvh;
-  padding: clamp(24px, 4vw, 48px) clamp(20px, 5vw, 48px);
+  padding: clamp(16px, 2.5vw, 32px) clamp(20px, 5vw, 48px);
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 1fr auto;
   justify-items: center;
   text-align: center;
-  gap: clamp(24px, 4vh, 48px);
+  gap: clamp(20px, 3vh, 36px);
 }
 
-.wordmark {
-  display: inline-flex; align-items: center; gap: 12px;
+/* Logo lockup — lotus symbol with the wordmark beneath */
+
+.lockup {
+  position: relative;
+  display: inline-flex; flex-direction: column; align-items: center;
+  gap: 8px;
+  margin: 0 0 14px;
   color: var(--navy); text-decoration: none;
 }
 
-.wordmark__mark {
+/* soft atmospheric halo behind the flower (brand brief: #78A0FF, a few percent) */
+.lockup::before {
+  content: "";
+  position: absolute; left: 50%; top: 42%;
+  width: 150%; aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(120,160,255,0.10), transparent 62%);
+  pointer-events: none;
+}
+
+.lockup picture { position: relative; display: block; line-height: 0; }
+
+.lockup__symbol {
+  display: block;
+  height: clamp(88px, 10vw, 112px); width: auto;
+}
+
+.lockup__wordmark {
   position: relative;
-  width: 22px; height: 22px; border-radius: 50%;
-  border: 1.5px solid var(--navy);
-  background: rgba(255,255,255,0.6);
-}
-
-.wordmark__mark i {
-  position: absolute; right: 2px; bottom: 2px;
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--cherry);
-}
-
-.wordmark__text {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
+  font-family: 'General Sans', var(--font-body);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
+  text-transform: lowercase;
 }
 
 .hero {
@@ -140,7 +160,7 @@ body {
 
 .status {
   display: inline-flex; align-items: center; gap: 10px;
-  margin: 0 0 28px;
+  margin: 0 0 16px;
   color: var(--cherry);
 }
 
@@ -152,10 +172,10 @@ body {
 }
 
 .headline {
-  margin: 0 0 22px;
+  margin: 0 0 16px;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2rem, 5.5vw, 4.8rem);
+  font-size: clamp(2rem, 5vw, 4.4rem);
   line-height: 1.02;
   letter-spacing: -0.028em;
   color: var(--navy);
@@ -164,7 +184,7 @@ body {
 .accent { font-style: normal; color: var(--cherry); }
 
 .lede {
-  margin: 0 0 36px;
+  margin: 0 0 24px;
   max-width: 50ch;
   font-size: clamp(1.02rem, 1.3vw, 1.2rem);
   color: var(--navy-soft);

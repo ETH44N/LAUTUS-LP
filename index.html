@@ -6,7 +6,11 @@
   <title>Lautus — Coming soon</title>
   <meta name="description" content="Lautus is an AI editor that turns long-form recordings into publish-ready vertical shorts. Coming soon — request early access." />
   <meta name="theme-color" content="#ffffff" />
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
   <link rel="canonical" href="https://lautus.ai/" />
 
   <meta property="og:type" content="website" />
@@ -33,14 +37,15 @@
   </div>
 
   <div class="page">
-    <header class="top reveal" style="--i:0">
-      <a class="wordmark" href="/" aria-label="Lautus home">
-        <span class="wordmark__mark" aria-hidden="true"><i></i></span>
-        <span class="wordmark__text">Lautus</span>
-      </a>
-    </header>
-
     <main class="hero">
+      <a class="lockup reveal" style="--i:0" href="/" aria-label="Lautus home">
+        <picture>
+          <source srcset="brand/lautus-lotus-480.webp" type="image/webp" />
+          <img class="lockup__symbol" src="brand/lautus-lotus-480.png" alt="" />
+        </picture>
+        <span class="lockup__wordmark">lautus.ai</span>
+      </a>
+
       <p class="status mono reveal" style="--i:1">
         <span class="status__dot" aria-hidden="true"></span>Coming soon
       </p>

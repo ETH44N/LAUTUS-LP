@@ -4,13 +4,28 @@ The holding page for [lautus.ai](https://lautus.ai): white, soft blue blurs, nav
 Plain HTML/CSS/JS — no build step, no framework, deploys anywhere that serves static files.
 
 ```
-index.html   markup + copy
-styles.css   theme, glass, layout, motion
-script.js    signup form
-favicon.svg  tab icon
-og.png       social share image (1200×630)
-CNAME        custom domain for GitHub Pages
+index.html        markup + copy
+styles.css        theme, glass, layout, motion
+script.js         signup form
+og.html           layout used to render og.png (not linked from the site)
+og.png            social share image (1200×630)
+brand/            logo assets (see below)
+fonts/            General Sans Medium (wordmark), self-hosted
+favicon.ico, favicon-16/32/48.png, apple-touch-icon.png, icon-192/512.png, site.webmanifest
+CNAME             custom domain for GitHub Pages
 ```
+
+## Brand assets
+
+`brand/source/` holds the two original renders (lotus on white, app icon). Everything else is derived:
+
+- `brand/lautus-lotus.png` / `.webp` — lotus with real transparency (white keyed to alpha), 1000px wide.
+- `brand/lautus-lotus-480.png` / `.webp` — same, sized for the page header.
+- `brand/lautus-icon-512.png` — simplified icon with rounded corners cut out.
+- Root favicons, Apple touch icon (opaque, full-bleed) and PWA icons are resized from the icon.
+- Wordmark: `lautus.ai` in General Sans Medium, 0.16em tracking, navy — see `.lockup__wordmark` in `styles.css`.
+
+To regenerate `og.png`, serve the folder and screenshot `og.html` at 1200×630.
 
 ## Run locally
 
