@@ -3,36 +3,71 @@
 <head>
   <meta charset="utf-8" />
   <title>Lautus — share image</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    body { width: 1200px; height: 630px; min-height: 0; overflow: hidden; }
+    body { width: 1200px; height: 630px; overflow: hidden; }
     .og {
-      position: relative; z-index: 1;
+      position: relative; isolation: isolate;
       width: 1200px; height: 630px;
-      display: grid; grid-template-columns: 1.15fr 1fr; align-items: center;
-      padding: 0 60px 0 96px; gap: 20px;
-      text-align: left;
+      display: grid; grid-template-columns: 1fr 452px; align-items: center; gap: 8px;
+      padding: 0 48px 0 84px;
     }
-    .og__brand { margin: 0 0 30px; font: 500 17px/1 'General Sans', sans-serif; letter-spacing: 0.16em; color: var(--navy); }
-    .og .status { margin: 0 0 22px; }
-    .og .headline { margin: 0 0 20px; font-size: 48px; }
-    .og .lede { margin: 0; font-size: 22px; max-width: 30ch; }
-    .og__lotus { height: 530px; width: auto; justify-self: center; }
+    .og__bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+    .og .brand { display: flex; width: fit-content; margin-bottom: 30px; }
+    .og .brand__mark { width: 46px; }
+    .og .brand__word { font-size: 18px; }
+    .og h1 { margin-top: 24px; font-size: 62px; font-weight: 600; line-height: 1.07; letter-spacing: -0.05em; }
+    .og .lede { max-width: 28ch; margin-top: 46px; font-size: 22px; }
+    .og__phones { position: relative; height: 630px; }
+    .og__phones .short { position: absolute; width: 206px; font-size: 11px; }
+    .og__phones .short:nth-child(1) { left: 0; top: 150px; rotate: -8deg; }
+    .og__phones .short:nth-child(2) { right: 0; top: 60px; rotate: 6deg; }
   </style>
 </head>
 <body>
-  <div class="blurs" aria-hidden="true">
-    <div class="blur blur--1"></div>
-    <div class="blur blur--2"></div>
-  </div>
+  <svg class="sprite" aria-hidden="true">
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.5 2.4C19.5 15.4 12 20 12 20z" fill="currentColor"/></symbol>
+    <symbol id="i-bubble" viewBox="0 0 24 24"><path d="M12 4c4.7 0 8 3 8 7s-3.3 7-8 7c-1 0-2-.1-2.8-.4L5 19.5l1.1-3.6C4.8 14.6 4 12.9 4 11c0-4 3.3-7 8-7z" fill="currentColor"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M13 5l7 6.5-7 6.5v-4c-4.5 0-7.5 1.4-9 4.5.5-5 3.5-9 9-9.5z" fill="currentColor"/></symbol>
+    <symbol id="person" viewBox="0 0 200 220"><ellipse cx="100" cy="72" rx="37" ry="43"/><path d="M85 106h30v26H85z"/><path d="M100 124c-50 0-85 24-91 68-1 9-1 18-1 28h184c0-10 0-19-1-28-6-44-41-68-91-68z"/></symbol>
+  </svg>
+
   <div class="og">
-    <div>
-      <p class="og__brand">lautus.ai</p>
-      <p class="status mono"><span class="status__dot"></span>Coming soon</p>
-      <h1 class="headline">Every talk hides<br />a dozen shorts.<br />Lautus <em class="accent">finds</em> them.</h1>
-      <p class="lede">An AI editor for long-form video. Request early access.</p>
+    <div class="og__bg" aria-hidden="true">
+      <i class="glow glow--a"></i><i class="glow glow--b"></i><i class="glow glow--c"></i>
     </div>
-    <img class="og__lotus" src="brand/lautus-lotus.png" alt="" />
+
+    <div>
+      <p class="brand">
+        <img class="brand__mark" src="brand/lautus-lotus-160.webp" alt="" />
+        <span class="brand__word">lautus.ai</span>
+      </p>
+      <p class="pill"><span class="pill__dot"></span>Coming soon · early-access list open</p>
+      <h1>
+        Every talk hides<br />a dozen shorts.<br />
+        Lautus <span class="select" data-tc="14:32 – 15:08">finds<i class="select__h"></i><i class="select__h"></i><i class="select__h"></i><i class="select__h"></i></span> them.
+      </h1>
+      <p class="lede">An AI editor that turns long-form recordings into vertical shorts.</p>
+    </div>
+
+    <div class="og__phones">
+      <div class="short sc-3">
+        <svg class="short__person"><use href="#person" /></svg>
+        <span class="short__progress"><i></i></span>
+        <p class="short__cap">Nobody reads the <em>onboarding</em> email.</p>
+        <span class="short__rail"><svg><use href="#i-heart" /></svg><svg><use href="#i-bubble" /></svg><svg><use href="#i-share" /></svg></span>
+        <span class="short__meta"><i></i><b>@foundersweekly</b></span>
+      </div>
+      <div class="short sc-1">
+        <svg class="short__person"><use href="#person" /></svg>
+        <span class="short__progress"><i></i></span>
+        <p class="short__cap">The first version was a <em>disaster.</em></p>
+        <span class="short__rail"><svg><use href="#i-heart" /></svg><svg><use href="#i-bubble" /></svg><svg><use href="#i-share" /></svg></span>
+        <span class="short__meta"><i></i><b>@foundersweekly</b></span>
+      </div>
+    </div>
   </div>
 </body>
 </html>

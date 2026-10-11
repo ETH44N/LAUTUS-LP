@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lautus — Coming soon</title>
-  <meta name="description" content="Lautus is an AI editor that turns long-form recordings into publish-ready vertical shorts. Coming soon — request early access." />
-  <meta name="theme-color" content="#ffffff" />
+  <title>Lautus — Every talk hides a dozen shorts</title>
+  <meta name="description" content="Lautus is an AI editor that turns long-form recordings into publish-ready vertical shorts: the moment chosen, the speaker framed, captions and sound done. Join the early-access list." />
+  <meta name="theme-color" content="#f7f9fe" />
   <link rel="icon" href="favicon.ico" sizes="48x48" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
@@ -15,95 +15,963 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Lautus" />
-  <meta property="og:title" content="Lautus — Coming soon" />
-  <meta property="og:description" content="An AI editor that turns long-form recordings into publish-ready vertical shorts. Request early access." />
+  <meta property="og:title" content="Lautus — Every talk hides a dozen shorts" />
+  <meta property="og:description" content="An AI editor that turns long-form recordings into publish-ready vertical shorts. Join the early-access list." />
   <meta property="og:url" content="https://lautus.ai/" />
   <meta property="og:image" content="https://lautus.ai/og.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Lautus — Coming soon" />
-  <meta name="twitter:description" content="An AI editor that turns long-form recordings into publish-ready vertical shorts. Request early access." />
+  <meta name="twitter:title" content="Lautus — Every talk hides a dozen shorts" />
+  <meta name="twitter:description" content="An AI editor that turns long-form recordings into publish-ready vertical shorts. Join the early-access list." />
   <meta name="twitter:image" content="https://lautus.ai/og.png" />
 
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Hanken+Grotesk:wght@300;400;500&family=Azeret+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
 </head>
 <body>
-  <div class="blurs" aria-hidden="true">
-    <div class="blur blur--1"></div>
-    <div class="blur blur--2"></div>
-    <div class="blur blur--3"></div>
-  </div>
+  <!-- Icon sprite -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v8M8.5 12l3.5 3.5 3.5-3.5"/></g></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></g></symbol>
+    <symbol id="i-stage" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18M4.5 4v9.5a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1V4M12 14.5V18M8.5 21l3.5-3 3.5 3"/></g></symbol>
+    <symbol id="i-monitor" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></g></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 10.5a5.5 5.5 0 0 1-8 4.9L3 16.5l1-3A5.5 5.5 0 1 1 14 10.5z"/><path d="M10.5 17.2A5.5 5.5 0 0 0 19 19.4l2 1-.9-3A5.5 5.5 0 0 0 16 9"/></g></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14a5 5 0 0 1 5 5"/></g></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.4 2.7 3 6 3s6-1.6 6-3v-5"/></g></symbol>
+    <symbol id="i-live" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M7.8 7.8a6 6 0 0 0 0 8.4M16.2 7.8a6 6 0 0 1 0 8.4M5 5a10 10 0 0 0 0 14M19 5a10 10 0 0 1 0 14"/></g></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19v-3M9 7h6"/></g></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2.5l1.9 5.6 5.6 1.9-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9zM18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" fill="currentColor"/></symbol>
+    <symbol id="i-crop" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2v14a2 2 0 0 0 2 2h14"/><path d="M18 22V8a2 2 0 0 0-2-2H2"/></g></symbol>
+    <symbol id="i-cc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M7 15h3.5M13 15h4M7 11.5h10"/></g></symbol>
+    <symbol id="i-wave" viewBox="0 0 24 24"><path d="M3 12h1.5M7 8.5v7M10.5 5v14M14 9v6M17.5 6.5v11M21 11v2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 10 14"/><path d="M21 3l-6.5 18-4-8.5-8.5-4z"/></g></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15.5V4M7.5 8.5 12 4l4.5 4.5M4 15v3.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-film" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M7.5 4v16M16.5 4v16M3 9h4.5M3 15h4.5M16.5 9H21M16.5 15H21"/></g></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11.5M7.5 11 12 15.5 16.5 11M4 20h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-cursor" viewBox="0 0 24 24"><path d="M5 3.5l14 7.2-6.1 1.7-2.4 5.9z" fill="currentColor" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.5 2.4C19.5 15.4 12 20 12 20z" fill="currentColor"/></symbol>
+    <symbol id="i-bubble" viewBox="0 0 24 24"><path d="M12 4c4.7 0 8 3 8 7s-3.3 7-8 7c-1 0-2-.1-2.8-.4L5 19.5l1.1-3.6C4.8 14.6 4 12.9 4 11c0-4 3.3-7 8-7z" fill="currentColor"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M13 5l7 6.5-7 6.5v-4c-4.5 0-7.5 1.4-9 4.5.5-5 3.5-9 9-9.5z" fill="currentColor"/></symbol>
+    <symbol id="person" viewBox="0 0 200 220"><ellipse cx="100" cy="72" rx="37" ry="43"/><path d="M85 106h30v26H85z"/><path d="M100 124c-50 0-85 24-91 68-1 9-1 18-1 28h184c0-10 0-19-1-28-6-44-41-68-91-68z"/></symbol>
+  </svg>
 
-  <div class="page">
-    <main class="hero">
-      <a class="lockup reveal" style="--i:0" href="/" aria-label="Lautus home">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Nav ------------------------------------------------------------------>
+  <header class="nav" data-nav>
+    <div class="nav__bar">
+      <a class="brand" href="#top" aria-label="Lautus home">
         <picture>
-          <source srcset="brand/lautus-lotus-480.webp" type="image/webp" />
-          <img class="lockup__symbol" src="brand/lautus-lotus-480.png" alt="" />
+          <source srcset="brand/lautus-lotus-160.webp" type="image/webp" />
+          <img class="brand__mark" src="brand/lautus-lotus-160.png" alt="" width="160" height="136" />
         </picture>
-        <span class="lockup__wordmark">lautus.ai</span>
+        <span class="brand__word">lautus.ai</span>
       </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#product">Product</a>
+        <a href="#how">How it works</a>
+        <a href="#examples">Examples</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn btn--sm nav__cta" href="#access" data-to-form>
+        <span class="btn__label" data-roll>Get early access</span>
+        <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+      </a>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__menu" id="nav-menu" hidden>
+      <a href="#product">Product</a>
+      <a href="#how">How it works</a>
+      <a href="#examples">Examples</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn" href="#access" data-to-form>
+        <span class="btn__label" data-roll>Get early access</span>
+        <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+      </a>
+    </div>
+  </header>
 
-      <p class="status mono reveal" style="--i:1">
-        <span class="status__dot" aria-hidden="true"></span>Coming soon
-      </p>
+  <main id="main">
 
-      <h1 class="headline reveal" style="--i:2">
-        Every talk hides<br />
-        a dozen shorts.<br />
-        Lautus <em class="accent">finds</em> them.
-      </h1>
+    <!-- Hero ----------------------------------------------------------------->
+    <section class="hero" id="top">
+      <div class="hero__bg" aria-hidden="true">
+        <i class="glow glow--a"></i><i class="glow glow--b"></i><i class="glow glow--c"></i>
+        <i class="streaks"></i>
+      </div>
 
-      <p class="lede reveal" style="--i:3">
-        An AI editor for long-form video. Drop in a recording and get back vertical shorts
-        with the moment chosen, the speaker framed, captions and sound done.
-      </p>
+      <div class="wrap hero__inner">
+        <p class="pill rise"><span class="pill__dot" aria-hidden="true"></span>Coming soon · early-access list open</p>
 
-      <form class="signup glass reveal" style="--i:4" id="signup" novalidate>
-        <div class="signup__row">
-          <label class="sr-only" for="email">Email address</label>
-          <input
-            class="signup__input"
-            id="email"
-            name="email"
-            type="email"
-            inputmode="email"
-            autocomplete="email"
-            spellcheck="false"
-            placeholder="you@studio.com"
-            required
-          />
-          <button class="btn" type="submit">
-            <span class="btn__label">Request access</span>
-            <span class="btn__arrow" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h11M9 3.5 13.5 8 9 12.5"/></svg>
-            </span>
-          </button>
+        <h1 class="hero__title rise" style="--d:1">
+          Every talk hides a dozen shorts.<br />
+          Lautus <span class="select" data-tc="14:32 – 15:08">finds<i class="select__h" aria-hidden="true"></i><i class="select__h" aria-hidden="true"></i><i class="select__h" aria-hidden="true"></i><i class="select__h" aria-hidden="true"></i></span> them.
+        </h1>
+
+        <p class="hero__lede rise" style="--d:2">
+          An AI editor for long-form video. Drop in a recording and get back vertical shorts,
+          <strong>with the moment chosen, the speaker framed, captions and sound done.</strong>
+        </p>
+
+        <form class="waitlist rise" style="--d:3" data-waitlist data-source="lautus.ai · hero" novalidate>
+          <div class="waitlist__row">
+            <label class="sr-only" for="hero-email">Email address</label>
+            <input class="waitlist__input" id="hero-email" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" placeholder="you@studio.com" required />
+            <button class="btn waitlist__btn" type="submit">
+              <span class="btn__label" data-roll>Get early access</span>
+              <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+            </button>
+          </div>
+          <div class="waitlist__done" hidden>
+            <span class="waitlist__check" aria-hidden="true"><svg><use href="#i-check" /></svg></span>
+            <div>
+              <p class="waitlist__done-title">You're on the list.</p>
+              <p class="waitlist__done-sub">We'll email you once, when the doors open.</p>
+            </div>
+          </div>
+          <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <p class="waitlist__note" role="status" aria-live="polite">No spam. One email when the doors open.</p>
+        </form>
+
+        <p class="proof rise" style="--d:4">Made for the recordings you already have</p>
+        <div class="marquee rise" style="--d:4">
+          <ul class="marquee__list" aria-label="Recording types Lautus is made for">
+            <li><svg aria-hidden="true"><use href="#i-mic" /></svg>Podcasts</li>
+            <li><svg aria-hidden="true"><use href="#i-stage" /></svg>Keynotes</li>
+            <li><svg aria-hidden="true"><use href="#i-monitor" /></svg>Webinars</li>
+            <li><svg aria-hidden="true"><use href="#i-chat" /></svg>Interviews</li>
+            <li><svg aria-hidden="true"><use href="#i-users" /></svg>Panels</li>
+            <li><svg aria-hidden="true"><use href="#i-cap" /></svg>Lectures</li>
+            <li><svg aria-hidden="true"><use href="#i-live" /></svg>Livestreams</li>
+            <li><svg aria-hidden="true"><use href="#i-book" /></svg>Courses</li>
+          </ul>
         </div>
+      </div>
 
-        <div class="signup__done" aria-hidden="true">
-          <span class="signup__check" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 9.5 7.2 13 14.5 5"/></svg>
-          </span>
-          <div>
-            <p class="signup__done-title">You're on the list.</p>
-            <p class="signup__done-sub">We'll email you once, when the doors open.</p>
+      <!-- Product visual: the editor with two finished shorts fanned out -->
+      <div class="stage rise" style="--d:5" aria-hidden="true">
+        <div class="editor">
+          <div class="editor__bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="editor__file"><svg><use href="#i-film" /></svg>founders-keynote.mp4</span>
+            <span class="editor__tc">01:12:40</span>
+            <span class="editor__found"><i></i>12 moments found</span>
+          </div>
+          <div class="editor__body">
+            <div class="player">
+              <div class="scene scene--stage">
+                <span class="scene__screen"><i></i><i></i><i></i></span>
+                <svg class="person"><use href="#person" /></svg>
+                <span class="crop"><b>9:16</b></span>
+              </div>
+            </div>
+            <div class="moments">
+              <p class="moments__head">Moments <span>12</span></p>
+              <div class="moment is-active">
+                <span class="moment__thumb sc-1"></span>
+                <span class="moment__txt"><b>“The first version was a disaster.”</b><small>14:32 – 15:08 · 36s</small></span>
+                <span class="score">94</span>
+              </div>
+              <div class="moment">
+                <span class="moment__thumb sc-3"></span>
+                <span class="moment__txt"><b>“Nobody reads the onboarding email.”</b><small>22:05 – 22:49 · 44s</small></span>
+                <span class="score">91</span>
+              </div>
+              <div class="moment">
+                <span class="moment__thumb sc-2"></span>
+                <span class="moment__txt"><b>“We cut the price. Churn went up.”</b><small>37:40 – 38:31 · 51s</small></span>
+                <span class="score">88</span>
+              </div>
+              <div class="moment">
+                <span class="moment__thumb sc-5"></span>
+                <span class="moment__txt"><b>“Ship the thing you're embarrassed by.”</b><small>51:12 – 51:47 · 35s</small></span>
+                <span class="score">86</span>
+              </div>
+            </div>
+            <div class="timeline">
+              <div class="timeline__ruler"><span>00:00</span><span>18:00</span><span>36:00</span><span>54:00</span><span>01:12:40</span></div>
+              <div class="timeline__track">
+                <div class="wave" data-wave="120"></div>
+                <i class="clip is-active" style="--x:19.5%;--w:4.5%"></i>
+                <i class="clip" style="--x:30%;--w:5%"></i>
+                <i class="clip" style="--x:51.5%;--w:5.5%"></i>
+                <i class="clip" style="--x:70.2%;--w:4.2%"></i>
+                <i class="clip" style="--x:86%;--w:3.6%"></i>
+                <i class="playhead"></i>
+              </div>
+            </div>
           </div>
         </div>
 
-        <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
-        <p class="signup__note" id="signup-msg" role="status" aria-live="polite">No spam. One email when the doors open.</p>
-      </form>
-    </main>
+        <div class="phone phone--l">
+          <div class="short sc-3">
+            <svg class="short__person"><use href="#person" /></svg>
+            <span class="short__progress"><i></i></span>
+            <p class="short__cap">Nobody reads the <em>onboarding</em> email.</p>
+            <span class="short__rail"><svg><use href="#i-heart" /></svg><svg><use href="#i-bubble" /></svg><svg><use href="#i-share" /></svg></span>
+            <span class="short__meta"><i></i><b>@foundersweekly</b></span>
+          </div>
+        </div>
+        <div class="phone phone--r">
+          <div class="short sc-1">
+            <svg class="short__person"><use href="#person" /></svg>
+            <span class="short__progress"><i></i></span>
+            <p class="short__cap">The first version was a <em>disaster.</em></p>
+            <span class="short__rail"><svg><use href="#i-heart" /></svg><svg><use href="#i-bubble" /></svg><svg><use href="#i-share" /></svg></span>
+            <span class="short__meta"><i></i><b>@foundersweekly</b></span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <footer class="foot mono reveal" style="--i:5">
-      <span>© 2026 Lautus</span>
-      <span class="foot__sep" aria-hidden="true">·</span>
+    <!-- Creators ------------------------------------------------------------------
+         Illustrative: the kinds of creators Lautus is built for and where their clips go.
+         No real people are named. Swap in real creators (name, handle, real audience,
+         photo) only once they've agreed to be shown. -->
+    <section class="section creators" id="creators">
+      <div class="wrap">
+        <header class="head">
+          <p class="brandchip reveal">
+            <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+            <span>lautus.ai</span><span class="brandchip__sep" aria-hidden="true"></span><span class="brandchip__sub">creators</span>
+          </p>
+          <h2 class="h2 reveal" style="--d:1">Cut for creators<br /><span class="grad">who post every day.</span></h2>
+          <p class="lede reveal" style="--d:2">Podcasters, educators, founders and streamers. <strong>Long recordings in, a feed full of shorts out.</strong></p>
+        </header>
+      </div>
+
+      <div class="loops reveal" style="--d:3">
+        <div class="loop">
+          <ul class="loop__list" data-loop aria-label="Creators">
+            <li class="creator">
+              <span class="avatar sc-1"><svg><use href="#person" /></svg></span>
+              <span class="creator__who"><b>Podcast hosts</b><small>Long conversations</small></span>
+              <span class="creator__stat"><b>Shorts</b><small>YouTube</small></span>
+            </li>
+            <li class="creator">
+              <span class="avatar sc-3"><svg><use href="#person" /></svg></span>
+              <span class="creator__who"><b>Educators</b><small>Lectures and lessons</small></span>
+              <span class="creator__stat"><b>Reels</b><small>Instagram</small></span>
+            </li>
+            <li class="creator">
+              <span class="avatar sc-4"><svg><use href="#person" /></svg></span>
+              <span class="creator__who"><b>Founders</b><small>Keynotes and talks</small></span>
+              <span class="creator__stat"><b>Clips</b><small>LinkedIn</small></span>
+            </li>
+            <li class="creator">
+              <span class="avatar sc-5"><svg><use href="#person" /></svg></span>
+              <span class="creator__who"><b>Streamers</b><small>Live sessions</small></span>
+              <span class="creator__stat"><b>Shorts</b><small>TikTok</small></span>
+            </li>
+            <li class="creator">
+              <span class="avatar sc-2"><svg><use href="#person" /></svg></span>
+              <span class="creator__who"><b>Coaches</b><small>Webinars and calls</small></span>
+              <span class="creator__stat"><b>Reels</b><small>Instagram</small></span>
+            </li>
+            <li class="creator">
+              <span class="avatar sc-6"><svg><use href="#person" /></svg></span>
+              <span class="creator__who"><b>Interviewers</b><small>Two-person interviews</small></span>
+              <span class="creator__stat"><b>Shorts</b><small>YouTube</small></span>
+            </li>
+          </ul>
+        </div>
+        <div class="loop loop--rev">
+          <ul class="loop__list" data-loop aria-label="More creators">
+            <li class="creator">
+              <span class="avatar sc-5"><svg><use href="#person" /></svg></span>
+              <span class="creator__who"><b>Experts</b><small>Explainers and Q&As</small></span>
+              <span class="creator__stat"><b>Clips</b><small>LinkedIn</small></span>
+            </li>
+            <li class="creator">
+              <span class="avatar sc-1"><svg><use href="#person" /></svg></span>
+              <span class="creator__who"><b>Comedians</b><small>Stand-up sets</small></span>
+              <span class="creator__stat"><b>Shorts</b><small>TikTok</small></span>
+            </li>
+            <li class="creator">
+              <span class="avatar sc-3"><svg><use href="#person" /></svg></span>
+              <span class="creator__who"><b>Conference teams</b><small>Panels and stages</small></span>
+              <span class="creator__stat"><b>Clips</b><small>LinkedIn</small></span>
+            </li>
+            <li class="creator">
+              <span class="avatar sc-6"><svg><use href="#person" /></svg></span>
+              <span class="creator__who"><b>Agencies</b><small>Client recordings</small></span>
+              <span class="creator__stat"><b>Reels</b><small>Instagram</small></span>
+            </li>
+            <li class="creator">
+              <span class="avatar sc-4"><svg><use href="#person" /></svg></span>
+              <span class="creator__who"><b>Community hosts</b><small>Meetups and lives</small></span>
+              <span class="creator__stat"><b>Shorts</b><small>YouTube</small></span>
+            </li>
+            <li class="creator">
+              <span class="avatar sc-2"><svg><use href="#person" /></svg></span>
+              <span class="creator__who"><b>Authors</b><small>Readings and interviews</small></span>
+              <span class="creator__stat"><b>Reels</b><small>Instagram</small></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product: what it does ------------------------------------------------>
+    <section class="section product" id="product">
+      <div class="wrap product__grid">
+        <div class="product__intro">
+          <p class="brandchip reveal">
+            <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+            <span>lautus.ai</span><span class="brandchip__sep" aria-hidden="true"></span><span class="brandchip__sub">editor</span>
+          </p>
+          <h2 class="h2 reveal" style="--d:1">Built for the edit.<br /><span class="grad">Tuned for the feed.</span></h2>
+          <p class="lede reveal" style="--d:2">One recording in. Four editing jobs done, the way a good editor would do them.</p>
+          <div class="reveal" style="--d:3">
+            <a class="btn" href="#access" data-to-form>
+              <span class="btn__label" data-roll>Get early access</span>
+              <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+            </a>
+          </div>
+          <figure class="rule reveal" style="--d:4">
+            <blockquote>“If a moment makes sense to someone who missed the rest, it's a short.”</blockquote>
+            <figcaption>
+              <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+              <span><b>The rule Lautus edits by</b><small>Every clip has to stand on its own</small></span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="frame reveal" style="--d:2">
+          <p class="frame__label"><img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />editor</p>
+          <div class="bento">
+            <article class="card card--blue">
+              <div class="card__viz viz-moment" aria-hidden="true">
+                <p><span class="tc">14:28</span><span class="line">…so we rebuilt onboarding from scratch.</span></p>
+                <p class="is-sel"><span class="tc">14:32</span><span class="line"><span class="sel">Honestly? The first version was a disaster.</span></span><b class="score">94</b></p>
+                <p><span class="tc">14:41</span><span class="line">Here's what we changed first…</span></p>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title"><svg aria-hidden="true"><use href="#i-spark" /></svg>Finds the moment</h3>
+                <p class="card__text">Lautus reads the whole recording, the words and the room, and pulls <strong>the stretches that stand on their own.</strong></p>
+              </div>
+            </article>
+
+            <article class="card card--lilac">
+              <div class="card__viz viz-reframe" aria-hidden="true">
+                <div class="scene scene--wide sc-3">
+                  <svg class="person person--a"><use href="#person" /></svg>
+                  <svg class="person person--b"><use href="#person" /></svg>
+                  <span class="crop crop--track"><b>9:16</b></span>
+                </div>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title"><svg aria-hidden="true"><use href="#i-crop" /></svg>Frames the speaker</h3>
+                <p class="card__text">Wide shots go vertical with <strong>the person talking kept in frame</strong>, even when the conversation moves.</p>
+              </div>
+            </article>
+
+            <article class="card card--rose">
+              <div class="card__viz viz-captions" aria-hidden="true">
+                <p class="karaoke"><span>This</span> <span>is</span> <span>the</span> <span>part</span><br /><span>nobody</span> <span>tells</span> <span>you.</span></p>
+                <span class="styles"><i class="is-on">Bold</i><i>Clean</i><i>Pop</i></span>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title"><svg aria-hidden="true"><use href="#i-cc" /></svg>Captions that land</h3>
+                <p class="card__text">Word-timed captions, <strong>styled to read at a glance</strong>, for the many people who watch with the sound off.</p>
+              </div>
+            </article>
+
+            <article class="card card--sky">
+              <div class="card__viz viz-sound" aria-hidden="true">
+                <p><span class="tag-s">Raw</span><span class="wave wave--raw" data-wave="56" data-variant="raw"></span></p>
+                <p><span class="tag-s tag-s--on">Mixed</span><span class="wave wave--mixed" data-wave="56" data-variant="mixed"></span></p>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title"><svg aria-hidden="true"><use href="#i-wave" /></svg>Sound, done</h3>
+                <p class="card__text">Levels evened out and dead air trimmed, so <strong>every short starts on the line that hooks.</strong></p>
+              </div>
+            </article>
+
+            <article class="card card--wide">
+              <div class="card__body">
+                <h3 class="card__title"><svg aria-hidden="true"><use href="#i-send" /></svg>Publish-ready</h3>
+                <p class="card__text">Every short comes out <strong>vertical, captioned and mixed</strong>. Download it and post it wherever your audience scrolls.</p>
+                <p class="platforms"><span>TikTok</span><span>Instagram Reels</span><span>YouTube Shorts</span><span>LinkedIn</span></p>
+              </div>
+              <div class="card__viz viz-publish" aria-hidden="true">
+                <div class="short short--mini sc-2"><svg class="short__person"><use href="#person" /></svg><p class="short__cap">Churn went <em>up.</em></p></div>
+                <div class="short short--mini sc-1"><svg class="short__person"><use href="#person" /></svg><p class="short__cap">A total <em>disaster.</em></p></div>
+                <div class="short short--mini sc-5"><svg class="short__person"><use href="#person" /></svg><p class="short__cap">Just <em>ship</em> it.</p></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works ------------------------------------------------------------>
+    <section class="section how" id="how">
+      <div class="wrap">
+        <header class="head">
+          <p class="brandchip reveal">
+            <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+            <span>lautus.ai</span>
+          </p>
+          <h2 class="h2 reveal" style="--d:1">How Lautus works.</h2>
+          <p class="lede reveal" style="--d:2">You bring the recording. <strong>Lautus does the scrubbing.</strong></p>
+          <div class="reveal" style="--d:3">
+            <a class="btn" href="#access" data-to-form>
+              <span class="btn__label" data-roll>Get early access</span>
+              <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+            </a>
+          </div>
+        </header>
+
+        <ol class="steps">
+          <li class="step step--1 reveal">
+            <div class="step__viz viz-upload" aria-hidden="true">
+              <div class="drop">
+                <span class="drop__icon"><svg><use href="#i-upload" /></svg></span>
+                <p>Drop a recording</p>
+              </div>
+              <div class="file">
+                <span class="file__icon"><svg><use href="#i-film" /></svg></span>
+                <span class="file__txt"><b>all-hands-q3.mp4</b><small>1:12:40</small></span>
+                <span class="file__bar"><i></i></span>
+              </div>
+            </div>
+            <p class="step__num" aria-hidden="true">1.</p>
+            <h3 class="step__title">Drop in a recording.</h3>
+            <p class="step__text">Upload the full thing. The long ones are the point.</p>
+          </li>
+
+          <li class="step step--2 reveal" style="--d:1">
+            <div class="step__viz viz-scan" aria-hidden="true">
+              <p><span class="tc">00:12</span><i style="--w:78%"></i><b>41</b></p>
+              <p><span class="tc">03:47</span><i style="--w:62%"></i><b>58</b></p>
+              <p class="is-hot"><span class="tc">14:32</span><i style="--w:88%"></i><b>94</b></p>
+              <p><span class="tc">19:05</span><i style="--w:70%"></i><b>63</b></p>
+              <p class="is-hot"><span class="tc">22:05</span><i style="--w:74%"></i><b>91</b></p>
+              <span class="scanline"></span>
+              <svg class="cursor"><use href="#i-cursor" /></svg>
+            </div>
+            <p class="step__num" aria-hidden="true">2.</p>
+            <h3 class="step__title">Lautus watches all of it.</h3>
+            <p class="step__text">Every minute gets transcribed and weighed, so nothing good gets skipped.</p>
+          </li>
+
+          <li class="step step--3 reveal">
+            <div class="step__viz viz-pick" aria-hidden="true">
+              <p class="is-on"><span class="box"><svg><use href="#i-check" /></svg></span><span class="thumb sc-1"></span><b>The first version…</b><small>0:36</small></p>
+              <p class="is-on"><span class="box"><svg><use href="#i-check" /></svg></span><span class="thumb sc-3"></span><b>Nobody reads the…</b><small>0:44</small></p>
+              <p><span class="box"></span><span class="thumb sc-2"></span><b>We cut the price…</b><small>0:51</small></p>
+            </div>
+            <p class="step__num" aria-hidden="true">3.</p>
+            <h3 class="step__title">Pick your cuts.</h3>
+            <p class="step__text">Keep, trim or drop what it found. It's still your edit.</p>
+          </li>
+
+          <li class="step step--4 reveal" style="--d:1">
+            <div class="step__viz viz-post" aria-hidden="true">
+              <div class="short short--mini sc-1"><svg class="short__person"><use href="#person" /></svg><p class="short__cap">A total <em>disaster.</em></p></div>
+              <div class="short short--mini sc-3"><svg class="short__person"><use href="#person" /></svg><p class="short__cap">Nobody <em>reads</em> it.</p></div>
+              <span class="dl"><svg><use href="#i-download" /></svg>Download 12 shorts</span>
+              <svg class="cursor"><use href="#i-cursor" /></svg>
+            </div>
+            <p class="step__num" aria-hidden="true">4.</p>
+            <h3 class="step__title">Post them.</h3>
+            <p class="step__text">Vertical, captioned and mixed. Ready for any feed.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Examples: before / after --------------------------------------------------->
+    <section class="section examples" id="examples">
+      <div class="wrap">
+        <header class="head">
+          <p class="brandchip reveal">
+            <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+            <span>lautus.ai</span><span class="brandchip__sep" aria-hidden="true"></span><span class="brandchip__sub">examples</span>
+          </p>
+          <h2 class="h2 reveal" style="--d:1">Before Lautus. After Lautus.</h2>
+          <p class="lede reveal" style="--d:2">The same moment, two ways. <strong>Standard keeps it clean. Premium edits it for the scroll.</strong></p>
+        </header>
+
+        <div class="ex-tabs reveal" style="--d:3" role="tablist" aria-label="Example recordings" data-tabs>
+          <button class="ex-tab" type="button" role="tab" id="ex-tab-1" aria-controls="ex-1" aria-selected="true"><svg aria-hidden="true"><use href="#i-mic" /></svg>Podcast</button>
+          <button class="ex-tab" type="button" role="tab" id="ex-tab-2" aria-controls="ex-2" aria-selected="false" tabindex="-1"><svg aria-hidden="true"><use href="#i-stage" /></svg>Keynote</button>
+          <button class="ex-tab" type="button" role="tab" id="ex-tab-3" aria-controls="ex-3" aria-selected="false" tabindex="-1"><svg aria-hidden="true"><use href="#i-chat" /></svg>Interview</button>
+        </div>
+
+        <div class="ex-panels reveal" style="--d:4">
+          <div class="ex" role="tabpanel" id="ex-1" aria-labelledby="ex-tab-1">
+            <div class="ex__src" aria-hidden="true">
+              <p class="ex__label"><span>Before</span>16:9 · full episode</p>
+              <div class="ex__frame">
+                <div class="scene sc-3">
+                  <svg class="person person--l"><use href="#person" /></svg>
+                  <svg class="person person--r"><use href="#person" /></svg>
+                  <span class="crop ex__crop"><b>9:16</b></span>
+                </div>
+                <span class="ex__rec"><i></i>47:12</span>
+              </div>
+              <div class="ex__file"><svg><use href="#i-film" /></svg><b>long-lunch-ep-112.mp4</b><span>1:48:20</span></div>
+              <div class="timeline__track ex__track"><div class="wave" data-wave="90"></div><i class="clip is-active" style="--x:43%;--w:5%"></i></div>
+              <p class="ex__quote"><span class="tc">47:12</span>“We almost shut the company down. Twice.”</p>
+            </div>
+            <div class="ex__arrow" aria-hidden="true"><img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" /><svg><use href="#i-arrow" /></svg></div>
+            <div class="ex__out">
+              <figure class="ex__short">
+                <div class="short sc-3" aria-hidden="true">
+                  <svg class="short__person"><use href="#person" /></svg>
+                  <span class="short__progress"><i></i></span>
+                  <p class="short__cap">We almost shut the company down. <em>Twice.</em></p>
+                </div>
+                <figcaption>Standard</figcaption>
+              </figure>
+              <figure class="ex__short">
+                <div class="short short--premium sc-3" aria-hidden="true">
+                  <svg class="short__person"><use href="#person" /></svg>
+                  <span class="short__progress"><i></i></span>
+                  <p class="short__hook">They nearly quit. Twice.</p>
+                  <p class="short__pop"><span>We almost</span> <span class="hl">shut it</span> <span>down</span></p>
+                </div>
+                <figcaption><span class="badge">Premium</span></figcaption>
+              </figure>
+            </div>
+            <p class="ex__sum"><span><b>1:48:20</b> in</span><span><b>14</b> shorts out</span><span>Speaker tracking between two mics</span></p>
+          </div>
+
+          <div class="ex" role="tabpanel" id="ex-2" aria-labelledby="ex-tab-2" hidden>
+            <div class="ex__src" aria-hidden="true">
+              <p class="ex__label"><span>Before</span>16:9 · full talk</p>
+              <div class="ex__frame">
+                <div class="scene scene--stage">
+                  <span class="scene__screen"><i></i><i></i><i></i></span>
+                  <svg class="person"><use href="#person" /></svg>
+                  <span class="crop"><b>9:16</b></span>
+                </div>
+                <span class="ex__rec"><i></i>22:05</span>
+              </div>
+              <div class="ex__file"><svg><use href="#i-film" /></svg><b>founders-keynote.mp4</b><span>1:12:40</span></div>
+              <div class="timeline__track ex__track"><div class="wave" data-wave="90"></div><i class="clip is-active" style="--x:30%;--w:5%"></i></div>
+              <p class="ex__quote"><span class="tc">22:05</span>“Nobody remembers your slides. They remember this.”</p>
+            </div>
+            <div class="ex__arrow" aria-hidden="true"><img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" /><svg><use href="#i-arrow" /></svg></div>
+            <div class="ex__out">
+              <figure class="ex__short">
+                <div class="short sc-1" aria-hidden="true">
+                  <svg class="short__person"><use href="#person" /></svg>
+                  <span class="short__progress"><i></i></span>
+                  <p class="short__cap">Nobody remembers your slides. They remember <em>this.</em></p>
+                </div>
+                <figcaption>Standard</figcaption>
+              </figure>
+              <figure class="ex__short">
+                <div class="short short--premium sc-1" aria-hidden="true">
+                  <svg class="short__person"><use href="#person" /></svg>
+                  <span class="short__progress"><i></i></span>
+                  <p class="short__hook">Stop making slides</p>
+                  <p class="short__pop"><span>They</span> <span>remember</span> <span class="hl">this</span></p>
+                </div>
+                <figcaption><span class="badge">Premium</span></figcaption>
+              </figure>
+            </div>
+            <p class="ex__sum"><span><b>1:12:40</b> in</span><span><b>12</b> shorts out</span><span>Slides cropped out, speaker kept in frame</span></p>
+          </div>
+
+          <div class="ex" role="tabpanel" id="ex-3" aria-labelledby="ex-tab-3" hidden>
+            <div class="ex__src" aria-hidden="true">
+              <p class="ex__label"><span>Before</span>16:9 · full interview</p>
+              <div class="ex__frame">
+                <div class="scene sc-4">
+                  <svg class="person person--l"><use href="#person" /></svg>
+                  <svg class="person person--r"><use href="#person" /></svg>
+                  <span class="crop ex__crop ex__crop--l"><b>9:16</b></span>
+                </div>
+                <span class="ex__rec"><i></i>08:31</span>
+              </div>
+              <div class="ex__file"><svg><use href="#i-film" /></svg><b>career-chats-04.mp4</b><span>0:58:10</span></div>
+              <div class="timeline__track ex__track"><div class="wave" data-wave="90"></div><i class="clip is-active" style="--x:14%;--w:6%"></i></div>
+              <p class="ex__quote"><span class="tc">08:31</span>“I got the job by asking one question.”</p>
+            </div>
+            <div class="ex__arrow" aria-hidden="true"><img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" /><svg><use href="#i-arrow" /></svg></div>
+            <div class="ex__out">
+              <figure class="ex__short">
+                <div class="short sc-4" aria-hidden="true">
+                  <svg class="short__person"><use href="#person" /></svg>
+                  <span class="short__progress"><i></i></span>
+                  <p class="short__cap">I got the job by asking <em>one</em> question.</p>
+                </div>
+                <figcaption>Standard</figcaption>
+              </figure>
+              <figure class="ex__short">
+                <div class="short short--premium sc-4" aria-hidden="true">
+                  <svg class="short__person"><use href="#person" /></svg>
+                  <span class="short__progress"><i></i></span>
+                  <p class="short__hook">The one interview question</p>
+                  <p class="short__pop"><span>I asked</span> <span class="hl">one</span> <span>question</span></p>
+                </div>
+                <figcaption><span class="badge">Premium</span></figcaption>
+              </figure>
+            </div>
+            <p class="ex__sum"><span><b>0:58:10</b> in</span><span><b>9</b> shorts out</span><span>Question and answer kept in one clip</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use cases (dark panel) -------------------------------------------------->
+    <section class="section section--flush" id="use-cases">
+      <div class="night">
+        <div class="night__glow" aria-hidden="true"></div>
+        <div class="wrap">
+          <header class="head head--dark">
+            <p class="brandchip brandchip--dark reveal">
+              <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+              <span>lautus.ai</span>
+            </p>
+            <h2 class="h2 reveal" style="--d:1">One recording in.<br />A week of shorts out.</h2>
+            <p class="lede reveal" style="--d:2">If people talk in it, Lautus can cut it.</p>
+            <div class="reveal" style="--d:3">
+              <a class="btn btn--light" href="#access" data-to-form>
+                <span class="btn__label" data-roll>Get early access</span>
+                <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+              </a>
+            </div>
+          </header>
+
+          <div class="cases">
+            <article class="case reveal" style="--c:#7c5cff">
+              <div class="case__art" aria-hidden="true">
+                <div class="short short--ghost sc-5"><svg class="short__person"><use href="#person" /></svg></div>
+                <div class="short sc-3"><svg class="short__person"><use href="#person" /></svg><span class="short__progress"><i></i></span><p class="short__cap">We almost shut the company down. <em>Twice.</em></p></div>
+                <div class="short short--ghost sc-2"><svg class="short__person"><use href="#person" /></svg></div>
+              </div>
+              <div class="case__foot">
+                <span class="tag"><svg aria-hidden="true"><use href="#i-mic" /></svg>Podcasts</span>
+                <h3 class="case__title">Two mics, one hour. <span>Lautus follows whoever's talking.</span></h3>
+              </div>
+            </article>
+
+            <article class="case reveal" style="--d:1;--c:#4f7dff">
+              <div class="case__art" aria-hidden="true">
+                <div class="short short--ghost sc-3"><svg class="short__person"><use href="#person" /></svg></div>
+                <div class="short sc-1"><svg class="short__person"><use href="#person" /></svg><span class="short__progress"><i></i></span><p class="short__cap">Nobody remembers your slides. They remember <em>this.</em></p></div>
+                <div class="short short--ghost sc-4"><svg class="short__person"><use href="#person" /></svg></div>
+              </div>
+              <div class="case__foot">
+                <span class="tag"><svg aria-hidden="true"><use href="#i-stage" /></svg>Keynotes &amp; talks</span>
+                <h3 class="case__title">One stage, one big line. <span>Cut and captioned before you're off it.</span></h3>
+              </div>
+            </article>
+
+            <article class="case reveal" style="--d:2;--c:#10b3a3">
+              <div class="case__art" aria-hidden="true">
+                <div class="short short--ghost sc-1"><svg class="short__person"><use href="#person" /></svg></div>
+                <div class="short sc-5"><svg class="short__person"><use href="#person" /></svg><span class="short__progress"><i></i></span><p class="short__cap">Here's the setting <em>everyone</em> misses.</p></div>
+                <div class="short short--ghost sc-3"><svg class="short__person"><use href="#person" /></svg></div>
+              </div>
+              <div class="case__foot">
+                <span class="tag"><svg aria-hidden="true"><use href="#i-monitor" /></svg>Webinars &amp; demos</span>
+                <h3 class="case__title">The answer everyone came for. <span>On its own, in under a minute.</span></h3>
+              </div>
+            </article>
+
+            <article class="case reveal" style="--c:#f59e0b">
+              <div class="case__art" aria-hidden="true">
+                <div class="short short--ghost sc-2"><svg class="short__person"><use href="#person" /></svg></div>
+                <div class="short sc-4"><svg class="short__person"><use href="#person" /></svg><span class="short__progress"><i></i></span><p class="short__cap">I got the job by asking <em>one</em> question.</p></div>
+                <div class="short short--ghost sc-6"><svg class="short__person"><use href="#person" /></svg></div>
+              </div>
+              <div class="case__foot">
+                <span class="tag"><svg aria-hidden="true"><use href="#i-chat" /></svg>Interviews</span>
+                <h3 class="case__title">Question and answer. <span>Both halves, in one clip.</span></h3>
+              </div>
+            </article>
+
+            <article class="case reveal" style="--d:1;--c:#e63950">
+              <div class="case__art" aria-hidden="true">
+                <div class="short short--ghost sc-4"><svg class="short__person"><use href="#person" /></svg></div>
+                <div class="short sc-2"><svg class="short__person"><use href="#person" /></svg><span class="short__progress"><i></i></span><p class="short__cap">The whole theory fits in <em>one</em> sentence.</p></div>
+                <div class="short short--ghost sc-1"><svg class="short__person"><use href="#person" /></svg></div>
+              </div>
+              <div class="case__foot">
+                <span class="tag"><svg aria-hidden="true"><use href="#i-cap" /></svg>Lectures &amp; courses</span>
+                <h3 class="case__title">The idea, without the hour. <span>Teaching that travels past the room.</span></h3>
+              </div>
+            </article>
+
+            <article class="case reveal" style="--d:2;--c:#ff5fa2">
+              <div class="case__art" aria-hidden="true">
+                <div class="short short--ghost sc-5"><svg class="short__person"><use href="#person" /></svg></div>
+                <div class="short sc-6"><svg class="short__person"><use href="#person" /></svg><span class="short__progress"><i></i></span><p class="short__cap">Chat called it <em>before</em> I did.</p></div>
+                <div class="short short--ghost sc-3"><svg class="short__person"><use href="#person" /></svg></div>
+              </div>
+              <div class="case__foot">
+                <span class="tag"><svg aria-hidden="true"><use href="#i-live" /></svg>Livestreams</span>
+                <h3 class="case__title">Four hours live. <span>The ten minutes worth rewatching.</span></h3>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- By hand vs with Lautus -------------------------------------------------->
+    <section class="section compare">
+      <div class="wrap">
+        <header class="head">
+          <p class="brandchip reveal">
+            <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+            <span>lautus.ai</span>
+          </p>
+          <h2 class="h2 reveal" style="--d:1">Scrubbing isn't editing.</h2>
+          <p class="lede reveal" style="--d:2">Lautus takes the part of the job nobody misses, <strong>so your time goes to the part that needs you.</strong></p>
+        </header>
+
+        <div class="versus">
+          <div class="vs vs--old reveal">
+            <p class="vs__label">By hand</p>
+            <ul>
+              <li><svg aria-hidden="true"><use href="#i-x" /></svg>Rewatch the whole recording</li>
+              <li><svg aria-hidden="true"><use href="#i-x" /></svg>Jot down timestamps for the good bits</li>
+              <li><svg aria-hidden="true"><use href="#i-x" /></svg>Cut, reframe and caption every clip</li>
+              <li><svg aria-hidden="true"><use href="#i-x" /></svg>Fix the audio, export, then do it all again</li>
+            </ul>
+            <p class="vs__foot">An afternoon, every episode.</p>
+          </div>
+          <div class="vs vs--new reveal" style="--d:1">
+            <p class="vs__label"><img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />With Lautus</p>
+            <ul>
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>Drop in the recording</li>
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>Review the moments it found</li>
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>Adjust anything you want</li>
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>Download every short, ready to post</li>
+            </ul>
+            <p class="vs__foot">A few clicks, every episode.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing ------------------------------------------------------------------
+         Buttons go to the checkout links in script.js (CHECKOUT); a plan with no
+         link falls back to the early-access form, tagged with the plan. -->
+    <section class="section pricing" id="pricing">
+      <div class="pricing__glow" aria-hidden="true"></div>
+      <div class="wrap">
+        <header class="head">
+          <p class="brandchip reveal">
+            <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+            <span>lautus.ai</span><span class="brandchip__sep" aria-hidden="true"></span><span class="brandchip__sub">pricing</span>
+          </p>
+          <h2 class="h2 reveal" style="--d:1">Pick how much you post.</h2>
+          <p class="lede reveal" style="--d:2">Every plan finds, frames, captions and mixes. <strong>Pro and up add the premium edit and the tools to test what works.</strong></p>
+        </header>
+
+        <div class="plans">
+          <article class="plan reveal">
+            <h3 class="plan__name">Starter</h3>
+            <p class="plan__for">For getting a show onto short-form.</p>
+            <p class="plan__price"><b>$49</b><span>/ month</span></p>
+            <a class="btn plan__btn" href="#access" data-plan="starter">
+              <span class="btn__label" data-roll>Get Starter</span>
+              <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+            </a>
+            <p class="plan__quota"><b>30</b> videos / month</p>
+            <ul class="plan__list">
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>Standard editing style</li>
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>Moments found and scored</li>
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>Speaker reframing to 9:16</li>
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>Captions and sound cleanup</li>
+              <li class="is-off"><svg aria-hidden="true"><use href="#i-x" /></svg><span>Premium editing style</span><span class="sr-only">(not included)</span></li>
+              <li class="is-off"><svg aria-hidden="true"><use href="#i-x" /></svg><span>Trial reels and variations</span><span class="sr-only">(not included)</span></li>
+              <li class="is-off"><svg aria-hidden="true"><use href="#i-x" /></svg><span>Content analysis</span><span class="sr-only">(not included)</span></li>
+            </ul>
+          </article>
+
+          <article class="plan plan--pro reveal" style="--d:1">
+            <p class="plan__flag">Most popular</p>
+            <h3 class="plan__name">Pro</h3>
+            <p class="plan__for">For creators posting every day.</p>
+            <p class="plan__price"><b>$199</b><span>/ month</span></p>
+            <a class="btn plan__btn" href="#access" data-plan="pro">
+              <span class="btn__label" data-roll>Get Pro</span>
+              <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+            </a>
+            <p class="plan__quota"><b>100</b> videos / month</p>
+            <ul class="plan__list">
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>Everything in Starter</li>
+              <li class="is-hi"><svg aria-hidden="true"><use href="#i-spark" /></svg><strong>Premium editing style</strong></li>
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>Trial reels, to test with non-followers first</li>
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>Variations: several hooks per short</li>
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>Content analysis on what performs</li>
+            </ul>
+          </article>
+
+          <article class="plan reveal" style="--d:2">
+            <h3 class="plan__name">Scale</h3>
+            <p class="plan__for">For channels running several shows.</p>
+            <p class="plan__price"><b>$499</b><span>/ month</span></p>
+            <a class="btn plan__btn" href="#access" data-plan="scale">
+              <span class="btn__label" data-roll>Get Scale</span>
+              <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+            </a>
+            <p class="plan__quota"><b>300</b> videos / month</p>
+            <ul class="plan__list">
+              <li class="is-hi"><svg aria-hidden="true"><use href="#i-spark" /></svg><strong>Everything in Pro, premium edit included</strong></li>
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>3× Pro's monthly volume</li>
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>Trial reels, variations, content analysis</li>
+            </ul>
+          </article>
+
+          <article class="plan plan--ent reveal" style="--d:3">
+            <h3 class="plan__name">Enterprise</h3>
+            <p class="plan__for">For agencies, networks and media teams.</p>
+            <p class="plan__price"><b>Custom</b></p>
+            <a class="btn btn--light plan__btn" href="#access" data-plan="enterprise">
+              <span class="btn__label" data-roll>Talk to us</span>
+              <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+            </a>
+            <p class="plan__quota"><b>Custom</b> volume</p>
+            <ul class="plan__list">
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>Everything in Scale</li>
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>Volume sized to your catalogue</li>
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>Custom editing styles</li>
+              <li><svg aria-hidden="true"><use href="#i-check" /></svg>A dedicated point of contact</li>
+            </ul>
+          </article>
+        </div>
+
+        <p class="plans__note reveal">Prices in USD, billed monthly.</p>
+      </div>
+    </section>
+
+    <!-- FAQ ---------------------------------------------------------------------->
+    <section class="section faq" id="faq">
+      <div class="wrap faq__grid">
+        <header class="faq__head">
+          <p class="brandchip reveal">
+            <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+            <span>lautus.ai</span>
+          </p>
+          <h2 class="h2 reveal" style="--d:1">Questions,<br />answered.</h2>
+          <p class="lede reveal" style="--d:2">The short version of everything above.</p>
+        </header>
+
+        <div class="faq__list">
+          <details class="qa reveal" name="faq" open>
+            <summary><span>What is Lautus, exactly?</span><svg class="qa__icon" aria-hidden="true"><use href="#i-down" /></svg></summary>
+            <div class="qa__body"><p>An AI editor for long-form video. You give it a recording, like a talk, a podcast or a webinar, and it gives you back vertical shorts: the strongest moments, reframed to 9:16, with captions and cleaned-up sound.</p></div>
+          </details>
+          <details class="qa reveal" name="faq">
+            <summary><span>What kind of recordings work best?</span><svg class="qa__icon" aria-hidden="true"><use href="#i-down" /></svg></summary>
+            <div class="qa__body"><p>Anything where people talk: podcasts, keynotes, interviews, panels, webinars, lectures and livestreams. If a moment would make sense to someone who missed the rest, Lautus can find it.</p></div>
+          </details>
+          <details class="qa reveal" name="faq">
+            <summary><span>Do I still get a say in the edit?</span><svg class="qa__icon" aria-hidden="true"><use href="#i-down" /></svg></summary>
+            <div class="qa__body"><p>Always. Lautus proposes the cuts. You keep, trim or drop them before anything is exported.</p></div>
+          </details>
+          <details class="qa reveal" name="faq">
+            <summary><span>Where can I post the shorts?</span><svg class="qa__icon" aria-hidden="true"><use href="#i-down" /></svg></summary>
+            <div class="qa__body"><p>Anywhere vertical video goes. Every short is 9:16, so it's made for TikTok, Instagram Reels and YouTube Shorts, and works just as well on LinkedIn.</p></div>
+          </details>
+          <details class="qa reveal" name="faq">
+            <summary><span>When can I try it?</span><svg class="qa__icon" aria-hidden="true"><use href="#i-down" /></svg></summary>
+            <div class="qa__body"><p>Soon. Join the early-access list and we'll email you once, when the doors open. No newsletter, no drip campaign.</p></div>
+          </details>
+          <details class="qa reveal" name="faq">
+            <summary><span>How much will it cost?</span><svg class="qa__icon" aria-hidden="true"><use href="#i-down" /></svg></summary>
+            <div class="qa__body"><p>Starter is $49 a month for 30 videos with the standard edit. Pro is $199 for 100 videos and adds the premium editing style, trial reels, variations and content analysis. Scale is $499 for 300 videos, and Enterprise is sized to your team. See <a href="#pricing">pricing</a>.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA ---------------------------------------------------------------->
+    <section class="section cta" id="access">
+      <div class="wrap">
+        <div class="cta__card">
+          <div class="cta__glow" aria-hidden="true"></div>
+          <p class="brandchip brandchip--dark reveal">
+            <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+            <span>lautus.ai</span>
+          </p>
+          <h2 class="h2 cta__title reveal" style="--d:1"><span class="dim">You've got the recordings.</span><br />Lautus finds the shorts.</h2>
+          <p class="lede reveal" style="--d:2">Get on the early-access list. We'll email you once, when the doors open.</p>
+
+          <form class="waitlist waitlist--dark reveal" style="--d:3" data-waitlist data-source="lautus.ai · footer cta" novalidate>
+            <div class="waitlist__row">
+              <label class="sr-only" for="cta-email">Email address</label>
+              <input class="waitlist__input" id="cta-email" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" placeholder="you@studio.com" required />
+              <button class="btn btn--light waitlist__btn" type="submit">
+                <span class="btn__label" data-roll>Get early access</span>
+                <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+              </button>
+            </div>
+            <div class="waitlist__done" hidden>
+              <span class="waitlist__check" aria-hidden="true"><svg><use href="#i-check" /></svg></span>
+              <div>
+                <p class="waitlist__done-title">You're on the list.</p>
+                <p class="waitlist__done-sub">We'll email you once, when the doors open.</p>
+              </div>
+            </div>
+            <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <p class="waitlist__note" role="status" aria-live="polite">No spam. One email when the doors open.</p>
+          </form>
+
+          <div class="cta__phones" aria-hidden="true">
+            <div class="short sc-4"><svg class="short__person"><use href="#person" /></svg><span class="short__progress"><i></i></span><p class="short__cap">I got the job by asking <em>one</em> question.</p></div>
+            <div class="short sc-3"><svg class="short__person"><use href="#person" /></svg><span class="short__progress"><i></i></span><p class="short__cap">We almost shut it down. <em>Twice.</em></p></div>
+            <div class="short sc-1"><svg class="short__person"><use href="#person" /></svg><span class="short__progress"><i></i></span><p class="short__cap">The first version was a <em>disaster.</em></p></div>
+            <div class="short sc-2"><svg class="short__person"><use href="#person" /></svg><span class="short__progress"><i></i></span><p class="short__cap">The theory fits in <em>one</em> sentence.</p></div>
+            <div class="short sc-5"><svg class="short__person"><use href="#person" /></svg><span class="short__progress"><i></i></span><p class="short__cap">Here's the setting <em>everyone</em> misses.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer ---------------------------------------------------------------------->
+  <footer class="footer">
+    <div class="wrap footer__top">
+      <div class="footer__brand">
+        <a class="brand brand--light" href="#top" aria-label="Lautus home">
+          <img class="brand__mark" src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+          <span class="brand__word">lautus.ai</span>
+        </a>
+        <p>An AI editor that turns long-form recordings into vertical shorts.</p>
+      </div>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#product">Product</a>
+        <a href="#how">How it works</a>
+        <a href="#examples">Examples</a>
+        <a href="#use-cases">Use cases</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#access" data-to-form>Early access</a>
+      </nav>
+      <div class="tc" aria-hidden="true">
+        <span class="tc__label"><i></i>REC · your local time</span>
+        <span class="tc__val" data-timecode>00:00:00:00</span>
+      </div>
+    </div>
+    <div class="wrap footer__bottom">
+      <span>© 2026 Lautus. All rights reserved.</span>
       <span>lautus.ai</span>
-    </footer>
-  </div>
+    </div>
+    <p class="footer__giant" aria-hidden="true">lautus</p>
+  </footer>
 
   <script src="script.js" defer></script>
 </body>
