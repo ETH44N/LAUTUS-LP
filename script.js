@@ -303,4 +303,152 @@
 
     return { succeed };
   });
+
+  // ------------------------------------------------------------------
+  // Link forms (hero + final CTA): a pasted video link goes to sign-up,
+  // and the studio starts the first session on it once the plan is paid.
+  // An empty field still goes to sign-up (upload later).
+  // ------------------------------------------------------------------
+  const startUrl = (link) => {
+    const url = new URL(`${APP_URL}/start`);
+    if (link) url.searchParams.set('link', link);
+    return url.toString();
+  };
+  const cleanLink = (raw) => {
+    const value = raw.trim();
+    if (!value) return '';
+    try {
+      const url = new URL(/^https?:\/\//i.test(value) ? value : `https://${value}`);
+      return ['http:', 'https:'].includes(url.protocol) && url.hostname.includes('.') ? url.toString() : null;
+    } catch {
+      return null;
+    }
+  };
+  $$('[data-linkform]').forEach((form) => {
+    const input = $('input[name="link"]', form);
+    const note = $('.waitlist__note', form);
+    const noteHtml = note ? note.innerHTML : '';
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const link = cleanLink(input.value);
+      if (link === null) {
+        form.classList.add('is-error');
+        if (note) note.textContent = 'That doesn\u2019t look like a video link. Try a YouTube or Google Drive URL.';
+        input.focus();
+        return;
+      }
+      // The studio picks the link up after sign-up and checkout (a week; every *.lautus.ai).
+      if (link) {
+        const domain = location.hostname.endsWith('lautus.ai') ? '; Domain=lautus.ai; Secure' : '';
+        document.cookie = `lautus_link=${encodeURIComponent(link)}; Path=/; Max-Age=604800; SameSite=Lax${domain}`;
+      }
+      window.location.href = startUrl('');
+    });
+    input.addEventListener('input', () => {
+      if (!form.classList.contains('is-error')) return;
+      form.classList.remove('is-error');
+      if (note) note.innerHTML = noteHtml;
+      wireUpload(form);
+    });
+    wireUpload(form);
+  });
+  function wireUpload(root) {
+    $$('[data-upload]', root).forEach((a) => {
+      a.href = startUrl('');
+    });
+  }
+
+  // ------------------------------------------------------------------
+  // Instant-result demo: the studio's four phases tick by (sped up),
+  // the sweep finds three moments, then three real Lautus shorts play.
+  // Videos load only when the demo is on screen.
+  // ------------------------------------------------------------------
+  const demo = $('[data-demo]');
+  if (demo) {
+    const steps = $$('[data-step]', demo);
+    const label = $('[data-demo-label]', demo);
+    const shorts = $$('.demo__short', demo);
+    const videos = shorts.map((li) => $('video', li));
+    const replay = $('[data-demo-replay]', demo);
+    const sound = $('[data-demo-sound]', demo);
+    const LABELS = ['Uploading the recording', 'Transcribing what was said', 'Scoring every moment', 'Framing and captioning'];
+    let timers = [];
+    let audible = 0;
+
+    const load = () => videos.forEach((v) => {
+      if (!v.src) { v.src = v.dataset.src; v.load(); }
+    });
+    const at = (ms, fn) => timers.push(setTimeout(fn, reduceMotion.matches ? 0 : ms));
+    const setStep = (n) => steps.forEach((li, i) => {
+      li.classList.toggle('is-done', i < n);
+      li.classList.toggle('is-live', i === n);
+    });
+
+    const run = () => {
+      timers.forEach(clearTimeout);
+      timers = [];
+      demo.classList.remove('is-done', 'is-found-1', 'is-found-2');
+      demo.classList.add('is-running');
+      replay.hidden = true;
+      shorts.forEach((li) => li.classList.remove('is-in'));
+      videos.forEach((v) => { v.pause(); v.currentTime = 0; });
+      setStep(0); label.textContent = LABELS[0];
+      at(1000, () => { setStep(1); label.textContent = LABELS[1]; });
+      at(2000, () => { setStep(2); label.textContent = LABELS[2]; });
+      at(2600, () => demo.classList.add('is-found-1'));
+      at(3100, () => demo.classList.add('is-found-2'));
+      at(3500, () => { setStep(3); label.textContent = LABELS[3]; });
+      at(4300, () => {
+        setStep(4);
+        demo.classList.remove('is-running');
+        demo.classList.add('is-done');
+        label.textContent = '3 shorts ready';
+        shorts.forEach((li, i) => at(i * 260, () => {
+          li.classList.add('is-in');
+          videos[i].play().catch(() => {});
+        }));
+        at(1100, () => { replay.hidden = false; });
+      });
+    };
+
+    const setAudible = (index) => {
+      audible = index;
+      const on = sound.getAttribute('aria-pressed') === 'true';
+      videos.forEach((v, i) => { v.muted = !(on && i === audible); });
+    };
+    sound.addEventListener('click', () => {
+      const on = sound.getAttribute('aria-pressed') !== 'true';
+      sound.setAttribute('aria-pressed', String(on));
+      $('span', sound).textContent = on ? 'Sound off' : 'Sound on';
+      setAudible(audible);
+      if (on) { videos[audible].currentTime = 0; videos[audible].play().catch(() => {}); }
+    });
+    shorts.forEach((li, i) => li.addEventListener('click', () => {
+      if (sound.getAttribute('aria-pressed') === 'true') {
+        setAudible(i);
+        videos[i].currentTime = 0;
+        videos[i].play().catch(() => {});
+      }
+    }));
+    replay.addEventListener('click', run);
+    // Browsers may refuse an early play() (data not there yet, tab in the background):
+    // try again as soon as a revealed short can play, and when the page comes back.
+    videos.forEach((v, i) => v.addEventListener('canplay', () => {
+      if (shorts[i].classList.contains('is-in') && v.paused) v.play().catch(() => {});
+    }));
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) return;
+      videos.forEach((v, i) => {
+        if (shorts[i].classList.contains('is-in') && v.paused) v.play().catch(() => {});
+      });
+    });
+
+    const seen = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      seen.disconnect();
+      load();
+      run();
+    }, { threshold: 0.35 });
+    seen.observe(demo);
+  }
 })();

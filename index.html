@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lautus — Every talk hides a dozen shorts</title>
-  <meta name="description" content="Lautus is an AI editor that turns long-form recordings into publish-ready vertical shorts: the moment chosen, the speaker framed, captions and sound done. Join the early-access list." />
+  <meta name="description" content="Lautus is an AI editor that turns long-form recordings into publish-ready vertical shorts: the moment chosen, the speaker framed, captions and sound done. Paste a link and get your first shorts." />
   <meta name="theme-color" content="#f7f9fe" />
   <link rel="icon" href="favicon.ico" sizes="48x48" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -16,12 +16,12 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Lautus" />
   <meta property="og:title" content="Lautus — Every talk hides a dozen shorts" />
-  <meta property="og:description" content="An AI editor that turns long-form recordings into publish-ready vertical shorts. Join the early-access list." />
+  <meta property="og:description" content="An AI editor that turns long-form recordings into publish-ready vertical shorts. Paste a link and get your first shorts." />
   <meta property="og:url" content="https://lautus.ai/" />
   <meta property="og:image" content="https://lautus.ai/og.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Lautus — Every talk hides a dozen shorts" />
-  <meta name="twitter:description" content="An AI editor that turns long-form recordings into publish-ready vertical shorts. Join the early-access list." />
+  <meta name="twitter:description" content="An AI editor that turns long-form recordings into publish-ready vertical shorts. Paste a link and get your first shorts." />
   <meta name="twitter:image" content="https://lautus.ai/og.png" />
 
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
@@ -60,6 +60,8 @@
     <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.5 2.4C19.5 15.4 12 20 12 20z" fill="currentColor"/></symbol>
     <symbol id="i-bubble" viewBox="0 0 24 24"><path d="M12 4c4.7 0 8 3 8 7s-3.3 7-8 7c-1 0-2-.1-2.8-.4L5 19.5l1.1-3.6C4.8 14.6 4 12.9 4 11c0-4 3.3-7 8-7z" fill="currentColor"/></symbol>
     <symbol id="i-share" viewBox="0 0 24 24"><path d="M13 5l7 6.5-7 6.5v-4c-4.5 0-7.5 1.4-9 4.5.5-5 3.5-9 9-9.5z" fill="currentColor"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13.5a4.5 4.5 0 0 0 6.4.4l2.8-2.8a4.5 4.5 0 0 0-6.4-6.4l-1.5 1.5"/><path d="M14 10.5a4.5 4.5 0 0 0-6.4-.4l-2.8 2.8a4.5 4.5 0 0 0 6.4 6.4l1.5-1.5"/></g></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4.5 4.5 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></g></symbol>
     <symbol id="person" viewBox="0 0 200 220"><ellipse cx="100" cy="72" rx="37" ry="43"/><path d="M85 106h30v26H85z"/><path d="M100 124c-50 0-85 24-91 68-1 9-1 18-1 28h184c0-10 0-19-1-28-6-44-41-68-91-68z"/></symbol>
   </svg>
 
@@ -83,7 +85,7 @@
         <a href="#faq">FAQ</a>
       </nav>
       <a class="btn btn--sm nav__cta" href="#access" data-to-form>
-        <span class="btn__label" data-roll>Get early access</span>
+        <span class="btn__label" data-roll>Get started</span>
         <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
       </a>
       <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
@@ -97,7 +99,7 @@
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <a class="btn" href="#access" data-to-form>
-        <span class="btn__label" data-roll>Get early access</span>
+        <span class="btn__label" data-roll>Get started</span>
         <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
       </a>
     </div>
@@ -113,7 +115,7 @@
       </div>
 
       <div class="wrap hero__inner">
-        <p class="pill rise"><span class="pill__dot" aria-hidden="true"></span>Coming soon · early-access list open</p>
+        <p class="pill rise"><span class="pill__dot" aria-hidden="true"></span>Now open · paste a link, get your shorts</p>
 
         <h1 class="hero__title rise" style="--d:1">
           Every talk hides a dozen shorts.<br />
@@ -125,24 +127,19 @@
           <strong>with the moment chosen, the speaker framed, captions and sound done.</strong>
         </p>
 
-        <form class="waitlist rise" style="--d:3" data-waitlist data-source="lautus.ai · hero" novalidate>
+        <form class="waitlist linkform rise" style="--d:3" data-linkform novalidate>
           <div class="waitlist__row">
-            <label class="sr-only" for="hero-email">Email address</label>
-            <input class="waitlist__input" id="hero-email" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" placeholder="you@studio.com" required />
+            <svg class="linkform__icon" aria-hidden="true"><use href="#i-link" /></svg>
+            <label class="sr-only" for="hero-link">Video link</label>
+            <input class="waitlist__input" id="hero-link" name="link" type="url" inputmode="url" autocomplete="off" spellcheck="false" placeholder="Paste a YouTube or Google Drive link" />
             <button class="btn waitlist__btn" type="submit">
-              <span class="btn__label" data-roll>Get early access</span>
+              <span class="btn__label" data-roll>Get my clips</span>
               <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
             </button>
           </div>
-          <div class="waitlist__done" hidden>
-            <span class="waitlist__check" aria-hidden="true"><svg><use href="#i-check" /></svg></span>
-            <div>
-              <p class="waitlist__done-title">You're on the list.</p>
-              <p class="waitlist__done-sub">We'll email you once, when the doors open.</p>
-            </div>
-          </div>
-          <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <p class="waitlist__note" role="status" aria-live="polite">No spam. One email when the doors open.</p>
+          <p class="waitlist__note" role="status" aria-live="polite">
+            or <a href="#" data-upload>upload a file</a> · plans from $49 a month
+          </p>
         </form>
 
         <p class="proof rise" style="--d:4">Made for the recordings you already have</p>
@@ -160,77 +157,56 @@
         </div>
       </div>
 
-      <!-- Product visual: the editor with two finished shorts fanned out -->
-      <div class="stage rise" style="--d:5" aria-hidden="true">
-        <div class="editor">
-          <div class="editor__bar">
-            <span class="dots"><i></i><i></i><i></i></span>
-            <span class="editor__file"><svg><use href="#i-film" /></svg>founders-keynote.mp4</span>
-            <span class="editor__tc">01:12:40</span>
-            <span class="editor__found"><i></i>12 moments found</span>
+      <!-- Instant result: a recording goes in, real Lautus shorts come out.
+           The three shorts are real Lautus output from Gaspard's recordings (shown with
+           his agreement); the steps are the studio's own processing phases. -->
+      <div class="demo rise" style="--d:5" data-demo>
+        <div class="demo__window">
+          <div class="demo__bar">
+            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="demo__url"><svg aria-hidden="true"><use href="#i-link" /></svg><span>Gaspard · interview recordings</span></span>
+            <button class="demo__replay" type="button" data-demo-replay hidden>Watch again</button>
           </div>
-          <div class="editor__body">
-            <div class="player">
-              <div class="scene scene--stage">
-                <span class="scene__screen"><i></i><i></i><i></i></span>
-                <svg class="person"><use href="#person" /></svg>
-                <span class="crop"><b>9:16</b></span>
+          <div class="demo__body">
+            <div class="demo__scan" data-demo-scan>
+              <div class="demo__status">
+                <span class="pix" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                <span class="demo__label" data-demo-label>Uploading the recording</span>
+              </div>
+              <ol class="demo__steps">
+                <li data-step>Uploaded the recording</li>
+                <li data-step>Transcribed what was said</li>
+                <li data-step>Scored every moment</li>
+                <li data-step>Framed and captioned the best ones</li>
+              </ol>
+              <div class="demo__track" aria-hidden="true">
+                <div class="wave" data-wave="90"></div>
+                <i class="demo__sweep"></i>
+                <i class="demo__hit demo__hit--1" style="--x:18%"></i>
+                <i class="demo__hit demo__hit--2" style="--x:47%"></i>
+                <i class="demo__hit demo__hit--3" style="--x:76%"></i>
               </div>
             </div>
-            <div class="moments">
-              <p class="moments__head">Moments <span>12</span></p>
-              <div class="moment is-active">
-                <span class="moment__thumb sc-1"></span>
-                <span class="moment__txt"><b>“The first version was a disaster.”</b><small>14:32 – 15:08 · 36s</small></span>
-                <span class="score">94</span>
-              </div>
-              <div class="moment">
-                <span class="moment__thumb sc-3"></span>
-                <span class="moment__txt"><b>“Nobody reads the onboarding email.”</b><small>22:05 – 22:49 · 44s</small></span>
-                <span class="score">91</span>
-              </div>
-              <div class="moment">
-                <span class="moment__thumb sc-2"></span>
-                <span class="moment__txt"><b>“We cut the price. Churn went up.”</b><small>37:40 – 38:31 · 51s</small></span>
-                <span class="score">88</span>
-              </div>
-              <div class="moment">
-                <span class="moment__thumb sc-5"></span>
-                <span class="moment__txt"><b>“Ship the thing you're embarrassed by.”</b><small>51:12 – 51:47 · 35s</small></span>
-                <span class="score">86</span>
-              </div>
-            </div>
-            <div class="timeline">
-              <div class="timeline__ruler"><span>00:00</span><span>18:00</span><span>36:00</span><span>54:00</span><span>01:12:40</span></div>
-              <div class="timeline__track">
-                <div class="wave" data-wave="120"></div>
-                <i class="clip is-active" style="--x:19.5%;--w:4.5%"></i>
-                <i class="clip" style="--x:30%;--w:5%"></i>
-                <i class="clip" style="--x:51.5%;--w:5.5%"></i>
-                <i class="clip" style="--x:70.2%;--w:4.2%"></i>
-                <i class="clip" style="--x:86%;--w:3.6%"></i>
-                <i class="playhead"></i>
-              </div>
-            </div>
+            <ul class="demo__shorts" aria-label="Real shorts made by Lautus">
+              <li class="demo__short">
+                <video muted playsinline loop preload="none" poster="media/gaspard-rolex-bali.jpg" data-src="media/gaspard-rolex-bali.mp4" aria-label="Short: why he didn't take his Rolex to Bali"></video>
+                <span class="demo__chip">0:20 · 9:16 · captions</span>
+              </li>
+              <li class="demo__short">
+                <video muted playsinline loop preload="none" poster="media/gaspard-rolex-impressionner.jpg" data-src="media/gaspard-rolex-impressionner.mp4" aria-label="Short: the Rolex he bought to impress"></video>
+                <span class="demo__chip">0:13 · 9:16 · captions</span>
+              </li>
+              <li class="demo__short">
+                <video muted playsinline loop preload="none" poster="media/gaspard-statut.jpg" data-src="media/gaspard-statut.mp4" aria-label="Short: the business status he recommends"></video>
+                <span class="demo__chip">0:28 · 9:16 · captions</span>
+              </li>
+            </ul>
           </div>
-        </div>
-
-        <div class="phone phone--l">
-          <div class="short sc-3">
-            <svg class="short__person"><use href="#person" /></svg>
-            <span class="short__progress"><i></i></span>
-            <p class="short__cap">Nobody reads the <em>onboarding</em> email.</p>
-            <span class="short__rail"><svg><use href="#i-heart" /></svg><svg><use href="#i-bubble" /></svg><svg><use href="#i-share" /></svg></span>
-            <span class="short__meta"><i></i><b>@foundersweekly</b></span>
-          </div>
-        </div>
-        <div class="phone phone--r">
-          <div class="short sc-1">
-            <svg class="short__person"><use href="#person" /></svg>
-            <span class="short__progress"><i></i></span>
-            <p class="short__cap">The first version was a <em>disaster.</em></p>
-            <span class="short__rail"><svg><use href="#i-heart" /></svg><svg><use href="#i-bubble" /></svg><svg><use href="#i-share" /></svg></span>
-            <span class="short__meta"><i></i><b>@foundersweekly</b></span>
+          <div class="demo__foot">
+            <span><b>Real Lautus output</b>, sped up: moment, framing and captions picked by Lautus. A full recording takes a few minutes.</span>
+            <button class="demo__sound" type="button" data-demo-sound aria-pressed="false">
+              <svg aria-hidden="true"><use href="#i-sound" /></svg><span>Sound on</span>
+            </button>
           </div>
         </div>
       </div>
@@ -336,7 +312,7 @@
           <p class="lede reveal" style="--d:2">One recording in. Four editing jobs done, the way a good editor would do them.</p>
           <div class="reveal" style="--d:3">
             <a class="btn" href="#access" data-to-form>
-              <span class="btn__label" data-roll>Get early access</span>
+              <span class="btn__label" data-roll>Get started</span>
               <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
             </a>
           </div>
@@ -429,7 +405,7 @@
           <p class="lede reveal" style="--d:2">You bring the recording. <strong>Lautus does the scrubbing.</strong></p>
           <div class="reveal" style="--d:3">
             <a class="btn" href="#access" data-to-form>
-              <span class="btn__label" data-roll>Get early access</span>
+              <span class="btn__label" data-roll>Get started</span>
               <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
             </a>
           </div>
@@ -644,7 +620,7 @@
             <p class="lede reveal" style="--d:2">If people talk in it, Lautus can cut it.</p>
             <div class="reveal" style="--d:3">
               <a class="btn btn--light" href="#access" data-to-form>
-                <span class="btn__label" data-roll>Get early access</span>
+                <span class="btn__label" data-roll>Get started</span>
                 <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
               </a>
             </div>
@@ -887,8 +863,8 @@
             <div class="qa__body"><p>Anywhere vertical video goes. Every short is 9:16, so it's made for TikTok, Instagram Reels and YouTube Shorts, and works just as well on LinkedIn.</p></div>
           </details>
           <details class="qa reveal" name="faq">
-            <summary><span>When can I try it?</span><svg class="qa__icon" aria-hidden="true"><use href="#i-down" /></svg></summary>
-            <div class="qa__body"><p>Soon. Join the early-access list and we'll email you once, when the doors open. No newsletter, no drip campaign.</p></div>
+            <summary><span>How do I start?</span><svg class="qa__icon" aria-hidden="true"><use href="#i-down" /></svg></summary>
+            <div class="qa__body"><p>Paste a link to one of your videos at the top of this page (or upload a file), sign in with Google and pick a plan. Lautus starts on your video right away; the first shorts are ready in a few minutes.</p></div>
           </details>
           <details class="qa reveal" name="faq">
             <summary><span>How much will it cost?</span><svg class="qa__icon" aria-hidden="true"><use href="#i-down" /></svg></summary>
@@ -908,26 +884,21 @@
             <span>lautus.ai</span>
           </p>
           <h2 class="h2 cta__title reveal" style="--d:1"><span class="dim">You've got the recordings.</span><br />Lautus finds the shorts.</h2>
-          <p class="lede reveal" style="--d:2">Get on the early-access list. We'll email you once, when the doors open.</p>
+          <p class="lede reveal" style="--d:2">Paste a link to one of your videos. Pick a plan, and your first shorts are on the way.</p>
 
-          <form class="waitlist waitlist--dark reveal" style="--d:3" data-waitlist data-source="lautus.ai · footer cta" novalidate>
+          <form class="waitlist waitlist--dark linkform reveal" style="--d:3" data-linkform novalidate>
             <div class="waitlist__row">
-              <label class="sr-only" for="cta-email">Email address</label>
-              <input class="waitlist__input" id="cta-email" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" placeholder="you@studio.com" required />
+              <svg class="linkform__icon" aria-hidden="true"><use href="#i-link" /></svg>
+              <label class="sr-only" for="cta-link">Video link</label>
+              <input class="waitlist__input" id="cta-link" name="link" type="url" inputmode="url" autocomplete="off" spellcheck="false" placeholder="Paste a YouTube or Google Drive link" />
               <button class="btn btn--light waitlist__btn" type="submit">
-                <span class="btn__label" data-roll>Get early access</span>
+                <span class="btn__label" data-roll>Get my clips</span>
                 <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
               </button>
             </div>
-            <div class="waitlist__done" hidden>
-              <span class="waitlist__check" aria-hidden="true"><svg><use href="#i-check" /></svg></span>
-              <div>
-                <p class="waitlist__done-title">You're on the list.</p>
-                <p class="waitlist__done-sub">We'll email you once, when the doors open.</p>
-              </div>
-            </div>
-            <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
-            <p class="waitlist__note" role="status" aria-live="polite">No spam. One email when the doors open.</p>
+            <p class="waitlist__note" role="status" aria-live="polite">
+              or <a href="#" data-upload>upload a file</a> · plans from $49 a month
+            </p>
           </form>
 
           <div class="cta__phones" aria-hidden="true">
@@ -959,7 +930,7 @@
         <a href="#use-cases">Use cases</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
-        <a href="#access" data-to-form>Early access</a>
+        <a href="#access" data-to-form>Get started</a>
       </nav>
       <div class="tc" aria-hidden="true">
         <span class="tc__label"><i></i>REC · your local time</span>
@@ -967,8 +938,8 @@
       </div>
     </div>
     <div class="wrap footer__bottom">
-      <span>© 2026 Lautus. All rights reserved.</span>
-      <span>lautus.ai</span>
+      <span>© 2026 Lautus, operated by LITTLE SOMERSET FZ-LLC, Ras Al Khaimah, UAE. All rights reserved.</span>
+      <span class="footer__legal"><a href="https://app.lautus.ai/terms">Terms</a> · <a href="https://app.lautus.ai/privacy">Privacy</a></span>
     </div>
     <p class="footer__giant" aria-hidden="true">lautus</p>
   </footer>
