@@ -32,6 +32,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <!-- Analytics and ad pixels, behind the cookie banner (lautus-consent.js, README "Tracking").
+       Paste each id between the quotes; a tool left empty stays off. All empty: no banner. -->
+  <script>
+    window.LAUTUS_TRACKING = {
+      ga4: '',                    // Google Analytics 4, "G-XXXXXXXXXX"
+      clarity: '',                // Microsoft Clarity project id
+      metaPixel: '',              // Meta Pixel id (digits)
+      tiktokPixel: '',            // TikTok Pixel id
+      googleAds: '',              // Google Ads tag, "AW-XXXXXXXXX"
+      firstPromoter: '',          // FirstPromoter cid (affiliate clicks)
+      privacyUrl: 'https://app.lautus.ai/privacy',
+      locale: 'en',
+    };
+    window.lautusTrack = window.lautusTrack || function () { (window.lautusTrack.q = window.lautusTrack.q || []).push(arguments); };
+  </script>
+  <script src="lautus-consent.js" defer></script>
 </head>
 <body>
   <!-- Icon sprite -->
@@ -939,7 +955,7 @@
     </div>
     <div class="wrap footer__bottom">
       <span>© 2026 Lautus, operated by LITTLE SOMERSET FZ-LLC, Ras Al Khaimah, UAE. All rights reserved.</span>
-      <span class="footer__legal"><a href="https://app.lautus.ai/terms">Terms</a> · <a href="https://app.lautus.ai/privacy">Privacy</a></span>
+      <span class="footer__legal"><a href="https://app.lautus.ai/terms">Terms</a> · <a href="https://app.lautus.ai/privacy">Privacy</a> · <a href="https://app.lautus.ai/privacy" data-cookie-settings>Cookies</a></span>
     </div>
     <p class="footer__giant" aria-hidden="true">lautus</p>
   </footer>

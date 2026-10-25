@@ -82,6 +82,8 @@
     const url = CHECKOUT[btn.dataset.plan];
     if (url) {
       btn.href = url;
+      // Sent only to the tools the visitor allowed (lautus-consent.js).
+      btn.addEventListener('click', () => window.lautusTrack('begin_checkout', { plan: btn.dataset.plan }));
       return;
     }
     btn.setAttribute('data-to-form', '');
@@ -342,6 +344,7 @@
         const domain = location.hostname.endsWith('lautus.ai') ? '; Domain=lautus.ai; Secure' : '';
         document.cookie = `lautus_link=${encodeURIComponent(link)}; Path=/; Max-Age=604800; SameSite=Lax${domain}`;
       }
+      window.lautusTrack('lead');
       window.location.href = startUrl('');
     });
     input.addEventListener('input', () => {
