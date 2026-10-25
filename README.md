@@ -98,6 +98,19 @@ select email, source, created_at, notified_at from public.lautus_waitlist order 
 
 Function source lives in `supabase/functions/lautus-waitlist/index.ts`.
 
+## Tracking and cookie consent
+
+`lautus-consent.js` is the cookie banner and the analytics and ad tools behind it: Google Analytics 4 and
+Microsoft Clarity ("analytics"), Meta Pixel, TikTok Pixel, Google Ads and FirstPromoter ("marketing").
+Nothing loads before the visitor says yes; "Reject all" sits next to "Accept all". The answer is the
+`lautus_consent` cookie on `.lautus.ai`, shared with app.lautus.ai and the studio, asked again after 6 months.
+The footer's "Cookies" link (`data-cookie-settings`) reopens the choices.
+
+The ids go in `window.LAUTUS_TRACKING` in the `<head>` of `index.html`; a tool left empty stays off and with
+every id empty there is no banner. `lautus-consent.js` is the same file as `apps/app/public/lautus-consent.js`
+in the `LAUTUS-BACK` repo (which also sends sign-ups and purchases); copy it here when it changes. This page
+sends `begin_checkout` on a pricing button and `lead` on the paste-a-link form.
+
 ## Share image
 
 `og.html` reuses the page's components. Serve the folder, then render it at 1200×630, e.g. with any
