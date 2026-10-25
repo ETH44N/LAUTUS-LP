@@ -102,7 +102,8 @@ Function source lives in `supabase/functions/lautus-waitlist/index.ts`.
 
 `lautus-consent.js` is the cookie banner and the analytics and ad tools behind it: Google Analytics 4 and
 Microsoft Clarity ("analytics"), Meta Pixel, TikTok Pixel, Google Ads and FirstPromoter ("marketing").
-Nothing loads before the visitor says yes; "Reject all" sits next to "Accept all". The answer is the
+Visitors from the EU/EEA, the UK and Switzerland (by browser time zone here) see the banner and nothing loads
+before their yes; "Reject all" sits next to "Accept all". Everyone else gets the tools at once, no banner. The answer is the
 `lautus_consent` cookie on `.lautus.ai`, shared with app.lautus.ai and the studio, asked again after 6 months.
 The footer's "Cookies" link (`data-cookie-settings`) reopens the choices.
 

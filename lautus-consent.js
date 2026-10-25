@@ -7,12 +7,16 @@
  * The page sets `window.LAUTUS_TRACKING` before this file loads:
  *   { ga4: "G-…", clarity: "…", metaPixel: "…", tiktokPixel: "…", googleAds: "AW-…",
  *     googleAdsSignupLabel: "…", googleAdsPurchaseLabel: "…", firstPromoter: "…",
- *     privacyUrl: "https://…", locale: "en" | "fr" }
+ *     privacyUrl: "https://…", locale: "en" | "fr", region: "eu" | "other" }
  * Every id is optional; an id that does not look like one is ignored. With none set, nothing
  * shows and nothing loads.
  *
- * Nothing that sets a cookie or reads the device loads before the visitor says yes (CNIL /
- * ePrivacy: "Reject all" as easy as "Accept all", no tracking on silence). Two choices:
+ * In the EU/EEA, the UK and Switzerland nothing that sets a cookie or reads the device loads
+ * before the visitor says yes (CNIL / ePrivacy: "Reject all" as easy as "Accept all", no
+ * tracking on silence). Elsewhere there is no banner: the tools load at once, and the
+ * "Cookies" link still turns them off. Where the visitor is: `region` in the config ("eu" or
+ * "other", from the host's IP country), else the browser's time zone; unknown counts as "eu".
+ * Two choices:
  *   analytics  Google Analytics 4, Microsoft Clarity
  *   marketing  Meta Pixel, TikTok Pixel, Google Ads, FirstPromoter (affiliate referrals)
  * The answer lives in the `lautus_consent` cookie on `.lautus.ai`, so one answer covers the
@@ -22,7 +26,7 @@
  *   lautusTrack(name, params)   "sign_up" | "purchase" | "begin_checkout" | "lead"; sent to
  *                               every tool the visitor allowed, kept until they answer.
  *   lautusConsent.open()        reopens the choices (also any click on [data-cookie-settings]).
- *   lautusConsent.get()         { analytics, marketing } or null before an answer.
+ *   lautusConsent.get()         { analytics, marketing }, or null while it waits for an answer.
  */
 (function () {
   "use strict";
@@ -98,6 +102,21 @@
   };
   var t = COPY[lang] || COPY.en;
 
+  // Time zones of the EU/EEA, the UK and Switzerland outside `Europe/` (Canaries, Madeira,
+  // Azores, Iceland, Faroe, Ceuta, the French and Portuguese overseas regions are close enough).
+  var EU_ZONES = /^(Europe\/|Atlantic\/(Canary|Madeira|Azores|Reykjavik|Faroe)|Africa\/Ceuta|Arctic\/Longyearbyen|Indian\/Reunion|Indian\/Mayotte|America\/(Guadeloupe|Martinique|Cayenne))/;
+  function inConsentRegion() {
+    if (raw.region === "other") return false;
+    if (raw.region === "eu") return true;
+    try {
+      var zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      return !zone || EU_ZONES.test(zone);
+    } catch {
+      return true;
+    }
+  }
+  var askFirst = inConsentRegion();
+
   // ---------------------------------------------------------------- the stored answer
   function cookieDomain() {
     var host = location.hostname;
@@ -112,6 +131,13 @@
     var at = Number(parts[3]);
     if (!isFinite(at) || Date.now() / 1000 - at > MAX_AGE_S) return null;
     return { analytics: parts[1] === "1", marketing: parts[2] === "1" };
+  }
+
+  // The stored answer, or outside the consent region a yes until the visitor says otherwise.
+  function currentChoice() {
+    var stored = readChoice();
+    if (stored !== null || askFirst) return stored;
+    return { analytics: true, marketing: true };
   }
 
   function writeChoice(choice) {
@@ -322,7 +348,7 @@
 
   function track(name, params) {
     var p = params && typeof params === "object" ? params : {};
-    var choice = readChoice();
+    var choice = currentChoice();
     if (choice === null) {
       // Not answered yet: kept for this page only, sent if the answer allows it.
       if (pending.length < 20) pending.push([name, p]);
@@ -379,7 +405,7 @@
   }
 
   function decide(choice) {
-    var before = readChoice();
+    var before = currentChoice();
     writeChoice(choice);
     close();
     var revoked =
@@ -417,7 +443,7 @@
   function show(detailed) {
     css();
     close();
-    var current = readChoice();
+    var current = currentChoice();
     root = el("section", { class: "lc", role: "dialog", "aria-modal": "false", "aria-labelledby": "lc-title", lang: lang });
     root.appendChild(el("h2", { id: "lc-title" }, t.title));
     root.appendChild(el("p", null, t.body));
@@ -476,7 +502,7 @@
   window.lautusTrack = track;
   window.lautusConsent = {
     ready: true,
-    get: readChoice,
+    get: currentChoice,
     open: function () {
       if (hasAnalytics || hasMarketing) show(true);
     },
@@ -493,7 +519,7 @@
   var early = stub && stub.q ? stub.q : [];
 
   if (!hasAnalytics && !hasMarketing) return;
-  var choice = readChoice();
+  var choice = currentChoice();
   if (choice !== null) apply(choice);
   early.forEach(function (args) {
     track(args[0], args[1]);
