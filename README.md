@@ -1,7 +1,11 @@
 # Lautus — landing page
 
-The pre-launch landing page for [lautus.ai](https://lautus.ai). Paper white, navy type, soft blue glows,
-cherry "clip selection" accents, one dark showcase panel. Layout language borrowed from
+The pre-launch landing page for [lautus.ai](https://lautus.ai). Since 2026-10-26 it wears the
+**pixel studio** look shared with the Lautus studio and app: a warm off-white ground, hairlines, square
+corners, square ink buttons that turn blue, Bricolage Grotesque titles, Instrument Sans text, DM Mono
+labels, a pixel lotus (`brand/lautus-lotus-pixel.svg`) and a few pixel blocks that drop into the hero
+in steps (the "Pixel studio" block at the end of `styles.css`). Cherry "clip selection" accents, one
+dark showcase panel. Layout language borrowed from
 [clickway.fr](https://www.clickway.fr/): floating nav, a highlighted word in the hero, bento cards in a
 dashed frame, numbered steps, a dark panel of examples, FAQ split, dark CTA card, giant-wordmark footer.
 

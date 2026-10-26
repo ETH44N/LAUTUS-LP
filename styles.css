@@ -2103,3 +2103,145 @@ strong, b { font-weight: 600; }
 .footer__legal a { color: inherit; text-decoration: none; }
 .footer__legal a:hover { color: #fff; }
 @media (max-width: 640px) { .footer__bottom { flex-direction: column; } }
+
+/* ==========================================================================
+   Pixel studio (2026-10-26) — the same look as the Lautus studio and app:
+   warm ground, hairlines, square corners, square ink buttons that turn blue,
+   Bricolage titles, Instrument Sans text, DM Mono labels, pixel sprites and
+   motion in steps. Overrides the tokens and components above.
+   ========================================================================== */
+
+:root {
+  --paper: #fafaf7;
+  --ink-2: #3a4366;
+  --ink-3: #5f6584;
+  --line: #ecebe6;
+  --line-2: #e6e5e0;
+  --font: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-title: 'Bricolage Grotesque', 'Instrument Sans', Arial, sans-serif;
+  --font-mono: 'DM Mono', 'SF Mono', Menlo, monospace;
+  --shadow-btn: none;
+  --shadow-card: none;
+  --shadow-float: 4px 4px 0 rgba(11, 26, 68, 0.1);
+}
+
+body { font-size: 16.5px; letter-spacing: 0; }
+
+/* square corners everywhere; circles that mean something keep theirs */
+*:not(.glow, .dot, [data-round]) { border-radius: 0 !important; }
+
+h1, h2, .h2, .hero__title, .brand__word {
+  font-family: var(--font-title);
+  font-weight: 500;
+}
+.hero__title { letter-spacing: -0.045em; }
+
+.grad {
+  background: none;
+  color: var(--blue-deep);
+}
+
+/* buttons: a square ink block, blue under the pointer */
+.btn {
+  border: 1px solid var(--btn-bg);
+  font: 500 14.5px/1 var(--font);
+  letter-spacing: 0;
+  text-transform: none;
+  box-shadow: none;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+.btn:hover, .btn:active { transform: none; }
+.btn:not(.btn--light):hover { background: var(--blue-deep); border-color: var(--blue-deep); }
+.btn--light { border-color: var(--line-2); box-shadow: none; }
+.btn--light:hover { border-color: var(--ink); }
+
+/* nav: a hairline bar on the ground, no glass */
+.nav { inset: 0 0 auto; padding-inline: 0; }
+.nav__bar, .nav__menu {
+  width: 100%;
+  background: rgba(250, 250, 247, 0.96);
+  -webkit-backdrop-filter: none;
+          backdrop-filter: none;
+  border: 0;
+  border-bottom: 1px solid var(--line-2);
+  box-shadow: none;
+}
+.nav__bar { padding-inline: var(--gutter); }
+.nav.is-scrolled .nav__bar { background: rgba(250, 250, 247, 0.98); box-shadow: none; }
+.brand__mark { width: 33px; image-rendering: pixelated; }
+.brand__word { font-size: 20px; font-weight: 600; letter-spacing: -0.03em; text-transform: none; }
+
+/* the soft glows give way to the ground and a few pixel blocks */
+.glow, .streaks { display: none; }
+.pill {
+  background: #fff;
+  border: 1px solid var(--line-2);
+  box-shadow: none;
+  font: 400 12px/1 var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.pill__dot { animation: px-blink 1s steps(1) infinite; }
+
+/* cards, frames and panels: hairlines; floating mocks get the hard offset shadow */
+[class*="card"], [class*="frame"], [class*="panel"], [class*="tile"] { box-shadow: none; }
+[class*="mock"], [class*="window"], .editor { box-shadow: var(--shadow-float) !important; }
+
+/* eyebrows and small labels in bracketed-style mono */
+.eyebrow, [class*="eyebrow"], [class*="__kicker"], .frame__label {
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+}
+
+/* pixel blocks that drop into place at the hero's edges */
+.px-blocks {
+  --pb: clamp(22px, 3vw, 40px);
+  position: absolute;
+  top: clamp(150px, 22vh, 230px);
+  width: calc(var(--pb) * 3);
+  height: calc(var(--pb) * 4);
+}
+.px-blocks--l { left: max(2vw, 12px); }
+.px-blocks--r { right: max(2vw, 12px); }
+.px-blocks i {
+  position: absolute;
+  left: calc(var(--pb) * var(--x));
+  bottom: calc(var(--pb) * var(--y));
+  width: calc(var(--pb) * var(--w));
+  height: calc(var(--pb) * var(--h));
+  background: var(--c);
+  animation: px-drop 1.2s steps(4) both;
+  animation-delay: var(--d);
+}
+.px-blocks .px-hop {
+  position: absolute;
+  left: calc(var(--pb) * 1.35);
+  bottom: calc(var(--pb) * 3.1);
+  width: calc(var(--pb) * 0.85);
+  height: auto;
+  animation: px-hop 1.6s steps(2) infinite;
+}
+@media (max-width: 860px) { .px-blocks { display: none; } }
+
+@keyframes px-drop { 0% { transform: translateY(-48px); } 60%, 100% { transform: none; } }
+@keyframes px-hop { 0%, 100% { transform: none; } 50% { transform: translateY(-6px); } }
+@keyframes px-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .px-blocks i, .px-blocks .px-hop, .pill__dot { animation: none; }
+}
+
+/* steps and bento cards: white on a hairline, the step number in DM Mono, solid */
+.step, .step--1, .step--4, .card {
+  background: #fff;
+  border: 1px solid var(--line-2);
+}
+.step__num {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 96px;
+  letter-spacing: -0.06em;
+  background: none;
+  color: var(--blue-deep);
+}
+.step--4 .step__num { background: none; color: var(--cherry-bright); }
