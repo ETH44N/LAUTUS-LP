@@ -24,12 +24,9 @@
   <meta name="twitter:description" content="An AI editor that turns long-form recordings into publish-ready vertical shorts. Paste a link and get your first shorts." />
   <meta name="twitter:image" content="https://lautus.ai/og.png" />
 
-  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
-  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <script>document.documentElement.classList.replace('no-js', 'js');</script>
   <!-- Analytics and ad pixels, behind the cookie banner (lautus-consent.js, README "Tracking").
@@ -87,11 +84,8 @@
   <header class="nav" data-nav>
     <div class="nav__bar">
       <a class="brand" href="#top" aria-label="Lautus home">
-        <picture>
-          <source srcset="brand/lautus-lotus-160.webp" type="image/webp" />
-          <img class="brand__mark" src="brand/lautus-lotus-160.png" alt="" width="160" height="136" />
-        </picture>
-        <span class="brand__word">lautus.ai</span>
+        <img class="brand__mark" src="brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" />
+        <span class="brand__word">lautus</span>
       </a>
       <nav class="nav__links" aria-label="Primary">
         <a href="#product">Product</a>
@@ -126,8 +120,13 @@
     <!-- Hero ----------------------------------------------------------------->
     <section class="hero" id="top">
       <div class="hero__bg" aria-hidden="true">
-        <i class="glow glow--a"></i><i class="glow glow--b"></i><i class="glow glow--c"></i>
-        <i class="streaks"></i>
+        <div class="px-blocks px-blocks--l">
+          <i style="--x:0;--y:0;--w:2;--h:2;--c:#E63950;--d:.1s"></i><i style="--x:2;--y:0;--w:1;--h:1;--c:#FF9AA8;--d:.3s"></i><i style="--x:0;--y:2;--w:1;--h:1;--c:#4F7DFF;--d:.5s"></i>
+        </div>
+        <div class="px-blocks px-blocks--r">
+          <i style="--x:1;--y:0;--w:2;--h:3;--c:#0B1A44;--d:.2s"></i><i style="--x:0;--y:0;--w:1;--h:1;--c:#2F5CF0;--d:.4s"></i><i style="--x:0;--y:1;--w:1;--h:1;--c:#FF9AA8;--d:.6s"></i>
+          <svg class="px-hop" viewBox="0 0 8 9" shape-rendering="crispEdges"><path fill="#0B1A44" d="M0 0h1v1h-1zM1 0h1v1h-1zM7 0h1v1h-1zM0 1h1v1h-1zM1 1h1v1h-1zM6 1h1v1h-1zM1 2h1v1h-1zM5 2h1v1h-1zM2 3h1v1h-1zM4 3h1v1h-1zM3 4h1v1h-1z"/><path fill="#E63950" d="M2 5h1v1h-1zM4 5h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM0 7h1v1h-1zM1 7h1v1h-1zM5 7h1v1h-1zM6 7h1v1h-1zM0 8h1v1h-1zM1 8h1v1h-1zM5 8h1v1h-1zM6 8h1v1h-1z"/></svg>
+        </div>
       </div>
 
       <div class="wrap hero__inner">
@@ -236,7 +235,7 @@
       <div class="wrap">
         <header class="head">
           <p class="brandchip reveal">
-            <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+            <img src="brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" />
             <span>lautus.ai</span><span class="brandchip__sep" aria-hidden="true"></span><span class="brandchip__sub">creators</span>
           </p>
           <h2 class="h2 reveal" style="--d:1">Cut for creators<br /><span class="grad">who post every day.</span></h2>
@@ -321,7 +320,7 @@
       <div class="wrap product__grid">
         <div class="product__intro">
           <p class="brandchip reveal">
-            <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+            <img src="brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" />
             <span>lautus.ai</span><span class="brandchip__sep" aria-hidden="true"></span><span class="brandchip__sub">editor</span>
           </p>
           <h2 class="h2 reveal" style="--d:1">Built for the edit.<br /><span class="grad">Tuned for the feed.</span></h2>
@@ -335,14 +334,14 @@
           <figure class="rule reveal" style="--d:4">
             <blockquote>“If a moment makes sense to someone who missed the rest, it's a short.”</blockquote>
             <figcaption>
-              <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+              <img src="brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" />
               <span><b>The rule Lautus edits by</b><small>Every clip has to stand on its own</small></span>
             </figcaption>
           </figure>
         </div>
 
         <div class="frame reveal" style="--d:2">
-          <p class="frame__label"><img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />editor</p>
+          <p class="frame__label"><img src="brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" />editor</p>
           <div class="bento">
             <article class="card card--blue">
               <div class="card__viz viz-moment" aria-hidden="true">
@@ -414,7 +413,7 @@
       <div class="wrap">
         <header class="head">
           <p class="brandchip reveal">
-            <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+            <img src="brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" />
             <span>lautus.ai</span>
           </p>
           <h2 class="h2 reveal" style="--d:1">How Lautus works.</h2>
@@ -491,7 +490,7 @@
       <div class="wrap">
         <header class="head">
           <p class="brandchip reveal">
-            <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+            <img src="brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" />
             <span>lautus.ai</span><span class="brandchip__sep" aria-hidden="true"></span><span class="brandchip__sub">examples</span>
           </p>
           <h2 class="h2 reveal" style="--d:1">Before Lautus. After Lautus.</h2>
@@ -520,7 +519,7 @@
               <div class="timeline__track ex__track"><div class="wave" data-wave="90"></div><i class="clip is-active" style="--x:43%;--w:5%"></i></div>
               <p class="ex__quote"><span class="tc">47:12</span>“We almost shut the company down. Twice.”</p>
             </div>
-            <div class="ex__arrow" aria-hidden="true"><img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" /><svg><use href="#i-arrow" /></svg></div>
+            <div class="ex__arrow" aria-hidden="true"><img src="brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" /><svg><use href="#i-arrow" /></svg></div>
             <div class="ex__out">
               <figure class="ex__short">
                 <div class="short sc-3" aria-hidden="true">
@@ -558,7 +557,7 @@
               <div class="timeline__track ex__track"><div class="wave" data-wave="90"></div><i class="clip is-active" style="--x:30%;--w:5%"></i></div>
               <p class="ex__quote"><span class="tc">22:05</span>“Nobody remembers your slides. They remember this.”</p>
             </div>
-            <div class="ex__arrow" aria-hidden="true"><img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" /><svg><use href="#i-arrow" /></svg></div>
+            <div class="ex__arrow" aria-hidden="true"><img src="brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" /><svg><use href="#i-arrow" /></svg></div>
             <div class="ex__out">
               <figure class="ex__short">
                 <div class="short sc-1" aria-hidden="true">
@@ -596,7 +595,7 @@
               <div class="timeline__track ex__track"><div class="wave" data-wave="90"></div><i class="clip is-active" style="--x:14%;--w:6%"></i></div>
               <p class="ex__quote"><span class="tc">08:31</span>“I got the job by asking one question.”</p>
             </div>
-            <div class="ex__arrow" aria-hidden="true"><img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" /><svg><use href="#i-arrow" /></svg></div>
+            <div class="ex__arrow" aria-hidden="true"><img src="brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" /><svg><use href="#i-arrow" /></svg></div>
             <div class="ex__out">
               <figure class="ex__short">
                 <div class="short sc-4" aria-hidden="true">
@@ -629,7 +628,7 @@
         <div class="wrap">
           <header class="head head--dark">
             <p class="brandchip brandchip--dark reveal">
-              <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+              <img src="brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" />
               <span>lautus.ai</span>
             </p>
             <h2 class="h2 reveal" style="--d:1">One recording in.<br />A week of shorts out.</h2>
@@ -724,7 +723,7 @@
       <div class="wrap">
         <header class="head">
           <p class="brandchip reveal">
-            <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+            <img src="brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" />
             <span>lautus.ai</span>
           </p>
           <h2 class="h2 reveal" style="--d:1">Scrubbing isn't editing.</h2>
@@ -743,7 +742,7 @@
             <p class="vs__foot">An afternoon, every episode.</p>
           </div>
           <div class="vs vs--new reveal" style="--d:1">
-            <p class="vs__label"><img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />With Lautus</p>
+            <p class="vs__label"><img src="brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" />With Lautus</p>
             <ul>
               <li><svg aria-hidden="true"><use href="#i-check" /></svg>Drop in the recording</li>
               <li><svg aria-hidden="true"><use href="#i-check" /></svg>Review the moments it found</li>
@@ -764,7 +763,7 @@
       <div class="wrap">
         <header class="head">
           <p class="brandchip reveal">
-            <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+            <img src="brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" />
             <span>lautus.ai</span><span class="brandchip__sep" aria-hidden="true"></span><span class="brandchip__sub">pricing</span>
           </p>
           <h2 class="h2 reveal" style="--d:1">Pick how much you post.</h2>
@@ -854,7 +853,7 @@
       <div class="wrap faq__grid">
         <header class="faq__head">
           <p class="brandchip reveal">
-            <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+            <img src="brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" />
             <span>lautus.ai</span>
           </p>
           <h2 class="h2 reveal" style="--d:1">Questions,<br />answered.</h2>
@@ -896,7 +895,7 @@
         <div class="cta__card">
           <div class="cta__glow" aria-hidden="true"></div>
           <p class="brandchip brandchip--dark reveal">
-            <img src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+            <img src="brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" />
             <span>lautus.ai</span>
           </p>
           <h2 class="h2 cta__title reveal" style="--d:1"><span class="dim">You've got the recordings.</span><br />Lautus finds the shorts.</h2>
@@ -934,7 +933,7 @@
     <div class="wrap footer__top">
       <div class="footer__brand">
         <a class="brand brand--light" href="#top" aria-label="Lautus home">
-          <img class="brand__mark" src="brand/lautus-lotus-160.webp" alt="" width="160" height="136" />
+          <img class="brand__mark" src="brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" />
           <span class="brand__word">lautus.ai</span>
         </a>
         <p>An AI editor that turns long-form recordings into vertical shorts.</p>
