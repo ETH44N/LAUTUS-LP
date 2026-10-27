@@ -77,6 +77,9 @@
 
   // Pricing buttons: go to checkout when the plan has a link, otherwise
   // behave like "Get early access" and remember which plan was picked.
+  // Log in / Sign up: the customer app's own pages (the local app when served locally).
+  $$('[data-app]').forEach((a) => { a.href = `${APP_URL}${a.dataset.app}`; });
+
   let chosenPlan = null;
   $$('[data-plan]').forEach((btn) => {
     const url = CHECKOUT[btn.dataset.plan];

@@ -27,7 +27,7 @@ CNAME             custom domain for GitHub Pages
 
 | Section | id | Notes |
 | --- | --- | --- |
-| Nav | – | Floating bar; collapses to a menu under 860px. |
+| Nav | – | Floating bar with Log in and Sign up (app.lautus.ai `/signin`, `/signup`); collapses to a menu under 860px. |
 | Hero | `#top` | Headline with the dashed "finds" selection, waitlist form, formats marquee, editor mock with two shorts. |
 | Creators | `#creators` | Two rows of creator cards drifting in opposite directions. **All names, handles and numbers are placeholders** — replace them with real creators before deploying. |
 | Product | `#product` | Sticky intro + bento of what the editor does, inside a dashed "editor" frame. |
