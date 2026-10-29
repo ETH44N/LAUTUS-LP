@@ -29,6 +29,7 @@ CNAME             custom domain for GitHub Pages
 | --- | --- | --- |
 | Nav | – | Floating bar with Log in and Sign up (app.lautus.ai `/signin`, `/signup`); collapses to a menu under 860px. |
 | Hero | `#top` | Headline with the dashed "finds" selection, waitlist form, formats marquee, editor mock with two shorts. |
+| Editing styles | `#styles` | Four studio styles (Emotional, Floating captions, Glowing serif, Vintage camera) in one player: each real render plays to its end, then the next takes over; a click picks one. Clips in `media/styles/`, loaded when the section is on screen. |
 | Creators | `#creators` | Two rows of creator cards drifting in opposite directions. **All names, handles and numbers are placeholders** — replace them with real creators before deploying. |
 | Product | `#product` | Sticky intro + bento of what the editor does, inside a dashed "editor" frame. |
 | How it works | `#how` | Four numbered steps with small UI mocks. |

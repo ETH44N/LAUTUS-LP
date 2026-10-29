@@ -235,6 +235,35 @@
       </div>
     </section>
 
+    <!-- Editing styles ----------------------------------------------------------
+         Four of the studio's editing styles, one after the other in one player: each clip
+         plays to its end, then the next style takes over. Real Lautus renders. -->
+    <section class="section styles" id="styles" data-styles>
+      <div class="wrap styles__grid">
+        <header class="styles__head">
+          <p class="styles__eyebrow reveal">[ Editing styles ]</p>
+          <h2 class="h2 reveal" style="--d:1">One click, a whole new edit.</h2>
+          <p class="lede reveal" style="--d:2">Pick a style and every clip takes it on: captions, type, color and pacing. <strong>These are real Lautus renders.</strong></p>
+          <ol class="styles__list reveal" style="--d:3" aria-label="Editing styles">
+            <li><button class="styles__item" type="button" data-style="0" aria-pressed="true"><span class="styles__num">01</span><span class="styles__name">Emotional</span><span class="styles__note">Slow, close, word by word</span><i class="styles__bar" aria-hidden="true"></i></button></li>
+            <li><button class="styles__item" type="button" data-style="1" aria-pressed="false"><span class="styles__num">02</span><span class="styles__name">Floating captions</span><span class="styles__note">Square, captions that drift with the speaker</span><i class="styles__bar" aria-hidden="true"></i></button></li>
+            <li><button class="styles__item" type="button" data-style="2" aria-pressed="false"><span class="styles__num">03</span><span class="styles__name">Glowing serif</span><span class="styles__note">A conversation in warm, glowing type</span><i class="styles__bar" aria-hidden="true"></i></button></li>
+            <li><button class="styles__item" type="button" data-style="3" aria-pressed="false"><span class="styles__num">04</span><span class="styles__name">Vintage camera</span><span class="styles__note">Film grain, soft color, an old camcorder</span><i class="styles__bar" aria-hidden="true"></i></button></li>
+          </ol>
+        </header>
+        <div class="styles__stage reveal" style="--d:2">
+          <video class="is-on" muted playsinline preload="none" poster="media/styles/emotional.jpg" data-src="media/styles/emotional.mp4" aria-label="Emotional style, a real Lautus render"></video>
+          <video muted playsinline preload="none" poster="media/styles/floating-captions.jpg" data-src="media/styles/floating-captions.mp4" aria-label="Floating captions style, a real Lautus render"></video>
+          <video muted playsinline preload="none" poster="media/styles/glowing-serif.jpg" data-src="media/styles/glowing-serif.mp4" aria-label="Glowing serif style, a real Lautus render"></video>
+          <video muted playsinline preload="none" poster="media/styles/vintage-camera.jpg" data-src="media/styles/vintage-camera.mp4" aria-label="Vintage camera style, a real Lautus render"></video>
+          <span class="styles__tag" data-style-tag>01 · Emotional</span>
+          <button class="styles__sound" type="button" data-style-sound aria-pressed="false">
+            <svg aria-hidden="true"><use href="#i-sound" /></svg><span>Sound on</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
     <!-- Creators ------------------------------------------------------------------
          Illustrative: the kinds of creators Lautus is built for and where their clips go.
          No real people are named. Swap in real creators (name, handle, real audience,

@@ -457,4 +457,87 @@
     }, { threshold: 0.35 });
     seen.observe(demo);
   }
+
+  // ------------------------------------------------------------------
+  // Editing styles: one player, four styles. Each clip plays to its end,
+  // then the next style takes over; a click picks one. Clips load only
+  // once the section is on screen.
+  // ------------------------------------------------------------------
+  const styles = $('[data-styles]');
+  if (styles) {
+    const vids = $$('.styles__stage video', styles);
+    const items = $$('[data-style]', styles);
+    const tag = $('[data-style-tag]', styles);
+    const soundBtn = $('[data-style-sound]', styles);
+    let current = 0;
+    let started = false;
+    let soundOn = false;
+
+    const show = (i) => {
+      vids.forEach((v, n) => {
+        if (n === i) return;
+        v.pause();
+        v.classList.remove('is-on');
+      });
+      items.forEach((b, n) => {
+        b.setAttribute('aria-pressed', String(n === i));
+        b.style.setProperty('--p', '0');
+      });
+      current = i;
+      const v = vids[i];
+      if (!v.src) v.src = v.dataset.src;
+      v.muted = !soundOn;
+      v.currentTime = 0;
+      v.classList.add('is-on');
+      if (tag) tag.textContent = `${items[i].querySelector('.styles__num').textContent} · ${items[i].querySelector('.styles__name').textContent}`;
+      if (started) v.play().catch(() => {});
+      // Fetch the next clip ahead so the hand-off does not wait.
+      const next = vids[(i + 1) % vids.length];
+      if (!next.src) { next.src = next.dataset.src; next.preload = 'auto'; }
+    };
+
+    vids.forEach((v, n) => {
+      v.addEventListener('timeupdate', () => {
+        if (n !== current || !v.duration) return;
+        items[n].style.setProperty('--p', String(v.currentTime / v.duration));
+      });
+      v.addEventListener('ended', () => {
+        if (n === current) show((n + 1) % vids.length);
+      });
+    });
+    items.forEach((b, n) => b.addEventListener('click', () => {
+      started = true;
+      show(n);
+    }));
+    if (soundBtn) soundBtn.addEventListener('click', () => {
+      soundOn = !soundOn;
+      soundBtn.setAttribute('aria-pressed', String(soundOn));
+      $('span', soundBtn).textContent = soundOn ? 'Sound off' : 'Sound on';
+      vids[current].muted = !soundOn;
+      if (vids[current].paused) { started = true; vids[current].play().catch(() => {}); }
+    });
+
+    const begin = () => {
+      // Under reduced motion nothing plays on its own: the first poster waits for a click.
+      started = !reduceMotion.matches;
+      show(0);
+    };
+    if ('IntersectionObserver' in window) {
+      const seen = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        seen.disconnect();
+        begin();
+      }, { threshold: 0.3 });
+      seen.observe(styles);
+      // Off screen, the player rests; back on screen, it carries on.
+      new IntersectionObserver(([entry]) => {
+        if (!started) return;
+        const v = vids[current];
+        if (entry.isIntersecting) { if (v.paused && v.src) v.play().catch(() => {}); }
+        else v.pause();
+      }, { threshold: 0.1 }).observe(styles);
+    } else {
+      begin();
+    }
+  }
 })();
