@@ -149,6 +149,41 @@
           An AI editor for long-form video. Drop in a recording and get back vertical shorts,
           <strong>with the moment chosen, the speaker framed, captions and sound done.</strong>
         </p>
+        <script>
+          // Hero headline A/B test (2026-11-03). A = "Every talk hides a dozen shorts. Lautus finds them.",
+          // B = "You film it. Lautus edits it." Runs while the page parses, so there is no flash.
+          // The variant is kept on the device only once analytics is allowed (the lautus_consent
+          // cookie, or no banner outside the EU); before that each page view draws again, nothing stored.
+          // ?hero=a or ?hero=b forces one for checking. GA4 gets it as the user property hero_variant
+          // (sent only if GA4 loads, i.e. with consent), Clarity as the session tag hero_variant.
+          (function () {
+            var KEY = 'lautus_hero_ab';
+            var allowed = /(?:^|;\s*)lautus_consent=\d+\.1\./.test(document.cookie);
+            var forced = (/[?&]hero=([ab])\b/.exec(location.search) || [])[1];
+            var v = forced;
+            if (!v && allowed) { try { v = localStorage.getItem(KEY); } catch (e) {} }
+            if (v !== 'a' && v !== 'b') v = Math.random() < 0.5 ? 'a' : 'b';
+            var keep = function () { if (!forced) { try { localStorage.setItem(KEY, v); } catch (e) {} } };
+            if (allowed) keep();
+            // outside the EU there is no banner and analytics is on without a cookie: keep it then too
+            else addEventListener('load', function () {
+              var c = window.lautusConsent && window.lautusConsent.get();
+              if (c && c.analytics) keep();
+            });
+            document.documentElement.dataset.hero = v;
+            if (v === 'b') {
+              var h = document.querySelector('.hero__title'), l = document.querySelector('.hero__lede');
+              var sel = h.querySelector('.select');
+              sel.firstChild.nodeValue = 'edits';
+              h.innerHTML = 'You film it.<br />Lautus ' + sel.outerHTML + ' it.';
+              l.innerHTML = 'Framed, captioned, sound-mixed and published, <strong>without you scrubbing a timeline.</strong>';
+            }
+            window.dataLayer = window.dataLayer || [];
+            (function () { window.dataLayer.push(arguments); })('set', 'user_properties', { hero_variant: v });
+            window.clarity = window.clarity || function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
+            window.clarity('set', 'hero_variant', v);
+          })();
+        </script>
 
         <form class="waitlist linkform rise" style="--d:3" data-linkform novalidate>
           <div class="waitlist__row">

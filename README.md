@@ -28,7 +28,7 @@ CNAME             custom domain for GitHub Pages
 | Section | id | Notes |
 | --- | --- | --- |
 | Nav | – | Floating bar with Log in and Sign up (app.lautus.ai `/signin`, `/signup`); collapses to a menu under 860px. |
-| Hero | `#top` | Headline with the dashed "finds" selection, waitlist form, formats marquee, editor mock with two shorts. |
+| Hero | `#top` | Headline with the dashed "finds" selection, waitlist form, formats marquee, editor mock with two shorts. **A/B test since 2026-11-03:** an inline script after the lede shows half of visitors B, "You film it. Lautus edits it." (selection on "edits", new lede). Variant in GA4 user property `hero_variant` and Clarity tag `hero_variant`; kept in `localStorage.lautus_hero_ab` only once analytics is allowed; `?hero=a` / `?hero=b` forces one. |
 | Editing styles | `#styles` | Four studio styles (Emotional, Floating captions, Glowing serif, Vintage camera) in one player: each real render plays to its end, then the next takes over; a click picks one. Clips in `media/styles/`, loaded when the section is on screen. |
 | Creators | `#creators` | Two rows of creator cards drifting in opposite directions. **All names, handles and numbers are placeholders** — replace them with real creators before deploying. |
 | Product | `#product` | Sticky intro + bento of what the editor does, inside a dashed "editor" frame. |
