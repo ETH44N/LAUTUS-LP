@@ -141,23 +141,22 @@
         <p class="pill rise"><span class="pill__dot" aria-hidden="true"></span>Now open · paste a link, get your shorts</p>
 
         <h1 class="hero__title rise" style="--d:1">
-          Every talk hides a dozen shorts.<br />
-          Lautus <span class="select" data-tc="14:32 – 15:08">finds<i class="select__h" aria-hidden="true"></i><i class="select__h" aria-hidden="true"></i><i class="select__h" aria-hidden="true"></i><i class="select__h" aria-hidden="true"></i></span> them.
+          You film it.<br />
+          Lautus <span class="select" data-tc="14:32 – 15:08"><span class="select__w">edits</span><i class="select__h" aria-hidden="true"></i><i class="select__h" aria-hidden="true"></i><i class="select__h" aria-hidden="true"></i><i class="select__h" aria-hidden="true"></i></span> it.
         </h1>
 
         <p class="hero__lede rise" style="--d:2">
-          An AI editor for long-form video. Drop in a recording and get back vertical shorts,
-          <strong>with the moment chosen, the speaker framed, captions and sound done.</strong>
+          Framed, captioned, sound-mixed and published, <strong>without you scrubbing a timeline.</strong>
         </p>
         <script>
-          // Hero headline A/B test (2026-11-03). A = "Every talk hides a dozen shorts. Lautus finds them.",
-          // B = "You film it. Lautus edits it." Runs while the page parses, so there is no flash.
-          // The variant is kept on the device only once analytics is allowed (the lautus_consent
-          // cookie, or no banner outside the EU); before that each page view draws again, nothing stored.
-          // ?hero=a or ?hero=b forces one for checking. GA4 gets it as the user property hero_variant
-          // (sent only if GA4 loads, i.e. with consent), Clarity as the session tag hero_variant.
+          // Hero headline A/B test (round 2, 2026-11-03). A = "Stop editing. Start posting." (box on "posting").
+          // B = "You film it. Lautus edits it." (the markup above), its box moving through the jobs Lautus
+          // does: edits, frames, captions, posts. The variant is kept on the device only once analytics is allowed (the
+          // lautus_consent cookie, or no banner outside the EU); before that each page view draws again,
+          // nothing stored. ?hero=a or ?hero=b forces one for checking. GA4 gets it as the user property
+          // hero_variant (sent only if GA4 loads, i.e. with consent), Clarity as the session tag hero_variant.
           (function () {
-            var KEY = 'lautus_hero_ab';
+            var KEY = 'lautus_hero_ab2', NAMES = { a: 'stop_editing', b: 'edit_cycle' };
             var allowed = /(?:^|;\s*)lautus_consent=\d+\.1\./.test(document.cookie);
             var forced = (/[?&]hero=([ab])\b/.exec(location.search) || [])[1];
             var v = forced;
@@ -171,17 +170,41 @@
               if (c && c.analytics) keep();
             });
             document.documentElement.dataset.hero = v;
-            if (v === 'b') {
-              var h = document.querySelector('.hero__title'), l = document.querySelector('.hero__lede');
-              var sel = h.querySelector('.select');
-              sel.firstChild.nodeValue = 'edits';
-              h.innerHTML = 'You film it.<br />Lautus ' + sel.outerHTML + ' it.';
-              l.innerHTML = 'Framed, captioned, sound-mixed and published, <strong>without you scrubbing a timeline.</strong>';
-            }
             window.dataLayer = window.dataLayer || [];
-            (function () { window.dataLayer.push(arguments); })('set', 'user_properties', { hero_variant: v });
+            (function () { window.dataLayer.push(arguments); })('set', 'user_properties', { hero_variant: NAMES[v] });
             window.clarity = window.clarity || function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
-            window.clarity('set', 'hero_variant', v);
+            window.clarity('set', 'hero_variant', NAMES[v]);
+
+            var h = document.querySelector('.hero__title'), sel = h.querySelector('.select'), w = sel.querySelector('.select__w');
+            if (v === 'a') {
+              w.textContent = 'posting';
+              sel.dataset.tc = 'on schedule';
+              h.innerHTML = 'Stop editing.<br />Start ' + sel.outerHTML + '.';
+              document.querySelector('.hero__lede').innerHTML = 'Every talk becomes a week of finished shorts, <strong>edited in your style and published on schedule.</strong>';
+              return;
+            }
+            if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            var steps = [['edits', '14:32 – 15:08'], ['frames', '9:16 · speaker'], ['captions', 'word by word'], ['posts', 'TikTok · Reels · Shorts']];
+            var i = 0;
+            sel.addEventListener('transitionend', function (e) { if (e.propertyName === 'width') sel.style.width = ''; });
+            h.setAttribute('aria-label', 'You film it. Lautus edits it, frames it, captions it and posts it.');
+            setTimeout(function tick() {
+              i = (i + 1) % steps.length;
+              w.classList.add('is-out');
+              setTimeout(function () {
+                var from = sel.offsetWidth;
+                w.textContent = steps[i][0];
+                sel.dataset.tc = steps[i][1];
+                sel.style.width = '';
+                var to = sel.offsetWidth;
+                sel.style.width = from + 'px';
+                sel.offsetWidth;
+                sel.style.width = to + 'px';
+                w.classList.remove('is-out');
+              }, 220);
+              // the edit holds longest, the rest follow a beat apart
+              setTimeout(tick, i === steps.length - 1 ? 2400 : i === 0 ? 3200 : 1800);
+            }, 3200);
           })();
         </script>
 

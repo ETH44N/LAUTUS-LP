@@ -390,6 +390,11 @@ strong, b { font-weight: 600; }
 .select__h:nth-of-type(3) { left: -6px; bottom: -6px; }
 .select__h:nth-of-type(4) { right: -6px; bottom: -6px; }
 /* in/out points, drawn from data-tc so they stay out of the heading text */
+/* hero A/B test, variant B: the selected word changes and the box follows its width */
+.select { white-space: nowrap; transition: width 0.35s var(--ease-out); }
+.select__w { display: inline-block; transition: opacity 0.2s, transform 0.2s var(--ease-out); }
+.select__w.is-out { opacity: 0; transform: translateY(-0.18em); }
+
 .select::after {
   content: attr(data-tc);
   content: attr(data-tc) / "";
