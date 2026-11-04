@@ -1,0 +1,531 @@
+/* Lautus "Studio" design (2026-11-04): restyle.css + sections.css from the design compare page, baked in.
+   index.html sets the trait classes on <html> before paint; the ground follows the device. */
+/* Restyle layer for the REAL lautus.ai copy in real-site/.
+   index.html injects this into the real page and sets the same t-* trait classes on <html>
+   that mock.html uses. With the "Today" traits (light, square, grotesque, ink, hard, cherry,
+   flat) no rule here matches, so the page is exactly the live site. Every other trait is a
+   change laid over the real page: all its sections and content stay. Square vs round corners
+   is done in index.html by switching the site's own "square corners" rule off and on. */
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap");
+
+:root {
+  --accent: #e63950;
+  --accent-ink: #ffffff;
+  --accent-glow: rgba(230, 57, 80, 0.35);
+  --surface-2: #f4f3ee;
+  --surface-3: #e6e5e0;
+  --pool: 46, 139, 255;
+  --dot: rgba(11, 26, 68, 0.09);
+  --bevel-top: rgba(255, 255, 255, 0.9);
+  --bevel-bottom: rgba(11, 26, 68, 0.07);
+  --pool-strength: 0.10;
+  --fill-top: rgba(255, 255, 255, 0.7);
+}
+:root.t-accent-lime { --accent: #d4ff3a; --accent-ink: #0b0d05; --accent-glow: rgba(212, 255, 58, 0.3); }
+:root.t-glow-accent.t-accent-cherry { --pool: 230, 57, 80; }
+:root.t-glow-accent.t-accent-lime { --pool: 212, 255, 58; }
+
+/* ---------------- ground: dark ---------------- */
+:root.t-ground-dark {
+  --paper: #050507;
+  --surface: #0e1014;
+  --surface-2: #161920;
+  --surface-3: #1f232c;
+  --ink: #f3f2ee;
+  --ink-2: #a4a8b6;
+  --ink-3: #737888;
+  --line: rgba(243, 242, 238, 0.07);
+  --line-2: rgba(243, 242, 238, 0.13);
+  --blue: #5b82ff;
+  --blue-deep: #7f9dff;
+  --night: #0b0d12;
+  --shadow-float: 4px 4px 0 rgba(243, 242, 238, 0.09);
+  --dot: rgba(255, 255, 255, 0.085);
+  --bevel-top: rgba(255, 255, 255, 0.075);
+  --bevel-bottom: rgba(0, 0, 0, 0.38);
+  --pool-strength: 0.16;
+  --fill-top: rgba(255, 255, 255, 0.035);
+  color-scheme: dark;
+}
+.t-ground-dark body { background: var(--paper); }
+
+/* white panels become dark surfaces */
+.t-ground-dark :is(.select, .select__h, .editor, .moment, .frame__label, .card, .step, .step--1, .step--4,
+  .platforms span, .viz-moment .sel, .drop__icon, .file, .viz-scan, .viz-pick p, .case, .vs--new, .creator,
+  .ex-tabs, .ex__src, .ex__sum span, .plan, .qa, .waitlist__row, .waitlist__done, .demo__window, .demo__sound,
+  .pill, .rule, .drop, .vs--old, .plan--ent, .card__viz, .styles__tag, .styles__sound) {
+  background: var(--surface);
+  border-color: var(--line-2);
+}
+.t-ground-dark :is(.editor__bar, .moments__head span, .timeline, .file__icon, .file__bar, .ex__label span,
+  .plan__quota, .demo__short) { background: var(--surface-2); }
+.t-ground-dark .viz-scan i { background: linear-gradient(90deg, var(--surface-3) var(--w), transparent 0); }
+.t-ground-dark :is(.editor__found, .moment.is-active, .ex__quote .tc) { background: color-mix(in srgb, var(--accent) 14%, var(--surface)); }
+.t-ground-dark .case__art { background-color: var(--surface-2); }
+.t-ground-dark .tag { background: color-mix(in srgb, var(--c) 18%, var(--surface)); color: color-mix(in srgb, var(--c) 55%, #fff); }
+.t-ground-dark .nav__bar, .t-ground-dark .nav__menu, .t-ground-dark .nav.is-scrolled .nav__bar {
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border-color: var(--line);
+}
+.t-ground-dark .btn--light { --btn-bg: var(--surface-2); --btn-fg: var(--ink); border-color: var(--line-2); }
+
+/* things painted in ink with white text on top flip to light blocks with dark text */
+.t-ground-dark :is(.skip, .dl, .ex-tab[aria-selected="true"], .demo__sound[aria-pressed="true"],
+  .styles__sound:hover, .styles__sound[aria-pressed="true"], .viz-pick .is-on .box) { color: var(--paper); }
+.t-ground-dark .btn { --btn-fg: var(--paper); }
+.t-ground-dark .btn--light { --btn-fg: var(--ink); }
+.t-ground-dark .styles__stage { box-shadow: 4px 4px 0 var(--line-2); border-color: var(--line-2); }
+.t-ground-dark .short__hook { color: #0b1a44; }
+.t-ground-dark .grad { color: var(--blue-deep); }
+/* dark panels that sat on paper keep a hairline so they still read as panels */
+.t-ground-dark :is(.night, .cta__card, .plan--pro) { border: 1px solid var(--line); }
+.t-ground-dark .footer { background: var(--night); border-top: 1px solid var(--line); }
+.t-ground-dark .px-blocks i[style*="#0B1A44"] { background: #f3f2ee !important; }
+.t-ground-dark img[src*="brand"], .t-ground-dark .brand__mark { filter: none; }
+
+/* ---------------- titles: tall caps ---------------- */
+.t-titles-caps :is(h1, h2, .h2, .hero__title, .cta__title) {
+  font-family: "Bricolage Grotesque", var(--font-title), sans-serif;
+  font-variation-settings: "wdth" 75;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.9;
+}
+
+/* ---------------- main button: accent ---------------- */
+.t-buttons-accent .btn:not(.btn--light) { --btn-bg: var(--accent); --btn-fg: var(--accent-ink); border-color: var(--accent); }
+.t-buttons-accent .btn:not(.btn--light):hover {
+  background: var(--accent); border-color: var(--accent);
+  box-shadow: 0 8px 30px -6px var(--accent-glow); transform: translateY(-1px);
+}
+
+/* ---------------- accent: lime ---------------- */
+.t-accent-lime { --cherry: #d4ff3a; --cherry-bright: #c4ef2a; }
+
+/* ---------------- shadows: soft ---------------- */
+:root.t-depth-soft { --shadow-float: 0 2px 6px rgba(11, 26, 68, 0.05), 0 30px 70px -28px rgba(11, 26, 68, 0.35); }
+:root.t-depth-soft.t-ground-dark { --shadow-float: 0 30px 80px -30px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.04); }
+.t-depth-soft .styles__stage { box-shadow: var(--shadow-float); }
+.t-depth-soft :is(.card, .step, .plan, .case, .qa, .demo__window, .creator) { box-shadow: var(--shadow-float); }
+
+/* ---------------- video: still ---------------- */
+.t-motion-still *, .t-motion-still *::before, .t-motion-still *::after { animation-play-state: paused !important; }
+
+/* ---------------- background: lit (after gump.si) ----------------
+   A dot grid every 22px, faint pools of light, surfaces with a soft top-down fill and a bevel,
+   glows close to the main button, and one soft light that follows the pointer. */
+.t-atmos-lit body {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(1100px 620px at 12% -8%, rgba(var(--pool), var(--pool-strength)), transparent 70%),
+    radial-gradient(900px 700px at 96% 38%, rgba(var(--pool), calc(var(--pool-strength) * 0.6)), transparent 70%),
+    radial-gradient(1000px 600px at 30% 105%, rgba(var(--pool), calc(var(--pool-strength) * 0.5)), transparent 70%),
+    radial-gradient(circle, var(--dot) 1px, transparent 1.3px);
+  background-size: auto, auto, auto, 22px 22px;
+  background-attachment: fixed;
+}
+.t-atmos-lit .hero { position: relative; isolation: isolate; }
+.t-atmos-lit .hero::after {
+  content: ""; position: absolute; inset: 0 0 auto; height: 760px; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(640px 320px at 50% 0%, rgba(var(--pool), 0.35), transparent 70%),
+    radial-gradient(circle, rgba(var(--pool), 0.75) 1.1px, transparent 1.5px) 0 0 / 22px 22px;
+  -webkit-mask-image: radial-gradient(620px 380px at 50% 32%, #000, transparent 75%);
+  mask-image: radial-gradient(620px 380px at 50% 32%, #000, transparent 75%);
+}
+.t-atmos-lit :is(.card, .step, .plan, .qa, .creator, .case, .demo__window, .ex-tabs, .pill, .vs--new, .vs--old,
+  .waitlist__row, .editor, .moment, .btn--light) {
+  background-image: linear-gradient(180deg, var(--fill-top), transparent 70%);
+  box-shadow: inset 0 1px 0 var(--bevel-top), inset 0 -3px 0 var(--bevel-bottom);
+}
+.t-atmos-lit.t-depth-soft :is(.card, .step, .plan, .case, .demo__window, .editor) {
+  box-shadow: inset 0 1px 0 var(--bevel-top), inset 0 -3px 0 var(--bevel-bottom), var(--shadow-float);
+}
+.t-atmos-lit :is(.waitlist__row, .demo__window):focus-within {
+  box-shadow: inset 0 1px 0 var(--bevel-top), inset 0 -3px 0 var(--bevel-bottom), 0 0 0 1px rgba(var(--pool), 0.6), 0 0 44px -8px rgba(var(--pool), 0.6);
+}
+.t-atmos-lit .btn:not(.btn--light) { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), inset 0 -3px 0 rgba(0, 0, 0, 0.18), 0 0 24px -6px rgba(var(--pool), 0.7); }
+.restyle-spot {
+  position: fixed; left: 0; top: 0; width: 420px; height: 420px; margin: -210px 0 0 -210px; z-index: 0; pointer-events: none;
+  border-radius: 50% !important; background: radial-gradient(closest-side, rgba(var(--pool), calc(var(--pool-strength) * 0.9)), transparent);
+  opacity: 0; transition: opacity 0.5s ease; will-change: transform;
+}
+.t-atmos-lit .restyle-spot.on { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .restyle-spot { display: none; } }
+
+/* the final call-to-action card keeps its white button on ink grounds, and takes the accent with accent buttons */
+.t-ground-dark .waitlist--dark .btn--light { --btn-bg: #fff; --btn-fg: #0b1a44; border-color: #fff; }
+.t-buttons-accent .waitlist__btn.btn--light { --btn-bg: var(--accent); --btn-fg: var(--accent-ink); border-color: var(--accent); }
+.t-buttons-accent .waitlist__btn.btn--light:hover { background: var(--accent); box-shadow: 0 8px 30px -6px var(--accent-glow); }
+
+/* Section variants for the REAL lautus.ai copy (loaded after restyle.css, right pane and any pane
+   whose Sections picker is off "Original"). index.html puts t-s-<section>-v1|v2|v3 on the page's
+   <html>; with every section on Original (t-s-*-o) nothing here matches. All copy stays as live.
+   Every rule reads the shared tokens (--paper, --surface, --ink, --line-2, --accent, --pool), so
+   each variant works on the light and the dark ground. Layout changes stay above 860px; below it
+   the site's own phone layout holds. */
+
+:root {
+  --glass: color-mix(in srgb, var(--surface) 62%, transparent);
+  --edge: linear-gradient(140deg, rgba(var(--pool), 0.75), transparent 36%, transparent 64%, color-mix(in srgb, var(--accent) 75%, transparent));
+  --edge-fill: linear-gradient(var(--surface), var(--surface));
+}
+.t-ground-dark { --glass: color-mix(in srgb, var(--surface) 55%, transparent); }
+
+/* =====================================================================  NAV
+   v1 floating glass pill · v2 see-through, mono links · v3 full-width bar with a light seam */
+.t-s-nav-v1 .nav { inset: 14px 0 auto; padding-inline: var(--gutter); }
+.t-s-nav-v1 .nav__bar, .t-s-nav-v1 .nav.is-scrolled .nav__bar {
+  width: min(820px, 100%); margin-inline: auto; border-radius: 999px !important;
+  background: var(--glass) !important; -webkit-backdrop-filter: blur(16px) saturate(1.4); backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid var(--line-2) !important; box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  padding-inline: 18px 8px;
+}
+.t-s-nav-v1 .nav__bar .btn { border-radius: 999px !important; }
+
+.t-s-nav-v2 .nav__bar, .t-s-nav-v2 .nav.is-scrolled .nav__bar {
+  background: transparent !important; border-color: transparent !important; box-shadow: none !important;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+.t-s-nav-v2 .nav.is-scrolled .nav__bar { background: color-mix(in srgb, var(--paper) 70%, transparent) !important; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.t-s-nav-v2 .nav__links a { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+.t-s-nav-v3 .nav__bar, .t-s-nav-v3 .nav.is-scrolled .nav__bar { border-bottom: 0 !important; position: relative; }
+.t-s-nav-v3 .nav__bar::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; border-radius: 0 !important;
+  background: linear-gradient(90deg, transparent, rgba(var(--pool), 0.9) 30%, var(--accent) 70%, transparent);
+  box-shadow: 0 0 18px rgba(var(--pool), 0.6);
+}
+.t-s-nav-v3 .nav__links a:hover { color: var(--accent); }
+
+/* =====================================================================  HERO
+   v1 spotlight beam, gradient title · v2 drifting aurora · v3 perspective grid floor */
+.t-s-hero-v1 .hero { position: relative; isolation: isolate; }
+.t-s-hero-v1 .hero::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none; left: 50%; top: -120px; width: 1100px; height: 900px; translate: -50% 0;
+  border-radius: 0 !important;
+  background: conic-gradient(from 180deg at 50% 0%, transparent 155deg, rgba(var(--pool), 0.22) 172deg, rgba(var(--pool), 0.42) 180deg, rgba(var(--pool), 0.22) 188deg, transparent 205deg);
+  -webkit-mask-image: linear-gradient(#000 30%, transparent 85%); mask-image: linear-gradient(#000 30%, transparent 85%);
+}
+.t-s-hero-v1 .hero__title { font-size: clamp(3.2rem, 8.4vw, 7.4rem); }
+.t-s-hero-v1 .hero__title, .t-s-hero-v1 .hero__title .select__w {
+  background: linear-gradient(180deg, var(--ink) 40%, color-mix(in srgb, var(--ink) 72%, transparent));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.t-s-hero-v1 .px-blocks { opacity: 0.35; }
+
+.t-s-hero-v2 .hero { position: relative; isolation: isolate; overflow: clip; }
+.t-s-hero-v2 .hero::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none; left: 50%; top: 40px; width: 980px; height: 520px; translate: -50% 0;
+  border-radius: 50% !important; filter: blur(70px); opacity: 0.55;
+  background:
+    radial-gradient(40% 50% at 30% 50%, var(--accent), transparent 70%),
+    radial-gradient(40% 55% at 70% 45%, rgba(var(--pool), 1), transparent 70%),
+    radial-gradient(30% 40% at 50% 80%, #8b5cf6, transparent 70%);
+  animation: rs-aurora 14s ease-in-out infinite alternate;
+}
+.t-ground-light.t-s-hero-v2 .hero::before { opacity: 0.28; }
+@keyframes rs-aurora { 0% { transform: translateX(-6%) scale(1); } 50% { transform: translateX(5%) scale(1.12) rotate(4deg); } 100% { transform: translateX(-2%) scale(0.95) rotate(-3deg); } }
+.t-s-hero-v2 .pill { border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent) !important; box-shadow: 0 0 24px -8px var(--accent-glow); }
+.t-s-hero-v2 .px-blocks { display: none; }
+
+.t-s-hero-v3 .hero { position: relative; isolation: isolate; overflow: clip; }
+.t-s-hero-v3 .hero::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none; left: -20%; right: -20%; top: 260px; height: 640px; border-radius: 0 !important;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--ink) 14%, transparent) 1px, transparent 1px) 0 0 / 64px 64px,
+    linear-gradient(color-mix(in srgb, var(--ink) 14%, transparent) 1px, transparent 1px) 0 0 / 64px 64px;
+  transform: perspective(520px) rotateX(62deg); transform-origin: 50% 0;
+  -webkit-mask-image: radial-gradient(60% 70% at 50% 0%, #000, transparent 80%); mask-image: radial-gradient(60% 70% at 50% 0%, #000, transparent 80%);
+}
+.t-s-hero-v3 .hero__title { letter-spacing: -0.06em; }
+.t-s-hero-v3 .px-blocks { display: none; }
+.t-s-hero-v3 .demo__window { box-shadow: 0 0 0 1px var(--line-2), 0 -20px 80px -30px rgba(var(--pool), 0.7), 0 40px 80px -40px rgba(0, 0, 0, 0.7) !important; }
+
+/* =====================================================================  STYLES (editing styles)
+   v1 player first, glowing · v2 styles as cards · v3 phone bezel, big numbers */
+@media (min-width: 861px) {
+  .t-s-styles-v1 .styles__grid { grid-template-columns: minmax(0, 520px) minmax(0, 1fr); }
+  .t-s-styles-v1 .styles__stage { order: -1; }
+}
+.t-s-styles-v1 .styles__stage { border: 0 !important; box-shadow: 0 0 0 1px var(--line-2), 0 0 70px -10px rgba(var(--pool), 0.55) !important; border-radius: 22px !important; overflow: hidden; }
+.t-s-styles-v1 .styles__item[aria-pressed="true"] .styles__name, .t-s-styles-v1 .styles__item.is-on .styles__name { color: var(--accent); }
+
+.t-s-styles-v2 .styles__list { grid-template-columns: 1fr 1fr; gap: 10px; border-top: 0; }
+.t-s-styles-v2 .styles__list li { border: 0; }
+.t-s-styles-v2 .styles__item {
+  height: 100%; padding: 16px; border-radius: 16px !important; background: var(--glass);
+  border: 1px solid var(--line-2); transition: border-color 0.2s, box-shadow 0.2s;
+}
+.t-s-styles-v2 .styles__item:hover { border-color: color-mix(in srgb, var(--accent) 60%, transparent); box-shadow: 0 0 30px -12px var(--accent-glow); }
+.t-s-styles-v2 .styles__bar { display: none; }
+
+.t-s-styles-v3 .styles__stage {
+  border: 10px solid var(--surface-3) !important; border-radius: 38px !important; overflow: hidden;
+  box-shadow: 0 0 0 1px var(--line-2), 0 40px 90px -40px rgba(0, 0, 0, 0.75) !important;
+}
+.t-s-styles-v3 .styles__num { font: 600 28px/1 var(--font-title, var(--font)); color: var(--accent); letter-spacing: -0.04em; }
+.t-s-styles-v3 .styles__item { grid-template-columns: 52px 1fr; }
+
+/* =====================================================================  CREATORS
+   v1 glass pills · v2 tall tiles · v3 tilted ribbons */
+.t-s-creators-v1 .creator { border-radius: 999px !important; background: var(--glass) !important; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid var(--line-2) !important; box-shadow: none !important; }
+.t-s-creators-v1 .avatar { border-radius: 50% !important; }
+
+.t-s-creators-v2 .creator { flex-direction: column; align-items: flex-start; width: 210px; padding: 14px !important; border-radius: 20px !important; }
+.t-s-creators-v2 .avatar { width: 64px !important; height: 64px !important; }
+.t-s-creators-v2 .creator__stat { margin-top: auto; }
+
+.t-s-creators-v3 .loops { transform: rotate(-3deg); margin-inline: -4vw; -webkit-mask-image: none; mask-image: none; }
+.t-s-creators-v3 .loop { background: var(--surface); border-block: 1px solid var(--line-2); padding-block: 14px; }
+.t-s-creators-v3 .loop--rev { transform: rotate(5deg) translateY(-8px); background: color-mix(in srgb, var(--accent) 14%, var(--surface)); }
+.t-s-creators-v3 .creator { box-shadow: none !important; background: transparent !important; border: 0 !important; }
+.t-s-creators-v3 .creators { overflow: clip; }
+
+/* =====================================================================  PRODUCT (bento)
+   v1 full-width three-column bento · v2 glass cards with a light edge · v3 numbered outline cards */
+@media (min-width: 861px) {
+  .t-s-product-v1 .product__grid { grid-template-columns: minmax(0, 1fr); }
+  .t-s-product-v1 .product__intro { position: static; align-items: center; text-align: center; margin-inline: auto; max-width: 720px; }
+  .t-s-product-v1 .rule { margin-inline: auto; }
+  .t-s-product-v1 .bento { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .t-s-product-v1 .card--wide { grid-column: span 2; }
+}
+.t-s-product-v1 .frame { border: 0; padding: 0; background: none; }
+.t-s-product-v1 .frame__label { display: none; }
+
+.t-s-product-v2 .card, .t-s-product-v2 .rule {
+  border: 1px solid transparent !important;
+  background: linear-gradient(var(--glass), var(--glass)) padding-box, var(--edge) border-box !important;
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+}
+.t-s-product-v2 .card__viz { background: color-mix(in srgb, var(--surface-2) 60%, transparent) !important; }
+.t-s-product-v2 .frame { border: 1px solid var(--line-2); background: radial-gradient(80% 60% at 50% 0%, rgba(var(--pool), 0.12), transparent 70%); }
+
+.t-s-product-v3 .bento { counter-reset: rs-card; }
+.t-s-product-v3 .card { counter-increment: rs-card; background: transparent !important; border: 1px solid var(--line-2) !important; box-shadow: none !important; }
+.t-s-product-v3 .card::before {
+  content: "0" counter(rs-card); position: absolute; top: 14px; right: 16px; z-index: 2;
+  font: 500 12px/1 var(--font-mono); letter-spacing: 0.08em; color: var(--accent);
+  padding: 5px 7px; border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent); border-radius: 6px;
+}
+.t-s-product-v3 .card:hover { border-color: var(--ink) !important; }
+.t-s-product-v3 .frame { border-style: solid; border-color: var(--line-2); background: none; }
+
+/* =====================================================================  HOW IT WORKS
+   v1 four in a row, number chips · v2 hollow giant numbers on glass · v3 numbered badges on a line */
+@media (min-width: 861px) {
+  .t-s-how-v1 .step--1, .t-s-how-v1 .step--2, .t-s-how-v1 .step--3, .t-s-how-v1 .step--4 { grid-column: span 3; min-height: 420px; padding: 22px; }
+}
+.t-s-how-v1 .step__num {
+  align-self: flex-start; font-size: 15px !important; line-height: 1; letter-spacing: 0.06em; padding: 8px 12px;
+  background: var(--accent) !important; color: var(--accent-ink) !important; -webkit-text-fill-color: currentColor; border-radius: 999px;
+}
+
+.t-s-how-v2 .step { background: var(--glass) !important; border: 1px solid var(--line-2) !important; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.t-s-how-v2 .step__num {
+  font-size: 150px !important; color: transparent !important; background: none !important;
+  -webkit-text-fill-color: transparent; -webkit-text-stroke: 1.5px color-mix(in srgb, var(--ink) 55%, transparent);
+}
+.t-s-how-v2 .step:hover .step__num { -webkit-text-stroke-color: var(--accent); }
+
+.t-s-how-v3 .steps { position: relative; }
+.t-s-how-v3 .step { background: var(--surface) !important; border: 1px solid var(--line-2) !important; }
+.t-s-how-v3 .step__num {
+  display: grid; place-items: center; width: 64px; height: 64px; font-size: 26px !important; letter-spacing: -0.04em;
+  border-radius: 50% !important; background: color-mix(in srgb, var(--accent) 16%, var(--surface)) !important;
+  color: var(--accent) !important; -webkit-text-fill-color: currentColor; border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
+  box-shadow: 0 0 30px -8px var(--accent-glow);
+}
+.t-s-how-v3 .step::after {
+  content: ""; position: absolute; left: 30px; right: 30px; top: 0; height: 2px; border-radius: 0 !important;
+  background: linear-gradient(90deg, var(--accent), rgba(var(--pool), 0.8), transparent);
+}
+
+/* =====================================================================  EXAMPLES (before / after)
+   v1 accent tabs, glowing source · v2 cinema panel, phone bezels · v3 fanned shorts */
+.t-s-examples-v1 .ex-tab[aria-selected="true"] { background: var(--accent) !important; color: var(--accent-ink) !important; box-shadow: 0 0 24px -6px var(--accent-glow); }
+.t-s-examples-v1 .ex-tabs { border-radius: 999px !important; }
+.t-s-examples-v1 .ex-tab { border-radius: 999px !important; }
+.t-s-examples-v1 .ex__src { box-shadow: 0 0 0 1px var(--line-2), 0 0 60px -14px rgba(var(--pool), 0.6) !important; }
+
+.t-s-examples-v2 .ex { padding: 22px; border-radius: 28px !important; background: color-mix(in srgb, var(--ink) 4%, var(--paper)); border: 1px solid var(--line-2); }
+.t-s-examples-v2 .ex__short .short, .t-s-examples-v2 .ex__out .short { border: 6px solid #111 !important; border-radius: 26px !important; box-shadow: 0 0 0 1px var(--line-2), 0 30px 60px -30px rgba(0, 0, 0, 0.8); }
+
+.t-s-examples-v3 .ex__out .short:first-child, .t-s-examples-v3 .ex__short:first-child .short { transform: rotate(-4deg) translateY(8px); }
+.t-s-examples-v3 .ex__out .short:last-child, .t-s-examples-v3 .ex__short:last-child .short { transform: rotate(4deg) translateY(8px); }
+.t-s-examples-v3 .short--premium { box-shadow: 0 0 0 2px var(--accent), 0 0 40px -6px var(--accent-glow) !important; }
+.t-s-examples-v3 .ex__src { border: 1.5px dashed color-mix(in srgb, var(--accent) 55%, transparent) !important; }
+
+/* =====================================================================  USE CASES (dark panel)
+   v1 full-bleed band, edge-lit cards · v2 cards glow in their own colour · v3 one horizontal rail */
+.t-s-use-v1 #use-cases { padding-inline: 0; }
+.t-s-use-v1 .night { border-radius: 0 !important; margin-inline: calc(var(--gutter) * -1); border-inline: 0 !important; }
+.t-s-use-v1 .case { border: 1px solid transparent !important; background: var(--edge-fill) padding-box, var(--edge) border-box !important; color: var(--ink); }
+
+.t-s-use-v2 .case { border: 1.5px solid var(--c) !important; background: color-mix(in srgb, var(--c) 10%, var(--surface)) !important; color: var(--ink); box-shadow: 0 0 50px -18px var(--c) !important; transition: transform 0.3s, box-shadow 0.3s; }
+.t-s-use-v2 .case:hover { transform: translateY(-4px); box-shadow: 0 0 70px -10px var(--c) !important; }
+.t-s-use-v2 .night__glow { opacity: 0.4; }
+
+@media (min-width: 861px) {
+  .t-s-use-v3 .cases { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 330px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 16px; scrollbar-width: thin; }
+  .t-s-use-v3 .case { scroll-snap-align: start; }
+}
+.t-s-use-v3 .case { border-width: 0 0 0 4px !important; border-radius: 18px !important; }
+
+/* =====================================================================  COMPARE
+   v1 old way struck out, new way edge-lit · v2 a "vs" badge between · v3 frosted pair */
+.t-s-compare-v1 .vs--old { opacity: 0.7; background: transparent !important; }
+.t-s-compare-v1 .vs--old li { text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--accent) 70%, transparent); }
+.t-s-compare-v1 .vs--new { border: 1px solid transparent !important; background: var(--edge-fill) padding-box, var(--edge) border-box !important; box-shadow: 0 0 60px -20px rgba(var(--pool), 0.6) !important; }
+
+.t-s-compare-v2 .versus { position: relative; }
+.t-s-compare-v2 .versus::after {
+  content: "vs"; position: absolute; left: 50%; top: 50%; translate: -50% -50%; z-index: 2;
+  display: grid; place-items: center; width: 58px; height: 58px; border-radius: 50% !important;
+  background: var(--accent); color: var(--accent-ink); font: 700 18px/1 var(--font-mono); letter-spacing: 0.04em;
+  box-shadow: 0 0 0 6px var(--paper), 0 0 40px -6px var(--accent-glow);
+}
+@media (max-width: 860px) { .t-s-compare-v2 .versus::after { display: none; } }
+.t-s-compare-v2 .vs--old { border-style: solid !important; }
+
+.t-s-compare-v3 .vs { background: var(--glass) !important; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border: 1px solid var(--line-2) !important; }
+.t-s-compare-v3 .vs--new { background: color-mix(in srgb, var(--accent) 12%, var(--glass)) !important; border-color: color-mix(in srgb, var(--accent) 45%, transparent) !important; }
+
+/* =====================================================================  PRICING
+   v1 Pro lifted and lit · v2 all glass, gradient prices · v3 hairline minimal, ghost buttons */
+.t-s-pricing-v1 .plan--pro {
+  transform: translateY(-14px) scale(1.03); z-index: 1;
+  border: 1px solid transparent !important;
+  background: linear-gradient(var(--night), var(--night)) padding-box, linear-gradient(160deg, var(--accent), rgba(var(--pool), 0.9) 60%, transparent) border-box !important;
+  box-shadow: 0 0 80px -20px var(--accent-glow) !important;
+}
+.t-s-pricing-v1 .plan__flag { background: var(--accent) !important; color: var(--accent-ink) !important; }
+
+.t-s-pricing-v2 .plan { border: 1px solid transparent !important; background: linear-gradient(var(--glass), var(--glass)) padding-box, var(--edge) border-box !important; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); color: var(--ink); }
+.t-s-pricing-v2 .plan--pro { background: linear-gradient(color-mix(in srgb, var(--accent) 14%, var(--glass)), color-mix(in srgb, var(--accent) 6%, var(--glass))) padding-box, var(--edge) border-box !important; }
+.t-s-pricing-v2 .plan--pro, .t-s-pricing-v2 .plan--pro * { color: var(--ink); }
+.t-s-pricing-v2 .plan--pro .btn { color: var(--btn-fg); }
+.t-s-pricing-v2 .plan__price {
+  background: linear-gradient(90deg, var(--ink), rgba(var(--pool), 1)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.t-s-pricing-v2 .plan__price span { -webkit-text-fill-color: var(--ink-3); }
+
+.t-s-pricing-v3 .plan { background: transparent !important; border: 1px solid var(--line-2) !important; box-shadow: none !important; color: var(--ink); }
+.t-s-pricing-v3 .plan--pro { border-color: var(--ink) !important; }
+.t-s-pricing-v3 .plan--pro, .t-s-pricing-v3 .plan--pro * { color: var(--ink); }
+.t-s-pricing-v3 .plan__price { font-size: 3.4rem; letter-spacing: -0.05em; }
+.t-s-pricing-v3 .plan:not(.plan--pro) .btn { --btn-bg: transparent; --btn-fg: var(--ink); border: 1px solid var(--line-2) !important; box-shadow: none !important; }
+.t-s-pricing-v3 .plan__quota { background: transparent !important; border: 1px dashed var(--line-2); }
+
+/* =====================================================================  FAQ
+   v1 one centred column · v2 open list with hairlines · v3 glass rows, accent bar when open */
+@media (min-width: 861px) {
+  .t-s-faq-v1 .faq__grid { grid-template-columns: minmax(0, 1fr); max-width: 780px; margin-inline: auto; }
+  .t-s-faq-v1 .faq__head { position: static; align-items: center; text-align: center; }
+}
+.t-s-faq-v1 .qa { border-radius: 18px !important; }
+
+.t-s-faq-v2 .faq__list { gap: 0 !important; border-top: 1px solid var(--line-2); }
+.t-s-faq-v2 .qa { background: transparent !important; border: 0 !important; border-bottom: 1px solid var(--line-2) !important; border-radius: 0 !important; box-shadow: none !important; }
+.t-s-faq-v2 .qa summary { font-size: 1.15em; padding-block: 22px; }
+.t-s-faq-v2 .qa__icon { color: var(--accent); }
+
+.t-s-faq-v3 .qa { background: var(--glass) !important; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid var(--line-2) !important; position: relative; overflow: hidden; }
+.t-s-faq-v3 .qa[open] { border-color: color-mix(in srgb, var(--accent) 45%, transparent) !important; box-shadow: 0 0 40px -18px var(--accent-glow) !important; }
+.t-s-faq-v3 .qa[open]::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; border-radius: 0 !important; background: var(--accent); }
+
+/* =====================================================================  FINAL CTA
+   v1 aurora card · v2 see-through card with a lit edge and beam · v3 full-bleed band */
+.t-s-cta-v1 .cta__card { overflow: hidden; }
+.t-s-cta-v1 .cta__card::before {
+  content: ""; position: absolute; inset: -30%; z-index: -1; border-radius: 0 !important; filter: blur(60px); opacity: 0.7;
+  background:
+    radial-gradient(30% 35% at 25% 30%, var(--accent), transparent 70%),
+    radial-gradient(35% 40% at 75% 25%, rgba(var(--pool), 1), transparent 70%),
+    radial-gradient(30% 30% at 55% 75%, #8b5cf6, transparent 70%);
+  animation: rs-aurora 16s ease-in-out infinite alternate;
+}
+.t-s-cta-v1 .cta__glow { display: none; }
+
+.t-s-cta-v2 .cta__card {
+  background: linear-gradient(var(--paper), var(--paper)) padding-box, var(--edge) border-box !important; border: 1px solid transparent !important; color: var(--ink);
+}
+.t-s-cta-v2 .cta__card::before {
+  content: ""; position: absolute; inset: 0 0 auto; height: 70%; z-index: -1; border-radius: 0 !important;
+  background: radial-gradient(50% 80% at 50% 0%, rgba(var(--pool), 0.35), transparent 70%);
+}
+.t-s-cta-v2 .cta__title, .t-s-cta-v2 .brandchip--dark { color: var(--ink) !important; }
+.t-s-cta-v2 .cta__title .dim { color: var(--ink-3) !important; }
+.t-s-cta-v2 .cta__card .lede { color: var(--ink-2) !important; }
+.t-s-cta-v2 .waitlist--dark .waitlist__row { background: var(--surface) !important; border-color: var(--line-2) !important; }
+.t-s-cta-v2 .waitlist--dark .waitlist__input { color: var(--ink) !important; }
+.t-s-cta-v2 .waitlist--dark .waitlist__note { color: var(--ink-3) !important; }
+.t-s-cta-v2 .waitlist--dark .waitlist__input::placeholder { color: var(--ink-3) !important; }
+.t-s-cta-v2 .waitlist--dark .linkform__icon { color: var(--ink-3) !important; }
+.t-s-cta-v2 .waitlist--dark .waitlist__note a { color: var(--ink-2) !important; }
+.t-s-cta-v2 .cta__glow { display: none; }
+
+.t-s-cta-v3 .cta .wrap { width: 100%; }
+.t-s-cta-v3 .cta__card { border-radius: 0 !important; border-inline: 0 !important; padding-top: clamp(72px, 10vw, 128px); }
+.t-s-cta-v3 .cta__title { font-size: clamp(2.6rem, 6vw, 5rem); }
+.t-s-cta-v3 .cta__phones { transform: scale(1.12); transform-origin: 50% 100%; }
+
+/* =====================================================================  FOOTER
+   v1 outlined wordmark · v2 accent-to-blue wordmark · v3 compact, no wordmark, lit top seam */
+/* the footer stays a dark band on both grounds, so its strokes and seams are light */
+.t-s-footer-v1 .footer__giant { background: none !important; -webkit-text-fill-color: transparent; -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.4); color: transparent; }
+
+.t-s-footer-v2 .footer__giant { background: linear-gradient(180deg, var(--accent) 0%, rgba(var(--pool), 0.9) 55%, transparent 100%) !important; -webkit-background-clip: text !important; background-clip: text !important; }
+
+.t-s-footer-v3 .footer__giant { display: none; }
+.t-s-footer-v3 .footer { position: relative; padding-bottom: 40px; }
+.t-s-footer-v3 .footer::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; border-radius: 0 !important;
+  background: linear-gradient(90deg, transparent, var(--accent), rgba(var(--pool), 1), transparent); box-shadow: 0 0 24px rgba(var(--pool), 0.7);
+}
+
+/* light ground for the new design: a cool paper instead of today's warm one */
+:root.t-ground-light.t-design-new {
+  --paper: #f5f6fa; --surface: #ffffff; --surface-2: #eef0f6; --surface-3: #e2e5ee; --line: rgba(11, 26, 68, 0.08); --line-2: rgba(11, 26, 68, 0.14);
+}
+
+/* the nav links and the recording-types marquee were set in fixed navy: follow the ink on both grounds */
+.t-design-new .nav__links a { color: color-mix(in srgb, var(--ink) 82%, transparent); }
+.t-design-new .nav__links a:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 7%, transparent); }
+.t-design-new .marquee__list li { color: color-mix(in srgb, var(--ink) 62%, transparent); }
+.t-design-new .marquee__list svg { color: var(--ink-3); }
+
+/* ==========================================================================
+   Solid buttons (2026-11-04, Ethan: no glassmorphism on buttons). Every button is a flat
+   fill: main buttons solid cherry, secondary buttons solid surface with a hairline. No blur,
+   no gradient fill, no bevel. The nav bar and the FAQ rows, which read as buttons, go solid too.
+   ========================================================================== */
+.t-design-new .btn, .t-design-new .mx__go, .t-design-new .mx__replay, .t-design-new .ex-tab, .t-design-new .styles__sound {
+  background-image: none !important; box-shadow: none !important;
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important; transform: none !important;
+}
+.t-design-new .btn:not(.btn--light) { --btn-bg: var(--accent); --btn-fg: var(--accent-ink); border: 1px solid var(--accent) !important; }
+.t-design-new .btn:not(.btn--light):hover { background: color-mix(in srgb, var(--accent) 86%, #000) !important; border-color: color-mix(in srgb, var(--accent) 86%, #000) !important; }
+.t-design-new .btn--light { --btn-bg: var(--surface); --btn-fg: var(--ink); border: 1px solid var(--line-2) !important; }
+.t-design-new .btn--light:hover { background: var(--surface) !important; border-color: var(--ink) !important; }
+/* the call-to-action card's link button is a main button */
+.t-design-new .waitlist__btn.btn--light { --btn-bg: var(--accent); --btn-fg: var(--accent-ink); border-color: var(--accent) !important; }
+.t-design-new .waitlist__btn.btn--light:hover { background: color-mix(in srgb, var(--accent) 86%, #000) !important; }
+.t-design-new .mx__go:hover { background: color-mix(in srgb, var(--accent) 86%, #000); }
+.t-design-new .ex-tab[aria-selected="true"] { box-shadow: none !important; }
+
+/* solid surfaces where glass made things look like glass buttons */
+.t-design-new .nav__bar, .t-design-new .nav.is-scrolled .nav__bar, .t-design-new .nav__menu {
+  background: var(--surface) !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+  border: 1px solid var(--line-2) !important; box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.45) !important;
+}
+.t-design-new .ex-tabs, .t-design-new .pill, .t-design-new .qa, .t-design-new .madefor__list li {
+  background: var(--surface) !important; background-image: none !important;
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important; box-shadow: none !important;
+  border: 1px solid var(--line-2) !important;
+}
+.t-design-new .qa[open] { border-color: color-mix(in srgb, var(--accent) 45%, transparent) !important; }
+.t-design-new .pill { border-color: color-mix(in srgb, var(--accent) 45%, transparent) !important; }

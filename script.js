@@ -365,97 +365,70 @@
   }
 
   // ------------------------------------------------------------------
-  // Instant-result demo: the studio's four phases tick by (sped up),
-  // the sweep finds three moments, then three real Lautus shorts play.
-  // Videos load only when the demo is on screen.
+  // Content machine: a Drive link is typed and sent, the edit runs (sped up), four real
+  // Lautus shorts burst out in four styles, then a week of posts fills in. Runs while the
+  // demo is on screen and loops; videos load only once it has been seen.
   // ------------------------------------------------------------------
-  const demo = $('[data-demo]');
-  if (demo) {
-    const steps = $$('[data-step]', demo);
-    const label = $('[data-demo-label]', demo);
-    const shorts = $$('.demo__short', demo);
-    const videos = shorts.map((li) => $('video', li));
-    const replay = $('[data-demo-replay]', demo);
-    const sound = $('[data-demo-sound]', demo);
-    const LABELS = ['Uploading the recording', 'Transcribing what was said', 'Scoring every moment', 'Framing and captioning'];
+  const mx = $('[data-mx]');
+  if (mx) {
+    const typed = $('[data-mx-typed]', mx);
+    const steps = $$('[data-mx-step]', mx);
+    const phones = $$('.mx__phone', mx);
+    const videos = phones.map((li) => $('video', li));
+    const slots = $$('.mx__slot', mx);
+    const count = $('[data-mx-count] b', mx);
+    const LINK = 'drive.google.com/file/d/1xK9…/founder-keynote.mp4';
+    const quick = reduceMotion.matches;
     let timers = [];
-    let audible = 0;
+    let visible = false;
 
-    const load = () => videos.forEach((v) => {
-      if (!v.src) { v.src = v.dataset.src; v.load(); }
-    });
-    const at = (ms, fn) => timers.push(setTimeout(fn, reduceMotion.matches ? 0 : ms));
-    const setStep = (n) => steps.forEach((li, i) => {
-      li.classList.toggle('is-done', i < n);
-      li.classList.toggle('is-live', i === n);
-    });
+    const at = (ms, fn) => timers.push(setTimeout(fn, quick ? 0 : ms));
+    const load = () => videos.forEach((v) => { if (!v.src) { v.src = v.dataset.src; v.load(); } });
 
     const run = () => {
       timers.forEach(clearTimeout);
       timers = [];
-      demo.classList.remove('is-done', 'is-found-1', 'is-found-2');
-      demo.classList.add('is-running');
-      replay.hidden = true;
-      shorts.forEach((li) => li.classList.remove('is-in'));
+      mx.className = mx.className.replace(/\bis-[a-z]+\b/g, '').trim() + ' is-typing';
+      typed.textContent = '';
+      steps.forEach((li) => li.classList.remove('is-done', 'is-live'));
+      phones.forEach((li) => li.classList.remove('is-in', 'is-posted'));
+      slots.forEach((el) => el.classList.remove('is-in'));
       videos.forEach((v) => { v.pause(); v.currentTime = 0; });
-      setStep(0); label.textContent = LABELS[0];
-      at(1000, () => { setStep(1); label.textContent = LABELS[1]; });
-      at(2000, () => { setStep(2); label.textContent = LABELS[2]; });
-      at(2600, () => demo.classList.add('is-found-1'));
-      at(3100, () => demo.classList.add('is-found-2'));
-      at(3500, () => { setStep(3); label.textContent = LABELS[3]; });
-      at(4300, () => {
-        setStep(4);
-        demo.classList.remove('is-running');
-        demo.classList.add('is-done');
-        label.textContent = '3 shorts ready';
-        shorts.forEach((li, i) => at(i * 260, () => {
-          li.classList.add('is-in');
-          videos[i].play().catch(() => {});
-        }));
-        at(1100, () => { replay.hidden = false; });
+      count.textContent = '0';
+
+      for (let i = 1; i <= LINK.length; i++) at(200 + i * 28, () => { typed.textContent = LINK.slice(0, i); });
+      const sent = 200 + LINK.length * 28 + 250;
+      at(sent, () => mx.classList.add('is-press'));
+      at(sent + 250, () => { mx.classList.remove('is-typing', 'is-press'); mx.classList.add('is-file', 'is-running'); });
+      steps.forEach((li, i) => at(sent + 500 + i * 520, () => {
+        if (i) steps[i - 1].classList.replace('is-live', 'is-done');
+        li.classList.add('is-live');
+      }));
+      const boom = sent + 500 + steps.length * 520;
+      at(boom, () => {
+        steps[steps.length - 1].classList.replace('is-live', 'is-done');
+        mx.classList.remove('is-running');
+        mx.classList.add('is-boom');
+        phones.forEach((li, i) => at(i * 110, () => { li.classList.add('is-in'); videos[i].play().catch(() => {}); }));
       });
+      const post = boom + 1500;
+      at(post, () => mx.classList.add('is-posting'));
+      phones.forEach((li, i) => at(post + 200 + i * 420, () => li.classList.add('is-posted')));
+      slots.forEach((el, i) => at(post + 150 + i * 170, () => { el.classList.add('is-in'); count.textContent = String(i + 1); }));
+      at(post + 150 + slots.length * 170 + 400, () => mx.classList.add('is-done'));
+      // go again while it is still being watched
+      at(post + 150 + slots.length * 170 + 6500, () => { if (visible && !document.hidden) run(); });
     };
 
-    const setAudible = (index) => {
-      audible = index;
-      const on = sound.getAttribute('aria-pressed') === 'true';
-      videos.forEach((v, i) => { v.muted = !(on && i === audible); });
-    };
-    sound.addEventListener('click', () => {
-      const on = sound.getAttribute('aria-pressed') !== 'true';
-      sound.setAttribute('aria-pressed', String(on));
-      $('span', sound).textContent = on ? 'Sound off' : 'Sound on';
-      setAudible(audible);
-      if (on) { videos[audible].currentTime = 0; videos[audible].play().catch(() => {}); }
-    });
-    shorts.forEach((li, i) => li.addEventListener('click', () => {
-      if (sound.getAttribute('aria-pressed') === 'true') {
-        setAudible(i);
-        videos[i].currentTime = 0;
-        videos[i].play().catch(() => {});
-      }
-    }));
-    replay.addEventListener('click', run);
-    // Browsers may refuse an early play() (data not there yet, tab in the background):
-    // try again as soon as a revealed short can play, and when the page comes back.
+    $('[data-mx-replay]', mx).addEventListener('click', run);
     videos.forEach((v, i) => v.addEventListener('canplay', () => {
-      if (shorts[i].classList.contains('is-in') && v.paused) v.play().catch(() => {});
+      if (phones[i].classList.contains('is-in') && v.paused) v.play().catch(() => {});
     }));
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) return;
-      videos.forEach((v, i) => {
-        if (shorts[i].classList.contains('is-in') && v.paused) v.play().catch(() => {});
-      });
-    });
-
-    const seen = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      seen.disconnect();
-      load();
-      run();
-    }, { threshold: 0.35 });
-    seen.observe(demo);
+    let started = false;
+    new IntersectionObserver((entries) => {
+      visible = entries.some((entry) => entry.isIntersecting);
+      if (visible && !started) { started = true; load(); run(); }
+    }, { threshold: 0.3 }).observe(mx);
   }
 
   // ------------------------------------------------------------------

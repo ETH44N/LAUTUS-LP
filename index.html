@@ -27,7 +27,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Studio design (2026-11-04): the look is a set of classes on <html> that theme.css reads.
+    // Set before paint; light or dark follows the device and switches live with it.
+    (function () {
+      var root = document.documentElement, dark = window.matchMedia('(prefers-color-scheme: dark)');
+      'corners-round titles-plain buttons-accent depth-soft accent-cherry motion-live atmos-lit glow-blue design-new s-nav-v1 s-hero-v2 s-styles-v1 s-creators-v1 s-product-v2 s-how-v3 s-examples-v1 s-use-v2 s-compare-v1 s-pricing-v1 s-faq-v3 s-cta-v1 s-footer-v2'
+        .split(' ').forEach(function (c) { root.classList.add('t-' + c); });
+      function ground() { root.classList.toggle('t-ground-dark', dark.matches); root.classList.toggle('t-ground-light', !dark.matches); }
+      ground();
+      dark.addEventListener('change', ground);
+    })();
+  </script>
+  <meta name="color-scheme" content="light dark" />
+  <link rel="stylesheet" href="styles.css?v=1793802056" />
+  <link rel="stylesheet" href="theme.css?v=1793802056" />
+  <link rel="stylesheet" href="machine.css?v=1793802056" />
   <script>document.documentElement.classList.replace('no-js', 'js');</script>
   <!-- Analytics and ad pixels, behind the cookie banner (lautus-consent.js, README "Tracking").
        Paste each id between the quotes; a tool left empty stays off. All empty: no banner. -->
@@ -138,7 +153,7 @@
       </div>
 
       <div class="wrap hero__inner">
-        <p class="pill rise"><span class="pill__dot" aria-hidden="true"></span>Now open · paste a link, get your shorts</p>
+        <p class="pill rise"><span class="pill__dot" aria-hidden="true"></span>From Drive folder to posted shorts</p>
 
         <h1 class="hero__title rise" style="--d:1">
           You film it.<br />
@@ -223,71 +238,85 @@
           </p>
         </form>
 
-        <p class="proof rise" style="--d:4">Made for the recordings you already have</p>
-        <div class="marquee rise" style="--d:4">
-          <ul class="marquee__list" aria-label="Recording types Lautus is made for">
-            <li><svg aria-hidden="true"><use href="#i-mic" /></svg>Podcasts</li>
-            <li><svg aria-hidden="true"><use href="#i-stage" /></svg>Keynotes</li>
-            <li><svg aria-hidden="true"><use href="#i-monitor" /></svg>Webinars</li>
-            <li><svg aria-hidden="true"><use href="#i-chat" /></svg>Interviews</li>
-            <li><svg aria-hidden="true"><use href="#i-users" /></svg>Panels</li>
-            <li><svg aria-hidden="true"><use href="#i-cap" /></svg>Lectures</li>
-            <li><svg aria-hidden="true"><use href="#i-live" /></svg>Livestreams</li>
-            <li><svg aria-hidden="true"><use href="#i-book" /></svg>Courses</li>
+        <p class="proof rise" style="--d:4">We've made content for</p>
+        <!-- Only creators Lautus has really made clips of (Ethan's list). Add a <li> per creator;
+             with six or more, add data-loop to the <ul> and it scrolls like the old marquee. -->
+        <div class="madefor rise" style="--d:4">
+          <ul class="madefor__list" aria-label="Creators we've made content for">
+            <li><span class="madefor__av" style="--c:#e63950" aria-hidden="true">G</span><span class="madefor__who"><b>Gaspard Grosjean</b><small>@gaspardgrosjean</small></span></li>
+            <li><span class="madefor__av" style="--c:#4f7dff" aria-hidden="true">B</span><span class="madefor__who"><b>Barto</b><small>@bartoricoo</small></span></li>
           </ul>
         </div>
       </div>
 
-      <!-- Instant result: a recording goes in, real Lautus shorts come out.
-           The three shorts are real Lautus output from Gaspard's recordings (shown with
-           his agreement); the steps are the studio's own processing phases. -->
-      <div class="demo rise" style="--d:5" data-demo>
-        <div class="demo__window">
-          <div class="demo__bar">
+      <!-- Content machine: a Drive link goes in, Lautus edits, four shorts come out in four of
+           the studio's editing styles (real Lautus renders), then they go out on a week of posts.
+           Sped up; script.js runs the sequence while it is on screen. -->
+      <div class="mx rise" style="--d:5" data-mx>
+        <div class="mx__window">
+          <div class="mx__bar">
             <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-            <span class="demo__url"><svg aria-hidden="true"><use href="#i-link" /></svg><span>Gaspard · interview recordings</span></span>
-            <button class="demo__replay" type="button" data-demo-replay hidden>Watch again</button>
+            <span class="mx__field"><svg aria-hidden="true"><use href="#i-link" /></svg><span class="mx__typed" data-mx-typed></span><i class="mx__caret" aria-hidden="true"></i></span>
+            <span class="mx__go" data-mx-go>Get my clips <svg aria-hidden="true"><use href="#i-arrow" /></svg></span>
           </div>
-          <div class="demo__body">
-            <div class="demo__scan" data-demo-scan>
-              <div class="demo__status">
-                <span class="pix" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-                <span class="demo__label" data-demo-label>Uploading the recording</span>
+          <div class="mx__body">
+            <div class="mx__side">
+              <div class="mx__file" data-mx-file>
+                <span class="mx__drive" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="mx__name"><b>founder-keynote.mp4</b><small>Google Drive · 58 min</small></span>
               </div>
-              <ol class="demo__steps">
-                <li data-step>Uploaded the recording</li>
-                <li data-step>Transcribed what was said</li>
-                <li data-step>Scored every moment</li>
-                <li data-step>Framed and captioned the best ones</li>
+              <ol class="mx__steps">
+                <li data-mx-step>Found 14 moments worth posting</li>
+                <li data-mx-step>Framed the speaker, 9:16</li>
+                <li data-mx-step>Edited in 4 styles</li>
+                <li data-mx-step>Captions, music and sound mixed</li>
               </ol>
-              <div class="demo__track" aria-hidden="true">
-                <div class="wave" data-wave="90"></div>
-                <i class="demo__sweep"></i>
-                <i class="demo__hit demo__hit--1" style="--x:18%"></i>
-                <i class="demo__hit demo__hit--2" style="--x:47%"></i>
-                <i class="demo__hit demo__hit--3" style="--x:76%"></i>
+              <div class="mx__wave" aria-hidden="true"><div class="wave" data-wave="60"></div><i class="mx__sweep"></i></div>
+              <p class="mx__count" data-mx-count><b>0</b> posts scheduled this week</p>
+            </div>
+            <div class="mx__out">
+              <ul class="mx__phones" aria-label="Four real shorts made by Lautus, one per editing style">
+                <li class="mx__phone" style="--i:0">
+                  <video muted playsinline loop preload="none" poster="media/styles/emotional.jpg" data-src="media/styles/emotional.mp4" aria-label="Emotional style, a real Lautus render"></video>
+                  <span class="mx__style">Emotional</span>
+                  <span class="mx__posted"><svg aria-hidden="true"><use href="#i-check" /></svg>TikTok · Mon 9:00</span>
+                </li>
+                <li class="mx__phone" style="--i:1">
+                  <video muted playsinline loop preload="none" poster="media/styles/floating-captions.jpg" data-src="media/styles/floating-captions.mp4" aria-label="Floating captions style, a real Lautus render"></video>
+                  <span class="mx__style">Floating captions</span>
+                  <span class="mx__posted"><svg aria-hidden="true"><use href="#i-check" /></svg>Reels · Tue 12:30</span>
+                </li>
+                <li class="mx__phone" style="--i:2">
+                  <video muted playsinline loop preload="none" poster="media/styles/glowing-serif.jpg" data-src="media/styles/glowing-serif.mp4" aria-label="Glowing serif style, a real Lautus render"></video>
+                  <span class="mx__style">Glowing serif</span>
+                  <span class="mx__posted"><svg aria-hidden="true"><use href="#i-check" /></svg>Shorts · Wed 18:00</span>
+                </li>
+                <li class="mx__phone" style="--i:3">
+                  <video muted playsinline loop preload="none" poster="media/styles/vintage-camera.jpg" data-src="media/styles/vintage-camera.mp4" aria-label="Vintage camera style, a real Lautus render"></video>
+                  <span class="mx__style">Vintage camera</span>
+                  <span class="mx__posted"><svg aria-hidden="true"><use href="#i-check" /></svg>TikTok · Thu 9:00</span>
+                </li>
+              </ul>
+              <div class="mx__week" aria-label="A week of scheduled posts">
+                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                <i class="mx__slot" style="--c:1;--r:1"><b>TikTok</b></i>
+                <i class="mx__slot" style="--c:1;--r:2"><b>Reels</b></i>
+                <i class="mx__slot" style="--c:2;--r:1"><b>Reels</b></i>
+                <i class="mx__slot" style="--c:2;--r:2"><b>Shorts</b></i>
+                <i class="mx__slot" style="--c:3;--r:1"><b>Shorts</b></i>
+                <i class="mx__slot" style="--c:3;--r:2"><b>TikTok</b></i>
+                <i class="mx__slot" style="--c:4;--r:1"><b>TikTok</b></i>
+                <i class="mx__slot" style="--c:5;--r:1"><b>Reels</b></i>
+                <i class="mx__slot" style="--c:5;--r:2"><b>Shorts</b></i>
+                <i class="mx__slot" style="--c:6;--r:1"><b>TikTok</b></i>
+                <i class="mx__slot" style="--c:7;--r:1"><b>Reels</b></i>
+                <i class="mx__slot" style="--c:7;--r:2"><b>Shorts</b></i>
               </div>
             </div>
-            <ul class="demo__shorts" aria-label="Real shorts made by Lautus">
-              <li class="demo__short">
-                <video muted playsinline loop preload="none" poster="media/gaspard-rolex-bali.jpg" data-src="media/gaspard-rolex-bali.mp4" aria-label="Short: why he didn't take his Rolex to Bali"></video>
-                <span class="demo__chip">0:20 · 9:16 · captions</span>
-              </li>
-              <li class="demo__short">
-                <video muted playsinline loop preload="none" poster="media/gaspard-rolex-impressionner.jpg" data-src="media/gaspard-rolex-impressionner.mp4" aria-label="Short: the Rolex he bought to impress"></video>
-                <span class="demo__chip">0:13 · 9:16 · captions</span>
-              </li>
-              <li class="demo__short">
-                <video muted playsinline loop preload="none" poster="media/gaspard-statut.jpg" data-src="media/gaspard-statut.mp4" aria-label="Short: the business status he recommends"></video>
-                <span class="demo__chip">0:28 · 9:16 · captions</span>
-              </li>
-            </ul>
           </div>
-          <div class="demo__foot">
-            <span><b>Real Lautus output</b>, sped up: moment, framing and captions picked by Lautus. A full recording takes a few minutes.</span>
-            <button class="demo__sound" type="button" data-demo-sound aria-pressed="false">
-              <svg aria-hidden="true"><use href="#i-sound" /></svg><span>Sound on</span>
-            </button>
+          <div class="mx__foot">
+            <span><b>Real Lautus renders</b>, sped up: one link in, a week of shorts out, edited and posted.</span>
+            <button class="mx__replay" type="button" data-mx-replay>Watch again</button>
           </div>
         </div>
       </div>
@@ -1054,6 +1083,18 @@
     <p class="footer__giant" aria-hidden="true">lautus</p>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script src="script.js?v=1793802056" defer></script>
+  <div class="restyle-spot" aria-hidden="true"></div>
+  <script>
+    // the soft light that follows the pointer (lit background)
+    (function () {
+      var spot = document.querySelector('.restyle-spot'), x = 0, y = 0, raf = 0;
+      addEventListener('pointermove', function (e) {
+        x = e.clientX; y = e.clientY; spot.classList.add('on');
+        if (!raf) raf = requestAnimationFrame(function () { raf = 0; spot.style.transform = 'translate(' + x + 'px,' + y + 'px)'; });
+      }, { passive: true });
+      document.documentElement.addEventListener('pointerleave', function () { spot.classList.remove('on'); });
+    })();
+  </script>
 </body>
 </html>

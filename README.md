@@ -9,6 +9,14 @@ dark showcase panel. Layout language borrowed from
 [clickway.fr](https://www.clickway.fr/): floating nav, a highlighted word in the hero, bento cards in a
 dashed frame, numbered steps, a dark panel of examples, FAQ split, dark CTA card, giant-wordmark footer.
 
+**Studio design (since 2026-11-04).** On top of the pixel-studio base, `theme.css` adds the dark
+"Studio" look picked on the design compare page: light and dark follow the device
+(`prefers-color-scheme`, set on `<html>` by the first script in `index.html`), round corners, cherry
+accent buttons as solid fills, a lit background (dot grid, pools of blue light, a small pointer light)
+and one treatment per section (classes `t-s-<section>-v1|v2|v3`). `machine.css` styles the hero demo
+("content machine": a Drive link in, four real renders out in four styles, then a week of posts) and
+the "We've made content for" creator chips (only creators Lautus has really made clips of).
+
 Plain HTML/CSS/JS — no build step, no framework, deploys anywhere that serves static files.
 
 ```
