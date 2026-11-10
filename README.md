@@ -17,6 +17,12 @@ and one treatment per section (classes `t-s-<section>-v1|v2|v3`). `machine.css` 
 ("content machine": a Drive link in, four real renders out in four styles, then a week of posts) and
 the "We've made content for" creator chips (only creators Lautus has really made clips of).
 
+**Beta countdown (since 2026-11-10).** Until `window.LAUTUS_BETA_OPENS_AT` in the `<head>` of
+`index.html` (now `2026-11-12T00:00:00+04:00`, midnight Dubai), a full-screen page covers the landing
+with "Beta opens in" and a live countdown, a Log in button for clients and the Terms/Privacy links
+(`beta-gate.css`, `beta-gate.js`). At zero the normal page comes back by itself. `?open` shows the
+normal page early. The landing markup stays in the HTML for robots.
+
 Plain HTML/CSS/JS — no build step, no framework, deploys anywhere that serves static files.
 
 ```

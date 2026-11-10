@@ -43,6 +43,16 @@
   <link rel="stylesheet" href="styles.css?v=1793802056" />
   <link rel="stylesheet" href="theme.css?v=1793802056" />
   <link rel="stylesheet" href="machine.css?v=1793802056" />
+  <link rel="stylesheet" href="beta-gate.css?v=1793802056" />
+  <script>
+    // Beta countdown (2026-11-10): until this moment the page shows only "Beta opens in" and a
+    // countdown (beta-gate.js). Change this one line to move the opening. +04:00 = Dubai time.
+    window.LAUTUS_BETA_OPENS_AT = '2026-11-12T00:00:00+04:00';
+    // ?open shows the normal page early (for checking it before the opening).
+    if (Date.now() < Date.parse(window.LAUTUS_BETA_OPENS_AT) && !/[?&]open\b/.test(location.search)) {
+      document.documentElement.classList.add('is-gated');
+    }
+  </script>
   <script>document.documentElement.classList.replace('no-js', 'js');</script>
   <!-- Analytics and ad pixels, behind the cookie banner (lautus-consent.js, README "Tracking").
        Paste each id between the quotes; a tool left empty stays off. All empty: no banner. -->
@@ -62,6 +72,32 @@
   <script src="lautus-consent.js" defer></script>
 </head>
 <body>
+
+  <!-- Beta countdown gate (beta-gate.css / beta-gate.js); hidden once the beta opens -->
+  <div class="beta-gate" data-beta-gate role="region" aria-label="Beta countdown">
+    <div class="beta-gate__top">
+      <span class="brand" aria-label="Lautus">
+        <img class="brand__mark" src="brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" />
+        <span class="brand__word">lautus</span>
+      </span>
+      <a class="btn btn--sm btn--light beta-gate__login" href="https://app.lautus.ai/signin" data-app="/signin">Log in</a>
+    </div>
+    <div class="beta-gate__main">
+      <span class="beta-gate__tag"><i></i>Private beta</span>
+      <h1 class="beta-gate__title">Beta opens in</h1>
+      <div class="beta-gate__clock" role="timer" aria-live="off">
+        <span class="beta-gate__unit"><b class="beta-gate__num" data-beta-d>00</b><span class="beta-gate__label">Days</span></span>
+        <span class="beta-gate__unit"><b class="beta-gate__num" data-beta-h>00</b><span class="beta-gate__label">Hours</span></span>
+        <span class="beta-gate__unit"><b class="beta-gate__num" data-beta-m>00</b><span class="beta-gate__label">Minutes</span></span>
+        <span class="beta-gate__unit"><b class="beta-gate__num" data-beta-s>00</b><span class="beta-gate__label">Seconds</span></span>
+      </div>
+      <p class="beta-gate__lede">Lautus turns your long videos into ready-to-post shorts. Come back when the clock hits zero.</p>
+    </div>
+    <div class="beta-gate__bottom">
+      <span>© 2026 Lautus, operated by LITTLE SOMERSET FZ-LLC</span>
+      <span><a href="https://app.lautus.ai/terms">Terms</a> · <a href="https://app.lautus.ai/privacy">Privacy</a></span>
+    </div>
+  </div>
   <!-- Icon sprite -->
   <svg class="sprite" aria-hidden="true" focusable="false">
     <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -1084,6 +1120,7 @@
   </footer>
 
   <script src="script.js?v=1793802056" defer></script>
+  <script src="beta-gate.js?v=1793802056" defer></script>
   <div class="restyle-spot" aria-hidden="true"></div>
   <script>
     // the soft light that follows the pointer (lit background)

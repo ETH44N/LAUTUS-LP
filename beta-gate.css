@@ -1,0 +1,89 @@
+/* Beta countdown gate (2026-11-10).
+   While the beta has not opened, a full-screen page covers the landing with one thing:
+   "Beta opens in" and a live countdown. The head script in index.html adds .is-gated to <html>
+   before paint; beta-gate.js removes it when the countdown reaches zero, so the normal page comes
+   back by itself. The landing markup stays in the page for robots (Google OAuth review). */
+
+.beta-gate { display: none; }
+
+html.is-gated, html.is-gated body { overflow: hidden; height: 100%; }
+html.is-gated .restyle-spot { display: none; }
+
+html.is-gated .beta-gate {
+  position: fixed; inset: 0; z-index: 1000;
+  display: flex; flex-direction: column; align-items: center;
+  overflow-y: auto;
+  padding: 24px 16px;
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(60% 45% at 50% 0%, rgba(var(--pool), calc(var(--pool-strength) * 1.4)), transparent 70%),
+    radial-gradient(45% 35% at 50% 100%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%),
+    radial-gradient(var(--dot) 1px, transparent 1.2px);
+  background-size: auto, auto, 22px 22px;
+  color: var(--ink);
+  font-family: var(--font);
+}
+
+.beta-gate__top, .beta-gate__bottom {
+  width: 100%; max-width: 960px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.beta-gate__top .brand__mark { width: 30px; height: auto; }
+.beta-gate__login { white-space: nowrap; }
+
+.beta-gate__main {
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 48px 0;
+}
+.beta-gate__tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 12px; border-radius: 999px;
+  border: 1px solid var(--line-2); background: var(--surface);
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2);
+}
+.beta-gate__tag i {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent);
+  animation: beta-pulse 1.6s ease-in-out infinite;
+}
+@keyframes beta-pulse { 50% { opacity: 0.35; } }
+
+.beta-gate__title {
+  margin: 22px 0 0;
+  font-family: var(--font-title); font-weight: 600;
+  font-size: clamp(40px, 8vw, 84px); line-height: 1; letter-spacing: -0.04em;
+}
+
+.beta-gate__clock {
+  margin: 32px 0 0; display: flex; gap: clamp(8px, 2vw, 16px);
+}
+.beta-gate__unit {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  min-width: clamp(68px, 18vw, 130px);
+  padding: clamp(14px, 3vw, 24px) clamp(8px, 2vw, 16px);
+  border-radius: 20px; border: 1px solid var(--line-2);
+  background: var(--surface);
+  box-shadow: inset 0 1px 0 var(--bevel-top), inset 0 -1px 0 var(--bevel-bottom);
+}
+.beta-gate__num {
+  font-family: var(--font-title); font-weight: 600;
+  font-size: clamp(36px, 9vw, 80px); line-height: 1; letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.beta-gate__unit:last-child .beta-gate__num { color: var(--accent); }
+.beta-gate__label {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
+}
+
+.beta-gate__lede { margin: 28px 0 0; max-width: 34em; font-size: 17px; line-height: 1.5; color: var(--ink-2); }
+
+.beta-gate__bottom { font-size: 13px; color: var(--ink-3); flex-wrap: wrap; justify-content: center; }
+.beta-gate__bottom a { color: var(--ink-2); }
+.beta-gate__bottom a:hover { color: var(--accent); }
+
+@media (max-width: 480px) {
+  .beta-gate__unit { border-radius: 14px; min-width: 0; flex: 1; }
+  .beta-gate__clock { width: 100%; }
+  .beta-gate__lede { font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) { .beta-gate__tag i { animation: none; } }
