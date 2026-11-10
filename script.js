@@ -20,7 +20,7 @@
     starter: `${APP_URL}/start?plan=starter`,
     pro: `${APP_URL}/start?plan=pro`,
     scale: `${APP_URL}/start?plan=scale`,
-    enterprise: '', // e.g. 'mailto:hello@lautus.ai' once the contact address is set
+    enterprise: 'mailto:founders@lautus.ai?subject=Lautus%20Enterprise',
   };
 
   const $ = (sel, root = document) => root.querySelector(sel);
