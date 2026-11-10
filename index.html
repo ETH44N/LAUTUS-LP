@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lautus — Every talk hides a dozen shorts</title>
-  <meta name="description" content="Lautus is an AI editor that turns long-form recordings into publish-ready vertical shorts: the moment chosen, the speaker framed, captions and sound done. Paste a link and get your first shorts." />
+  <title>Lautus — Turn long videos into short clips, automatically</title>
+  <meta name="description" content="Lautus turns your long videos, podcasts and talks into vertical short clips for TikTok, Reels and YouTube Shorts: best moments picked, speaker framed, captions and sound done." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="theme-color" content="#f7f9fe" />
   <link rel="icon" href="favicon.ico" sizes="48x48" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -12,6 +13,38 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
   <link rel="canonical" href="https://lautus.ai/" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://lautus.ai/#org",
+        "name": "Lautus",
+        "url": "https://lautus.ai/",
+        "logo": "https://lautus.ai/icon-512.png",
+        "email": "founders@lautus.ai"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://lautus.ai/#website",
+        "name": "Lautus",
+        "url": "https://lautus.ai/",
+        "publisher": { "@id": "https://lautus.ai/#org" }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Lautus",
+        "url": "https://lautus.ai/",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Web",
+        "description": "Turns long videos, podcasts and talks into vertical short clips: picks the best moments, frames the speaker, adds captions, headlines and music.",
+        "publisher": { "@id": "https://lautus.ai/#org" }
+      }
+    ]
+  }
+  </script>
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Lautus" />
@@ -84,7 +117,7 @@
     </div>
     <div class="beta-gate__main">
       <span class="beta-gate__tag"><i></i>Private beta</span>
-      <h1 class="beta-gate__title">Beta opens in</h1>
+      <p class="beta-gate__title">Beta opens in</p>
       <div class="beta-gate__clock" role="timer" aria-live="off">
         <span class="beta-gate__unit"><b class="beta-gate__num" data-beta-d>00</b><span class="beta-gate__label">Days</span></span>
         <span class="beta-gate__unit"><b class="beta-gate__num" data-beta-h>00</b><span class="beta-gate__label">Hours</span></span>
