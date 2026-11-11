@@ -50,7 +50,7 @@ CNAME             custom domain for GitHub Pages
 | Examples | `#examples` | Tabbed before/after (podcast, keynote, interview): the 16:9 source, then the Standard and Premium shorts. |
 | Use cases | `#use-cases` | Dark panel, six cards (podcasts, keynotes, webinars, interviews, lectures, livestreams). |
 | Compare | – | "By hand" vs "With Lautus". |
-| Pricing | `#pricing` | Starter $49 (30 videos), Pro $199 (100, premium edit), Scale $499 (300), Enterprise. Buttons use `CHECKOUT` in `script.js`. |
+| Pricing | `#pricing` | Starter $49 (50 clips), Pro $199 (250, AI agent + workflows), Scale $499 (750); -20% launch offer 12-26 Nov 2026, Enterprise. Buttons use `CHECKOUT` in `script.js`. |
 | FAQ | `#faq` | `<details name="faq">` accordion (one open at a time). |
 | Final CTA | `#access` | Second waitlist form. Every "Get early access" link focuses a form. |
 | Footer | – | Links, a live local-time timecode, giant wordmark. |

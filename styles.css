@@ -1484,6 +1484,14 @@ strong, b { font-weight: 600; }
 .plan__price { display: flex; align-items: baseline; gap: 6px; margin-top: 16px; }
 .plan__price b { font-size: 46px; font-weight: 600; line-height: 1; letter-spacing: -0.055em; }
 .plan__price span { font-size: 14.5px; color: var(--ink-3); }
+.plan__was { font-size: 22px; font-weight: 500; letter-spacing: -0.03em; color: var(--ink-3); }
+.plan--pro .plan__was { color: rgba(255, 255, 255, 0.5); }
+.launch-note { margin-top: 14px; font-size: 15px; color: var(--ink-2); }
+.launch-note b { color: var(--cherry, var(--accent)); }
+.plan__was[hidden], .launch-note[hidden] { display: none; }
+.plan__price:has(.plan__was:not([hidden])) { flex-wrap: wrap; gap: 4px 8px; }
+.plan__price:has(.plan__was:not([hidden])) b { font-size: 32px; }
+.plan__price span { white-space: nowrap; }
 .plan__btn { width: 100%; margin-top: 22px; }
 .plan__quota {
   margin-top: 22px;
