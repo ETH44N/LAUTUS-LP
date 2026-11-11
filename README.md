@@ -48,11 +48,11 @@ CNAME             custom domain for GitHub Pages
 | Product | `#product` | Sticky intro + bento of what the editor does, inside a dashed "editor" frame. |
 | How it works | `#how` | Four numbered steps with small UI mocks. |
 | Examples | `#examples` | Tabbed before/after (podcast, keynote, interview): the 16:9 source, then the Standard and Premium shorts. |
-| Use cases | `#use-cases` | Dark panel, six cards (podcasts, keynotes, webinars, interviews, lectures, livestreams). |
+| Use cases | `#use-cases` | Dark panel, six text cards (podcasts, keynotes, webinars, interviews, lectures, livestreams); no mock phones. |
 | Compare | – | "By hand" vs "With Lautus". |
 | Pricing | `#pricing` | Starter $49 (30 videos), Pro $199 (100, premium edit), Scale $499 (300), Enterprise. Buttons use `CHECKOUT` in `script.js`. |
 | FAQ | `#faq` | `<details name="faq">` accordion (one open at a time). |
-| Final CTA | `#access` | Second waitlist form. Every "Get early access" link focuses a form. |
+| Final CTA | `#access` | Second waitlist form. Every "Get early access" link focuses a form. Below it, five real Lautus clips (`media/clips/`, 8 s muted loops, played only while on screen). |
 | Footer | – | Links, a live local-time timecode, giant wordmark. |
 
 All product visuals (editor, shorts, waveforms) are HTML/CSS/SVG, no images or video. Speaker silhouettes

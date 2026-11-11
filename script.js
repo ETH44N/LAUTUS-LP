@@ -513,4 +513,24 @@
       begin();
     }
   }
+
+  /* Real clips (data-lazyloop): load and play only while on screen, pause when off it. */
+  const loops = document.querySelectorAll('video[data-lazyloop]');
+  if (loops.length) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const show = (v, on) => {
+      if (on) {
+        if (!v.src) { v.src = v.dataset.src; v.load(); }
+        if (!reduce) v.play().catch(() => {});
+      } else if (!v.paused) v.pause();
+    };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => show(e.target, e.isIntersecting));
+      }, { rootMargin: '200px 0px', threshold: 0.01 });
+      loops.forEach((v) => io.observe(v));
+    } else {
+      loops.forEach((v) => show(v, true));
+    }
+  }
 })();
