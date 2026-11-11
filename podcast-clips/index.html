@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Podcast clips made for you: episodes into shorts | Lautus</title>
+  <meta name="description" content="Turn every podcast episode into short clips for TikTok, Reels and YouTube Shorts. Lautus finds the best moments, frames whoever is speaking, and adds captions, headlines and music." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#f7f9fe" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://lautus.ai/podcast-clips/" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Lautus" />
+  <meta property="og:title" content="Turn every podcast episode into short clips" />
+  <meta property="og:description" content="Lautus finds the best moments of your podcast and edits them into vertical shorts, both speakers framed." />
+  <meta property="og:url" content="https://lautus.ai/podcast-clips/" />
+  <meta property="og:image" content="https://lautus.ai/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    // Same studio look as the English page (see index.html).
+    (function () {
+      var root = document.documentElement, dark = window.matchMedia('(prefers-color-scheme: dark)');
+      'corners-round titles-plain buttons-accent depth-soft accent-cherry motion-live atmos-lit glow-blue design-new s-nav-v1 s-hero-v2 s-product-v2 s-how-v3 s-faq-v3 s-cta-v1 s-footer-v2'
+        .split(' ').forEach(function (c) { root.classList.add('t-' + c); });
+      function ground() { root.classList.toggle('t-ground-dark', dark.matches); root.classList.toggle('t-ground-light', !dark.matches); }
+      ground();
+      dark.addEventListener('change', ground);
+    })();
+  </script>
+  <link rel="stylesheet" href="/styles.css?v=1793802056" />
+  <link rel="stylesheet" href="/theme.css?v=1793802056" />
+  <style>
+    .seo-hero { padding: clamp(120px, 16vw, 180px) 0 clamp(48px, 8vw, 96px); text-align: center; }
+    .seo-hero .hero__title { font-size: clamp(40px, 7vw, 84px); line-height: 1.02; max-width: 16ch; margin: 18px auto 0; }
+    .seo-hero .hero__lede { max-width: 46ch; margin: 22px auto 0; }
+    .seo-hero .btn { margin-top: 30px; }
+    .seo-list { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 40px; padding: 0; list-style: none; }
+    .seo-list li { padding: 26px; border-radius: var(--radius, 22px); background: var(--surface, rgba(127,127,127,.06)); }
+    .seo-list h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; }
+    .seo-list p { margin-top: 8px; color: var(--ink-2); }
+    .seo-num { font-family: var(--font-title); font-size: 40px; font-weight: 600; line-height: 1; color: var(--accent); margin: 0 0 14px !important; }
+    .seo-cta { text-align: center; }
+    .seo-cta .lede { margin: 16px auto 0; max-width: 44ch; }
+    .seo-cta .btn { margin-top: 28px; }
+  </style>
+  <style>
+    .seo-table { width: 100%; margin-top: 36px; border-collapse: collapse; font-size: 16px; }
+    .seo-table th, .seo-table td { text-align: left; vertical-align: top; padding: 16px 14px; border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent); }
+    .seo-table thead th { font-family: var(--font-title); font-size: 18px; }
+    .seo-table td { color: var(--ink-2); }
+    .seo-table th[scope=row] { font-weight: 600; width: 24%; }
+    .seo-scroll { overflow-x: auto; }
+    .seo-note { margin-top: 18px; font-size: 14px; color: var(--ink-2); }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://lautus.ai/podcast-clips/",
+    "name": "Podcast clips, made for you",
+    "inLanguage": "en",
+    "isPartOf": { "@id": "https://lautus.ai/#website" },
+    "about": { "@id": "https://lautus.ai/#org" }
+  }
+  </script>
+</head>
+<body>
+  <header class="nav" data-nav>
+    <div class="nav__bar">
+      <a class="brand" href="/" aria-label="Lautus home">
+        <img class="brand__mark" src="/brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" />
+        <span class="brand__word">lautus</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="/#how">How it works</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/opus-clip-alternative/">Compare</a>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--sm nav__signup" href="https://app.lautus.ai/signup">
+          <span class="btn__label">Sign up</span>
+          <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <svg class="sprite" aria-hidden="true" focusable="false" style="display:none">
+    <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
+
+  <main id="main">
+    <section class="seo-hero">
+      <div class="wrap">
+        <p class="pill rise"><span class="pill__dot" aria-hidden="true"></span>For podcasts and interviews</p>
+        <h1 class="hero__title rise" style="--d:1">Podcast clips from every episode, edited for you.</h1>
+        <p class="hero__lede rise" style="--d:2">Drop in a full episode. Lautus finds the moments worth sharing and turns them into vertical shorts, <strong>with the right person on screen every time.</strong></p>
+        <a class="btn rise" style="--d:3" href="https://app.lautus.ai/signup">
+          <span class="btn__label">Clip my podcast</span>
+          <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="wrap">
+        <header class="head">
+          <h2 class="h2">Built for two mics and one long hour.</h2>
+          <p class="lede">Podcasts are the hardest videos to clip by hand. That's why Lautus starts there.</p>
+        </header>
+        <ul class="seo-list">
+          <li><h3>Both speakers, framed</h3><p>Host and guest, side by side or on separate cameras. The vertical frame follows whoever is talking. Lautus learns your face and voice by itself, so there's nothing to set up.</p></li>
+          <li><h3>The moments that stand alone</h3><p>Lautus listens to the whole episode and keeps the answers, stories and lines that make sense to someone who missed the rest. No clips under 8 seconds.</p></li>
+          <li><h3>Captions and a headline</h3><p>Word-timed captions for people watching with the sound off, and a headline written as you or to your viewer, in the language of the episode.</p></li>
+          <li><h3>Your show's look</h3><p>Pick an editing style and its music once. Every clip from every episode looks like it came from the same show.</p></li>
+          <li><h3>Clean sound</h3><p>Levels evened out and dead air trimmed, so each clip starts on the line that hooks.</p></li>
+          <li><h3>Ready to post</h3><p>Vertical 9:16, captioned and mixed, for TikTok, Instagram Reels and YouTube Shorts.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="wrap">
+        <header class="head">
+          <h2 class="h2">From episode to clips.</h2>
+        </header>
+        <ol class="seo-list">
+          <li><p class="seo-num" aria-hidden="true">1.</p><h3>Paste the episode.</h3><p>A YouTube or Google Drive link, or upload the file.</p></li>
+          <li><p class="seo-num" aria-hidden="true">2.</p><h3>Lautus listens to all of it.</h3><p>Every minute is transcribed and weighed, so nothing good is missed.</p></li>
+          <li><p class="seo-num" aria-hidden="true">3.</p><h3>You get finished clips.</h3><p>Framed, captioned, titled and mixed, in your style.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section seo-cta">
+      <div class="wrap">
+        <h2 class="h2">Your next shorts<br />are already recorded.</h2>
+        <p class="lede">Paste a link to your latest episode. <a href="/#pricing">See pricing</a>.</p>
+        <a class="btn" href="https://app.lautus.ai/signup">
+          <span class="btn__label">Get started</span>
+          <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__top">
+      <div class="footer__brand">
+        <a class="brand brand--light" href="/" aria-label="Lautus home">
+          <img class="brand__mark" src="/brand/lautus-lotus-pixel.svg" alt="" width="110" height="90" />
+          <span class="brand__word">lautus.ai</span>
+        </a>
+        <p>An AI editor that turns long-form recordings into vertical shorts.</p>
+      </div>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="/">Home</a>
+        <a href="/fr/" hreflang="fr" lang="fr">Français</a>
+        <a href="/opus-clip-alternative/">Lautus vs Opus Clip</a>
+        <a href="mailto:founders@lautus.ai">Contact: founders@lautus.ai</a>
+        <a href="https://app.lautus.ai/terms">Terms</a>
+        <a href="https://app.lautus.ai/privacy">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
