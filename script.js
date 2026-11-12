@@ -25,6 +25,19 @@
 
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+
+  // ------------------------------------------------------------------
+  // Launch offer: 20% off every plan, for as long as the buyer stays,
+  // for anyone who checks out between 00:00 Dubai time on 12 November
+  // and 00:00 on 26 November 2026. Checkout applies it by itself (the
+  // app's lib/billing/launch.ts); this only shows it, in the same window.
+  // ------------------------------------------------------------------
+  const LAUNCH_START = Date.parse('2026-11-11T20:00:00Z');
+  const LAUNCH_END = Date.parse('2026-11-25T20:00:00Z');
+  if (Date.now() >= LAUNCH_START && Date.now() < LAUNCH_END) {
+    $$('[data-launch]').forEach((el) => { el.hidden = false; });
+    $$('[data-launch-price]').forEach((el) => { el.textContent = el.dataset.launchPrice; });
+  }
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   // ------------------------------------------------------------------
